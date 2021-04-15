@@ -1,7 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.exceptions import PermissionDenied
+from rest_framework.exceptions import PermissionDenied, NotFound
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from django.contrib.auth import get_user_model
 from datetime import datetime, timedelta
 from django.conf import settings
@@ -21,7 +22,7 @@ class RegisterView(APIView):
         return Response(user_to_create.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 
-class  LoginView(APIView):
+class LoginView(APIView):
     def post(self, request):
         # get some data off the request
         email = request.data.get('email')
@@ -45,8 +46,38 @@ class  LoginView(APIView):
 
         return Response({'token': token, 'message': f'Welcome back {user_to_login.first_name}'})
 
-class  UserListView(APIView):
+class UserListView(APIView):
     def get(self, request):
         users = User.objects.all()
         serialized_users = UserSerializer(users, many=True)
         return Response(serialized_users.data, status=status.HTTP_200_OK)
+
+
+class UserDetailView(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+
+    def get_user(self, pk):
+        try:
+            print("🚀 User found")
+            return User.objects.get(pk=pk) 
+        except User.DoesNotExist:
+            print("🆘 Cannot find that user")
+            raise NotFound(detail="🆘 Cannot find that user")
+
+    def get(self, _request, pk):
+        user = self.get_user(pk=pk)
+        serialized_user = UserSerializer(user)
+        return Response(serialized_user.data, status=status.HTTP_200_OK)
+
+    def delete(self, _request, pk):
+        user_to_delete = self.get_user(pk=pk)
+        user_to_delete.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    def put(self, request, pk):
+        user_to_edit = self.get_user(pk=pk)
+        updated_user = UserSerializer(user_to_edit, data=request.data)
+        if updated_user.is_valid():
+            updated_user.save()
+            return Response(updated_user.data, status=status.HTTP_202_ACCEPTED)
+        return Response(updated_user.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
