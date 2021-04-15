@@ -8,8 +8,10 @@
 #     dietary_restrictions = DietaryRestrictionSerializer(many=True)
 #     owner = UserSerializer()
 
-
+from comments.serializers.populated import PopulatedCommentSerializer
 from jwt_auth.serializers.common import UserSerializer
 from ..serializers.common import LoopSerializer
+
 class PopulatedLoopSerializer(LoopSerializer):
     owner = UserSerializer()
+    comments = PopulatedCommentSerializer(many=True)
