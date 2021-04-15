@@ -1,0 +1,29 @@
+from rest_framework.views import APIView 
+from rest_framework.response import Response 
+from rest_framework import status 
+from rest_framework.exceptions import NotFound
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from .models import Loop 
+from .serializers.common import LoopSerializer
+from .serializers.populated import PopulatedLoopSerializer
+
+
+class LoopListView(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+
+    def get(self, _request):
+        loops = Loop.objects.all() # return everything from the db
+        serialized_loops = PopulatedLoopSerializer(loops, many=True) # convert the data
+        return Response(serialized_loops.data, status=status.HTTP_200_OK)
+
+
+    def post(self, request):
+        print('🟥request: ', request.data)
+        request.data["owner"] = request.user.id
+        loop_to_add = LoopSerializer(data=request.data)
+
+        if loop_to_add.is_valid():
+            loop_to_add.save()
+            return Response(loop_to_add.data, status=status.HTTP_201_CREATED)
+
+        return Response(loop_to_add.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
