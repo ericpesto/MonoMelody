@@ -14,6 +14,7 @@ class Comment(models.Model):
         related_name = "comments",
         on_delete = models.CASCADE
     )
+    is_edited = models.BooleanField(default=False)
 
     def __str__(self):
         return f"comment by {self.owner}, on {self.created_at}"

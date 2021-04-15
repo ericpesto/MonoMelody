@@ -29,3 +29,36 @@ class CommentListView(APIView):
             comment_to_create.save()
             return Response(comment_to_create.data, status=status.HTTP_201_CREATED)
         return Response(comment_to_create.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+
+class CommentDetailView(APIView):
+
+    permission_classes = (IsAuthenticated,)
+
+    def get_comment(self, pk):
+        try:
+            print(f'🚀 Loop Found')
+            return Comment.objects.get(pk=pk)
+        except Comment.DoesNotExist:
+            print("🆘 Cannot find that loop")
+            raise NotFound(detail="🆘 Cannot find that loop")  
+
+    def get(self, _request, pk):
+        comment = self.get_comment(pk=pk)
+        serialized_comment = PopulatedCommentSerializer(comment)
+        return Response(serialized_comment.data, status=status.HTTP_200_OK)
+
+
+    def delete(self, request, pk):
+        comment_to_delete = self.get_comment(pk=pk)
+        comment_to_delete.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def put(self, request, pk):
+        comment_to_update = self.get_comment(pk=pk)
+        comment_to_update.is_edited = True
+        serialized_updated_comment = CommentSerializer(comment_to_update, data=request.data)
+        if serialized_updated_comment.is_valid():
+            serialized_updated_comment.save()
+            return Response(serialized_updated_comment.data, status=status.HTTP_201_CREATED)
+        return Response(serialized_updated_comment.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
