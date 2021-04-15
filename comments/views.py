@@ -40,8 +40,8 @@ class CommentDetailView(APIView):
             print(f'🚀 Loop Found')
             return Comment.objects.get(pk=pk)
         except Comment.DoesNotExist:
-            print("🆘 Cannot find that loop")
-            raise NotFound(detail="🆘 Cannot find that loop")  
+            print("🆘 Cannot find that comment")
+            raise NotFound(detail="🆘 Cannot find that comment")  
 
     def get(self, _request, pk):
         comment = self.get_comment(pk=pk)

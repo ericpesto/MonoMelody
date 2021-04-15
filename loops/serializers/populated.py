@@ -15,3 +15,4 @@ from ..serializers.common import LoopSerializer
 class PopulatedLoopSerializer(LoopSerializer):
     owner = UserSerializer()
     comments = PopulatedCommentSerializer(many=True)
+    

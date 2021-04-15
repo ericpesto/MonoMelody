@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'jwt_auth',
     'loops',
-    'comments'
+    'comments',
+    'likes'
 ]
 
 MIDDLEWARE = [
