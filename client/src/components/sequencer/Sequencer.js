@@ -28,13 +28,11 @@ const Sequencer = () => {
 
   // * Form State
   const [loopTitle, setLoopTitle] = useState('')
-  const [genre, setGenre] = useState([])
   const [formData, setFormData] = useState({
     title: loopTitle,
     bpm: bpm,
     steps: steps,
     synth: synth,
-    genres: genre,
   })
 
   useEffect(() => {
@@ -45,7 +43,6 @@ const Sequencer = () => {
     setNotes(notesArray)
 
     setLoopTitle('test frontend loop')
-    setGenre(2)
   }, []) 
 
   useEffect(() => {
@@ -54,7 +51,6 @@ const Sequencer = () => {
       steps: steps,
       bpm: bpm,
       synth: synth,
-      genres: genre,
     }
     setFormData(newFormData)
     console.log('FORM DATA ->>',formData)
@@ -64,12 +60,11 @@ const Sequencer = () => {
   const handleSave =  async () => {
 
     const stringSteps = steps.join(' ')
-    const genreArray = genre.split()
     console.log('stringSteps: ', stringSteps)
-    const formToSend = { ...formData, steps: stringSteps, genres: genreArray }
+    const formToSend = { ...formData, steps: stringSteps }
     try {
       // await axios.post('/api/loops/', formData)
-      await axios.post('/api/loops/', formToSend, { headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYxOTEwMTkxMX0.kidR-O1H_Ox1AdtYRbFRdwGutGeSMcQs8Lb-oPo7yv4' } })
+      await axios.post('/api/loops/', formToSend, { headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYxOTE5NTMwM30.ISqpfmCSTbtAQf0fYfV7dtOnJJkLMcq3rAxVd6D6Xug' } })
     } catch (err) {
       console.log('🔴  Error sending loop',err)
     }

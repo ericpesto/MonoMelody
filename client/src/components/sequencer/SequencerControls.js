@@ -1,8 +1,7 @@
 import React, {  } from 'react'
 
-const SequencerControls = ({ bpm, volume, synthList, attack, sustain, decay, release, handleBpm, handleVolume, handleSynthType, handleAttack, handleSustain, handleDecay, handleRelease }) => {
+const SequencerControls = ({ bpm, volume, synthList, handleBpm, handleVolume, handleSynthType }) => {
   
-
   return (
     <div>
       <form>
@@ -25,28 +24,6 @@ const SequencerControls = ({ bpm, volume, synthList, attack, sustain, decay, rel
               return <option key={synth} value={synth}>{synth}</option>
             })}
           </select>
-        </div>
-        <div className='envelope-controller'>
-          <label>attack: {attack}</label>
-          <div className="slidecontainer">
-            <input type="range" min="-500" max="500" value={Math.floor(attack)} onChange={handleAttack} />
-            {/* <input name='attack' type="range" min="-500" max="500" value={Math.floor(attack)} onChange={handleEnvelopeChange} /> */}
-          </div>
-          <label>sustain: {sustain}</label>
-          <div className="slidecontainer">
-            <input type="range" min="-500" max="500" value={Math.floor(sustain)} onChange={handleSustain} />
-            {/* <input name='sustain' type="range" min="-500" max="500" value={Math.floor(sustain)} onChange={handleEnvelopeChange} /> */}
-          </div>
-          <label>decay: {decay}</label>
-          <div className="slidecontainer">
-            <input type="range" min="-500" max="500" value={Math.floor(decay)} onChange={handleDecay} />
-            {/* <input name='decay' type="range" min="-500" max="500" value={Math.floor(decay)} onChange={handleEnvelopeChange} /> */}
-          </div>
-          <label>release: {release}</label>
-          <div className="slidecontainer">
-            <input type="range" min="-500" max="500" value={Math.floor(release)} onChange={handleRelease} />
-            {/* <input name='release' type="range" min="-500" max="500" value={Math.floor(release)} onChange={handleEnvelopeChange} /> */}
-          </div>
         </div>
       </form>
     </div>
