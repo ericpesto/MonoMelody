@@ -66,7 +66,7 @@ const Sequencer = () => {
       // await axios.post('/api/loops/', formData)
       await axios.post('/api/loops/', formToSend, { headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYxOTE5NTMwM30.ISqpfmCSTbtAQf0fYfV7dtOnJJkLMcq3rAxVd6D6Xug' } })
     } catch (err) {
-      console.log('🔴  Error sending loop',err)
+      console.log('🔴  Error sending loop', err)
     }
     console.log('🐝 ~ file: Sequencer.js ~ line 75 ~ formToSend', formToSend)
   }

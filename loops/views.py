@@ -17,8 +17,8 @@ class LoopListView(APIView):
         return Response(serialized_loops.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        print('🟥request: ', request.data)
-        request.data["owner"] = request.user.id
+        # print('🟥request: ', request.data)
+        # request.data["owner"] = request.user.id
         loop_to_add = LoopSerializer(data=request.data)
 
         if loop_to_add.is_valid():
