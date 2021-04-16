@@ -40,6 +40,7 @@ class LoopDetailView(APIView):
 
     def get(self, _request,pk):
         loop = self.get_loop(pk=pk)
+        print('loop: ', loop)
         serialized_loop = PopulatedLoopSerializer(loop)
         return Response(serialized_loop.data, status=status.HTTP_200_OK)
 
