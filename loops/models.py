@@ -13,7 +13,6 @@ class Loop(models.Model):
         related_name='created_meals',
         on_delete = models.CASCADE
     ) 
-    genres = models.ManyToManyField("genres.Genre", related_name="loops")
 
     # comments
     # likes 
