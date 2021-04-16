@@ -44,3 +44,4 @@ class LoopDetailView(APIView):
         serialized_loop = PopulatedLoopSerializer(loop)
         return Response(serialized_loop.data, status=status.HTTP_200_OK)
 
+

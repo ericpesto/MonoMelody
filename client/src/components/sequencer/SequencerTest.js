@@ -8,27 +8,6 @@ const SequencerTest = () => {
 
   // eslint-disable-next-line no-unused-vars
 
-  // have form for title 
-  const handleSave =  async () => {
-    const formDataToSend =  formData 
-
-    console.log('🐝 ~ file: SequencerTest.js ~ line 32 ~ formDataToSend', formDataToSend)
-
-    const testLoad = {
-      'title': 'TEST FRONT 22',
-      'loop_data': 'fefefefefef',
-      'genres': [2],
-    }
-
-    try {
-      // await axios.post('/api/loops/', formData)
-      await axios.post('/api/loops/', testLoad, { headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTYxOTA5OTc3M30.y18SVjtETWEmH0C809uPmXRjdCrtKkQvYtFdrjqJB0Y' } })
-    } catch (err) {
-      console.log('🔴  Error sending loop',err)
-    }
-    // setFormData(formDataToSend)
-  }
-
   // * Song State
   const [isPlaying, setIsPlaying] = useState(false)
   const [bpm, setBpm] = useState(120)
@@ -69,7 +48,6 @@ const SequencerTest = () => {
       release: release,
     },
     genres: genre,
-
   })
 
   // const handleLoad = () => {} // load loop from saved/other user etc..
@@ -102,7 +80,7 @@ const SequencerTest = () => {
       genre: genre,
     }
     setFormData(newFormData)
-    console.log(formData)
+    console.log('FORM DATA ->>',formData)
 
   }, [bpm,volume,steps,currentStepIndex,synth,attack,sustain,decay,release,synthList,notes])
 
@@ -151,6 +129,53 @@ const SequencerTest = () => {
   const handleRelease = (event) => {
     const currentRelease = event.target.value
     setRelease(parseFloat(currentRelease))
+  }
+
+  // have form for title  
+  const handleSave =  async () => {
+    const formDataToSend =  formData 
+    const loopData = JSON.stringify(formDataToSend.loop_data)
+    const { steps, bpm , volume, synth,attack, sustain, decay } = formDataToSend.loop_data
+    console.log('🐝 ~ file: SequencerTest.js ~ line 139 ~ steps', steps)
+    const stringData = `
+    "steps": "${steps}","bpm": ${bpm},
+    "volume": ${volume},
+    "synth": "${synth}",
+    "attack": ${attack},
+    "sustain": ${sustain},
+    "decay": ${decay},
+    "release": ${release}`
+    
+    console.log('🐝 ~ file: SequencerTest.js ~ line 140 ~ stringData', stringData)
+    
+    
+    //const loopDataString = `" ${loopData} "`
+    //const stringLoopData = JSON.stringify(loopData)
+    console.log('loopdata ->', loopData )
+    const formatedFormData = { ...formDataToSend, loop_data: stringData }
+    const JSONFormData = formatedFormData
+    console.log('🐝 ~ file: SequencerTest.js ~ line 138 ~ JSONFormdata', JSONFormData)
+    // console.log('🐝 ~ file: SequencerTest.js ~ line 32 ~ formDataToSend', formDataToSend)
+  
+    // const testLoad = {
+    //   'title': 'TEST FRONT 22',
+    //   'loop_data': 'fefefefefef',
+    //   'genres': [2],
+    // }
+  
+  
+    //need to stringinfy just loop_data
+    // console.log('stringified ->', JSON.stringify(formDataToSend.loop_data))
+    // console.log('testobject', { ...formDataToSend, loop_data: JSON.stringify(formDataToSend.loop_data) })
+    // console.log('formDataToSend', formDataToSend)
+  
+    try {
+      // await axios.post('/api/loops/', formData)
+      await axios.post('/api/loops/', JSONFormData, { headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYxOTEwMTkxMX0.kidR-O1H_Ox1AdtYRbFRdwGutGeSMcQs8Lb-oPo7yv4' } })
+    } catch (err) {
+      console.log('🔴  Error sending loop',err)
+    }
+    // setFormData(formDataToSend)
   }
 
   // const [envelope, setEnvelope] = useState({ 
