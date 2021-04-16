@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import SequencerTest from './components/sequencer/SequencerTest'
+import Sequencer from './components/sequencer/Sequencer'
 
 const App = () => {
 
@@ -10,7 +10,7 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <Route path="/">
-          <SequencerTest />
+          <Sequencer />
         </Route>
       </Switch>
     </BrowserRouter>
