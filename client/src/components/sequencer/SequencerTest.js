@@ -2,8 +2,32 @@ import React, { useState, useEffect } from 'react'
 import { Song, Track, Instrument } from 'reactronica'
 import '../../styles/main.scss'
 
+import SequencerControls from './SequencerControls'
+import axios from 'axios'
 const SequencerTest = () => {
-// const SequencerTest = (event) => {
+
+  // eslint-disable-next-line no-unused-vars
+
+  // have form for title 
+  const handleSave =  async () => {
+    const formDataToSend =  formData 
+
+    console.log('🐝 ~ file: SequencerTest.js ~ line 32 ~ formDataToSend', formDataToSend)
+
+    const testLoad = {
+      'title': 'TEST FRONT 22',
+      'loop_data': 'fefefefefef',
+      'genres': [2],
+    }
+
+    try {
+      // await axios.post('/api/loops/', formData)
+      await axios.post('/api/loops/', testLoad, { headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTYxOTA5OTc3M30.y18SVjtETWEmH0C809uPmXRjdCrtKkQvYtFdrjqJB0Y' } })
+    } catch (err) {
+      console.log('🔴  Error sending loop',err)
+    }
+    // setFormData(formDataToSend)
+  }
 
   // * Song State
   const [isPlaying, setIsPlaying] = useState(false)
@@ -27,22 +51,63 @@ const SequencerTest = () => {
   const synthListArray = ['amSynth', 'duoSynth', 'fmSynth', 'membraneSynth', 'metalSynth', 'monoSynth', 'pluckSynth', 'synth']
   const notesArray = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4']
 
+  // * Form State
+  const [loopTitle, setLoopTitle] = useState('')
+  const [genre, setGenre] = useState([])
+  const [formData, setFormData] = useState({
+    title: loopTitle,
+    // synth: '',
+    // envelope: {},
+    loop_data: {
+      steps: steps,
+      bpm: bpm,
+      volume: volume,
+      synth: synth,
+      attack: attack,
+      sustain: sustain,
+      decay: decay,
+      release: release,
+    },
+    genres: genre,
+
+  })
+
   // const handleLoad = () => {} // load loop from saved/other user etc..
-  // const handleBpm = () => {}
+
   useEffect(() => {
     setSteps(['C3'])
     setBpm(120)
     setVolume(-5)
     setSynthList(synthListArray)
     setNotes(notesArray)
+
+    setLoopTitle('test frontend loop')
+    setGenre(4)
   }, []) 
 
   useEffect(() => {
-    console.log(currentStepIndex)
-  }, [currentStepIndex])
+    const newFormData = {
+      title: loopTitle,
+      loop_data: {
+        steps: steps,
+        bpm: bpm,
+        volume: volume,
+        synth: synth,
+        attack: attack,
+        sustain: sustain,
+        decay: decay,
+        release: release,
+      },
+      genre: genre,
+    }
+    setFormData(newFormData)
+    console.log(formData)
+
+  }, [bpm,volume,steps,currentStepIndex,synth,attack,sustain,decay,release,synthList,notes])
 
   const handleKeyboardKeyPress = (event) => { // handles when a note is clicked to add 
     const newSteps = [...steps, event.target.value] 
+    console.log('🐝 ~ file: SequencerTest.js ~ line 98 ~ newSteps', newSteps)
     setIsPlaying(false)
     setSteps(newSteps)
     // ! play note of button value
@@ -101,15 +166,7 @@ const SequencerTest = () => {
   //   console.log('🐝 ~ file: App.js ~ line 97 ~ updatedEnvelope', updatedEnvelope)
   // }
 
-  // const [formData, setFormData] = useState({
-  //   title: '',
-  //   synth: '',
-  //   envelope: {},
-  //   steps: [],
-  // })
-  // const handleSave = () => {
-  //   formData = {...formData, }
-  // }
+
 
   if (!steps) return null
   const listStyle = {
@@ -138,52 +195,22 @@ const SequencerTest = () => {
           <Effect type="distortion" /> */}
         </Track>
       </Song>
-      <div>
-        <form>
-          <div>
-            <label>vol(db): {volume}</label>
-            <div className="slidecontainer">
-              <input type="range" min="-20" max="20" value={volume} onChange={handleVolume} />
-            </div>
-          </div>
-          <div>
-            <label>bpm: {bpm}</label>
-            <div className="slidecontainer">
-              <input type="range" min="30" max="280" value={bpm} onChange={handleBpm} />
-            </div>
-          </div>
-          <div>
-            <label>synth: </label>
-            <select name="synth-type" onChange={handleSynthType}>
-              {synthList.map(synth => {
-                return <option key={synth} value={synth}>{synth}</option>
-              })}
-            </select>
-          </div>
-          <div className='envelope-controller'>
-            <label>attack: {attack}</label>
-            <div className="slidecontainer">
-              <input type="range" min="-500" max="500" value={Math.floor(attack)} onChange={handleAttack} />
-              {/* <input name='attack' type="range" min="-500" max="500" value={Math.floor(attack)} onChange={handleEnvelopeChange} /> */}
-            </div>
-            <label>sustain: {sustain}</label>
-            <div className="slidecontainer">
-              <input type="range" min="-500" max="500" value={Math.floor(sustain)} onChange={handleSustain} />
-              {/* <input name='sustain' type="range" min="-500" max="500" value={Math.floor(sustain)} onChange={handleEnvelopeChange} /> */}
-            </div>
-            <label>decay: {decay}</label>
-            <div className="slidecontainer">
-              <input type="range" min="-500" max="500" value={Math.floor(decay)} onChange={handleDecay} />
-              {/* <input name='decay' type="range" min="-500" max="500" value={Math.floor(decay)} onChange={handleEnvelopeChange} /> */}
-            </div>
-            <label>release: {release}</label>
-            <div className="slidecontainer">
-              <input type="range" min="-500" max="500" value={Math.floor(release)} onChange={handleRelease} />
-              {/* <input name='release' type="range" min="-500" max="500" value={Math.floor(release)} onChange={handleEnvelopeChange} /> */}
-            </div>
-          </div>
-        </form>
-      </div>
+      <SequencerControls 
+        handleBpm={handleBpm}
+        handleVolume={handleVolume}
+        handleSynthType={handleSynthType}
+        handleAttack={handleAttack}
+        handleSustain={handleSustain}
+        handleDecay={handleDecay}
+        handleRelease={handleRelease}
+        bpm={bpm}
+        volume={volume}
+        synthList={synthList}
+        attack={attack}
+        sustain={sustain}
+        decay={decay}
+        release={release}
+      />
       <div className="note-sequence" style={{
         fontSize: '50px',
       }}>
@@ -209,6 +236,12 @@ const SequencerTest = () => {
       >
         {isPlaying ? 'Stop sound' : 'Play sound'}
       </button>
+
+      <button onClick={handleSave}>
+        SAVE
+      </button>
+
+
     </div>
   )
 }
