@@ -24,10 +24,10 @@ class RegisterView(APIView):
 
 class LoginView(APIView):
     def post(self, request):
+        print('request:🟨 ', request.data)
         # get some data off the request
         email = request.data.get('email')
         password = request.data.get('password')
-
         # get user from the db
         try:
             user_to_login = User.objects.get(email=email)

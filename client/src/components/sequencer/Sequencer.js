@@ -57,14 +57,32 @@ const Sequencer = () => {
   }, [bpm,volume,steps,currentStepIndex,synth])
 
 
+  const handleChange = (event) => {
+    const newFormData = { ...formData, [event.target.name]: event.target.value }
+    // console.log('🐝 ~ file: Login.js ~ line 14 ~ event', event)
+    setFormData(newFormData)
+  }
+
+
+
+
   const handleSave =  async () => {
 
     const stringSteps = steps.join(' ')
     console.log('stringSteps: ', stringSteps)
     const formToSend = { ...formData, steps: stringSteps }
+    // const formToSend = {
+    //   title: '⚫️ 🔴TEST',
+    //   loop_data: 'sdw',
+    //   steps: 'ssss',
+    //   bpm: 120,
+    // }
     try {
       // await axios.post('/api/loops/', formData)
-      await axios.post('/api/loops/', formToSend, { headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYxOTE5NTMwM30.ISqpfmCSTbtAQf0fYfV7dtOnJJkLMcq3rAxVd6D6Xug' } })
+      const response = await axios.post('/api/loops/', formToSend, { headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYxOTE5NTMwM30.ISqpfmCSTbtAQf0fYfV7dtOnJJkLMcq3rAxVd6D6Xug',
+        'Content-Type': 'application/json',
+      } })
+      console.log('🐝 ~ file: Sequencer.js ~ line 75 ~ formToSend', response)
     } catch (err) {
       console.log('🔴  Error sending loop',err)
     }
@@ -155,6 +173,18 @@ const Sequencer = () => {
       >
         {isPlaying ? 'Stop sound' : 'Play sound'}
       </button>
+
+      <form>
+        <input
+          placeholder="title"
+          name="title"
+          onChange={handleChange}
+          value={formData.title}
+        />
+
+
+      </form>
+
 
       <button onClick={handleSave}>
         SAVE
