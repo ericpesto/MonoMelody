@@ -28,11 +28,13 @@ const Sequencer = () => {
 
   // * Form State
   const [loopTitle, setLoopTitle] = useState('')
+  const [genres, setGenres] = useState([])
   const [formData, setFormData] = useState({
     title: loopTitle,
     bpm: bpm,
     steps: steps,
     synth: synth,
+    genres: genres,
   })
 
   useEffect(() => {
@@ -43,6 +45,7 @@ const Sequencer = () => {
     setNotes(notesArray)
 
     setLoopTitle('test frontend loop')
+    setGenres([2])
   }, []) 
 
   useEffect(() => {
@@ -51,6 +54,7 @@ const Sequencer = () => {
       steps: steps,
       bpm: bpm,
       synth: synth,
+      genres: genres,
     }
     setFormData(newFormData)
     console.log('FORM DATA ->>',formData)
@@ -79,7 +83,7 @@ const Sequencer = () => {
     // }
     try {
       // await axios.post('/api/loops/', formData)
-      const response = await axios.post('/api/loops/', formToSend, { headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYxOTE5NTMwM30.ISqpfmCSTbtAQf0fYfV7dtOnJJkLMcq3rAxVd6D6Xug',
+      const response = await axios.post('/api/loops/', formToSend, { headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTYxOTIxNzM0NX0.JzgEhd-ITt03F8h7VAbFNCPx7Xv6a0wTroVEXWnR4EE',
         'Content-Type': 'application/json',
       } })
       console.log('🐝 ~ file: Sequencer.js ~ line 75 ~ formToSend', response)
@@ -181,6 +185,9 @@ const Sequencer = () => {
           onChange={handleChange}
           value={formData.title}
         />
+        <select onChange={handleChange}>
+          <option value="1">Hip-Hop</option>
+        </select>
 
 
       </form>
