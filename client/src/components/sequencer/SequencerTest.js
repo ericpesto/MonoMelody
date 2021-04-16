@@ -85,6 +85,7 @@ const SequencerTest = () => {
     setGenre(4)
   }, []) 
 
+  //*Updates formData when any options change
   useEffect(() => {
     const newFormData = {
       title: loopTitle,
