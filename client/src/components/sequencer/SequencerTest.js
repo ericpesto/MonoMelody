@@ -3,19 +3,31 @@ import { Song, Track, Instrument } from 'reactronica'
 import '../../styles/main.scss'
 
 import SequencerControls from './SequencerControls'
-
+import axios from 'axios'
 const SequencerTest = () => {
 
   // eslint-disable-next-line no-unused-vars
 
   // have form for title 
-  const handleSave = () => {
+  const handleSave =  async () => {
     const formDataToSend =  formData 
 
     console.log('🐝 ~ file: SequencerTest.js ~ line 32 ~ formDataToSend', formDataToSend)
+
+    const testLoad = {
+      'title': 'TEST FRONT 22',
+      'loop_data': 'fefefefefef',
+      'genres': [2],
+    }
+
+    try {
+      // await axios.post('/api/loops/', formData)
+      await axios.post('/api/loops/', testLoad, { headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTYxOTA5OTc3M30.y18SVjtETWEmH0C809uPmXRjdCrtKkQvYtFdrjqJB0Y' } })
+    } catch (err) {
+      console.log('🔴  Error sending loop',err)
+    }
     // setFormData(formDataToSend)
   }
-
 
   // * Song State
   const [isPlaying, setIsPlaying] = useState(false)
