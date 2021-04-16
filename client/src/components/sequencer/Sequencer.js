@@ -84,7 +84,7 @@ const Sequencer = () => {
       } })
       console.log('🐝 ~ file: Sequencer.js ~ line 75 ~ formToSend', response)
     } catch (err) {
-      console.log('🔴  Error sending loop',err)
+      console.log('🔴  Error sending loop', err)
     }
     console.log('🐝 ~ file: Sequencer.js ~ line 75 ~ formToSend', formToSend)
   }
