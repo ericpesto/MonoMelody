@@ -15,4 +15,4 @@ class Like(models.Model):
     )
 
     def __str__(self):
-        return f" Like by  {self.owner}, at {self.created_at}, {loop}"
+        return f" Like by  {self.owner}, at {self.created_at}, {self.loop}"

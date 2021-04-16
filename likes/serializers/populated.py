@@ -1,8 +1,7 @@
-from comments.serializers.populated import PopulatedCommentSerializer
 from jwt_auth.serializers.common import UserSerializer
-from ..serializers.common import LoopSerializer
+from .common import LikeSerializer
 
-class PopulatedLikeSerializer(LoopSerializer):
+class PopulatedLikeSerializer(LikeSerializer):
     owner = UserSerializer()
     # comments = PopulatedCommentSerializer(many=True)
     
