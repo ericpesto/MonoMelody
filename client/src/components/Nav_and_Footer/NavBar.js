@@ -1,10 +1,32 @@
-/* eslint-disable no-undef */
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useHistory, useLocation } from 'react-router-dom'
+import { getPayloadFromToken, userIsAuthenticated } from '../../helpers/authHelp'
+import './navbar.scss'
 
-import 'bulma/sass/utilities/_all.sass'
-import 'bulma/sass/components/navbar.sass'
 const NavBar = () => {
+  const [userId, setUserId] = useState(null)
+
+  const location = useLocation()
+  useEffect(() => {
+
+  }, [location.pathname])
+
+  const history = useHistory()
+  const handleLogout = () => {
+    window.localStorage.removeItem('token')
+    history.push('/')
+  }
+
+  useEffect(() => {
+    const payload = getPayloadFromToken()
+    const userId = payload.sub
+    setUserId(userId)
+  }, [getPayloadFromToken()])
+
+
+  //make a onclick change the state or something 
+  const [isActive, setIsActive] = React.useState(false)
+
   return (
     <nav className="navbar custom-nav">
      
@@ -38,7 +60,7 @@ const NavBar = () => {
           <div className="navbar-end">
             { !userIsAuthenticated() &&
         <>
-          <Link to="/join" className="navbar-item">
+          <Link to="/register" className="navbar-item">
             Sign Up
           </Link>
 
