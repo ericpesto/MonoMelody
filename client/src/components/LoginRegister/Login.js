@@ -28,12 +28,6 @@ const Login = () => {
     console.log('🐝 ~ file: Login.js ~ line 14 ~ event', event)
     setFormData(newFormData)
   }
-
-
-
-
-
-  
   
   return (
     <div>

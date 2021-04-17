@@ -29,6 +29,7 @@ const Sequencer = () => {
   // * Form State
   const [loopTitle, setLoopTitle] = useState('')
   const [genres, setGenres] = useState([])
+  console.log('🐝 ~ file: Sequencer.js ~ line 32 ~ genres', genres)
   const [formData, setFormData] = useState({
     title: loopTitle,
     bpm: bpm,
@@ -44,7 +45,7 @@ const Sequencer = () => {
     setSynthList(synthListArray)
     setNotes(notesArray)
     setLoopTitle('test frontend loop')
-    setGenres([2])
+    setGenres([])
   }, []) 
 
   useEffect(() => {
@@ -57,29 +58,20 @@ const Sequencer = () => {
     }
     setFormData(newFormData)
     console.log('FORM DATA ->>',formData)
-  }, [bpm,volume,steps,currentStepIndex,synth])
+  }, [bpm,volume,steps,currentStepIndex,synth,genres])
 
 
   const handleChange = (event) => {
     const newFormData = { ...formData, [event.target.name]: event.target.value }
     // console.log('🐝 ~ file: Login.js ~ line 14 ~ event', event)
+    console.log('🐝 ~ file: Sequencer.js ~ line 68 ~ newFormData', newFormData)
     setFormData(newFormData)
   }
 
-
-
-
   const handleSave =  async () => {
-
     const stringSteps = steps.join(' ')
     console.log('stringSteps: ', stringSteps)
     const formToSend = { ...formData, steps: stringSteps }
-    // const formToSend = {
-    //   title: '⚫️ 🔴TEST',
-    //   loop_data: 'sdw',
-    //   steps: 'ssss',
-    //   bpm: 120,
-    // }
     try {
       // await axios.post('/api/loops/', formData)
       const response = await axios.post('/api/loops/', formToSend, { headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTYxOTIxNzM0NX0.JzgEhd-ITt03F8h7VAbFNCPx7Xv6a0wTroVEXWnR4EE',
@@ -91,8 +83,6 @@ const Sequencer = () => {
     }
     console.log('🐝 ~ file: Sequencer.js ~ line 75 ~ formToSend', formToSend)
   }
-
-
 
   const handleKeyboardKeyPress = (event) => { // handles when a note is clicked to add 
     const newSteps = [...steps, event.target.value] 
@@ -117,8 +107,10 @@ const Sequencer = () => {
   }
 
   const handleGenres = (event) => {
-    const newGenres = event.target.value
-    setGenres(newGenres)
+    event.preventDefault()
+    const newGenres = Number(event.target.value)
+    const genreToSet = [newGenres]
+    setGenres(genreToSet)
   }
 
 
@@ -183,12 +175,19 @@ const Sequencer = () => {
       </button>
 
       <form>
-        <input
+        <input 
+          className='title-input'
           placeholder="title"
           name="title"
           onChange={handleChange}
           value={formData.title}
         />
+
+        {/* <select name="genres" onChange={handleGenres} multiple>
+          <option value="1">Hip-Hop</option>
+          <option value="2">Rock</option>
+          <option value="3">Pop</option>
+        </select> */}
         <select name="genres" onChange={handleGenres} multiple>
           <option value="1">Hip-Hop</option>
           <option value="2">Rock</option>

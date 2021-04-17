@@ -1,25 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './userForms.scss'
-
+import axios from 'axios'
 
 const Register = () => {
-
-
-
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: '',
-    passwordConfirmation: '',
+    password_confirmation: '',
   })
 
   const [errors, setErrors] = useState({
     username: '',
     email: '',
     password: '',
-    passwordConfirmation: '',
+    password_confirmation: '',
   })
-  console.log(errors, setErrors)
+  console.log('🔴 ERRORS ', errors)
+
+  
 
   const handleChange = (event) => {
     console.log('LOGGING')
@@ -33,14 +32,15 @@ const Register = () => {
     try {
       const dataToSend = formData
       console.log('🤖 ~ formData', formData)
-      const response =  await axios.post('api/join', dataToSend)
+      const response =  await axios.post('api/auth/register/', dataToSend)
       console.log('🟢 ~ file: JoinPage.js ~ line 44 ~ response', response)
       //history.push('/login') //!change back to /
     } catch (err) {
-      setErrors(err.response)
-      console.log('🔴 ~ file: JoinPage.js ~ line 44 ~ response',err.response)
+      setErrors(err.response.data)
+      console.log('🔴 ~ file: JoinPage.js ~ line 44 ~ response',err)
+      console.log('🔴  ERROR MESSAGE',err.response.data)
       //setWasLoginSuccess(false)
-      loginPopUp(false)
+      // loginPopUp(false)
     }
   }
 
@@ -88,9 +88,9 @@ const Register = () => {
         <div className="field">
           <p className="control password-confirmation-control ">
             <input className="input is-medium" 
-              name="passwordConfirmation" 
+              name="password_confirmation" 
               placeholder="Confirm Password" 
-              value={formData.passwordConfirmation}
+              value={formData.password_confirmation}
               onChange={handleChange}
               type='password'
             />
