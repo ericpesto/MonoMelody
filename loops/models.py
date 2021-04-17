@@ -10,7 +10,8 @@ class Loop(models.Model):
     synth = models.CharField(max_length=50, default="fmSynth")
     owner = models.ForeignKey(
         'jwt_auth.User',
-        related_name='created_meals',
+        # related_name='created_loops',
+        related_name='loops_created',
         on_delete = models.CASCADE
     ) 
     genres = models.ManyToManyField('genres.Genre', related_name="loops")

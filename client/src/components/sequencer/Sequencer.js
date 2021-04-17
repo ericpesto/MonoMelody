@@ -43,7 +43,6 @@ const Sequencer = () => {
     setVolume(-5)
     setSynthList(synthListArray)
     setNotes(notesArray)
-
     setLoopTitle('test frontend loop')
     setGenres([2])
   }, []) 
@@ -117,6 +116,11 @@ const Sequencer = () => {
     setSynth(currentSynth)
   }
 
+  const handleGenres = (event) => {
+    const newGenres = event.target.value
+    setGenres(newGenres)
+  }
+
 
   if (!steps) return null
   const listStyle = {
@@ -185,8 +189,10 @@ const Sequencer = () => {
           onChange={handleChange}
           value={formData.title}
         />
-        <select onChange={handleChange}>
+        <select name="genres" onChange={handleGenres} multiple>
           <option value="1">Hip-Hop</option>
+          <option value="2">Rock</option>
+          <option value="3">Pop</option>
         </select>
 
 
