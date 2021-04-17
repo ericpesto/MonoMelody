@@ -5,7 +5,8 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     username = models.CharField(max_length=50, unique=True)
-    # email = models.CharField(max_length=50, unique=True)
+    email = models.CharField(max_length=50, unique=True)
+    # I dont know why this error is happening but removing this works
     first_name = models.CharField(max_length=50, null=True)
     last_name = models.CharField(max_length=50, null=True)
     profile_image = models.CharField(max_length=300, null=True)

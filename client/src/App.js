@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Gallery from './components/Gallery/Gallery'
 import Login from './components/LoginRegister/Login'
 import Register from './components/LoginRegister/Register'
 import NavBar from './components/Nav_and_Footer/NavBar'
@@ -25,6 +26,11 @@ const App = () => {
         <Route path='/register'>
           <Register/>
         </Route>
+
+        <Route path='/gallery'>
+          <Gallery/>
+        </Route>
+
 
       </Switch>
     </BrowserRouter>

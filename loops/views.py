@@ -9,7 +9,8 @@ from .serializers.populated import PopulatedLoopSerializer
 
 
 class LoopListView(APIView):
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    # permission_classes = (IsAuthenticatedOrReadOnly,) 
+    # //! Don't need authentication
 
     def get(self, _request):
         loops = Loop.objects.all() # return everything from the db
@@ -17,19 +18,21 @@ class LoopListView(APIView):
         return Response(serialized_loops.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        print('🟥 request loops-> view: ', request.data)
+        print('🟦 request post loop:', request.data)
         request.data["owner"] = request.user.id
         loop_to_add = LoopSerializer(data=request.data)
 
         if loop_to_add.is_valid():
             loop_to_add.save()
+            print('🟩 loops-> view: Loop has saved',loop_to_add.data)
             return Response(loop_to_add.data, status=status.HTTP_201_CREATED)
 
         return Response(loop_to_add.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 
 class LoopDetailView(APIView):
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+        # permission_classes = (IsAuthenticatedOrReadOnly,) 
+    # //! Don't need authentication
     def get_loop(self, pk):
         try:
             print('🚀 Loop Found')
@@ -40,7 +43,7 @@ class LoopDetailView(APIView):
 
     def get(self, _request,pk):
         loop = self.get_loop(pk=pk)
-        print('loop: ', loop)
+        print('🟩 getting loop ->', loop)
         serialized_loop = PopulatedLoopSerializer(loop)
         return Response(serialized_loop.data, status=status.HTTP_200_OK)
 

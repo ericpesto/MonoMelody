@@ -33,6 +33,6 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         # fields = '__all__'
-        fields = ('id', 'username', 'password', 'password_confirmation') 
+        fields = ('id', 'username', 'email', 'password', 'password_confirmation',) 
         # fields = ('id', 'username', 'password', 'password_confirmation', 'loops_created')  
         #!! Have to remove loops_created otherwise user needs to register with this. 

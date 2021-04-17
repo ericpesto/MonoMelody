@@ -30,14 +30,14 @@ const Login = () => {
   }
   
   return (
-    <div>
+    <div className='user-form-component'>
       <form onSubmit={handleSubmit}className="box column is-half is-offset-one-quarter">
         <div className="field">
-          <label className="label">Username or Email</label>
+          <label className="label">Email</label>
           <div className="control">
             <input
               className="input"
-              placeholder="Username or email"
+              placeholder="Email"
               name="email"
               onChange={handleChange}
               value={formData.email}
