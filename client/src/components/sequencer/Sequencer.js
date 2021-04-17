@@ -40,13 +40,31 @@ const Sequencer = () => {
   // * Global Variables
   // const synthListArray = ['amSynth', 'duoSynth', 'fmSynth', 'membraneSynth', 'metalSynth', 'monoSynth', 'pluckSynth', 'synth']
   const synthListArray = ['duoSynth', 'fmSynth', 'membraneSynth', 'pluckSynth', 'synth']
+  const synthOptions = [
+    { value: 'duoSynth', label: 'duoSynth' },
+    { value: 'fmSynth', label: 'fmSynth' },
+    { value: 'membraneSynth', label: 'membraneSynth' },
+    { value: 'pluckSynth', label: 'pluckSynth' }, 
+    { value: 'synth', label: 'synth' }
+  ]
   let notesArray = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4']
+  const scaleList = ['major', 'minor', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'locrian' ]
+
+  const scaleOptions = [
+    { value: 'major', label: 'major' },
+    { value: 'minor', label: 'minor' },
+    { value: 'dorian', label: 'dorian' },
+    { value: 'phrygian', label: 'phrygian' }, 
+    { value: 'lydian', label: 'lydian' }, 
+    { value: 'mixolydian', label: 'mixolydian' }, 
+    { value: 'locrian' , label: 'locrian'  }, 
+    { value: 'phrygian', label: 'phrygian' }
+  ]
   const genreOptions = [
     { id: '1', value: 1, name: 'Hip-Hop', label: 'Hip-Hop' },
     { id: '2', value: 2, name: 'Rock', label: 'Rock' },
     { id: '3', value: 3, name: 'Pop', label: 'Pop' }
   ]
-  const scaleList = ['major', 'minor', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'locrian' ] 
 
   const handleScales = () => {
     console.log('SCALE', scale)
@@ -151,8 +169,13 @@ const Sequencer = () => {
     setVolume(currentVolume)
   }
 
-  const handleSynthType = (event) => {
-    const currentSynth = event.target.value
+  // const handleSynthType = (event) => {
+  //   const currentSynth = event.target.value
+  //   setSynth(currentSynth)
+  // }
+
+  const handleSynthType = (scaleOptions) => {
+    const currentSynth = scaleOptions.value
     setSynth(currentSynth)
   }
 
@@ -166,9 +189,10 @@ const Sequencer = () => {
     setGenresArray(genreValuesArray)
   }
 
-  const handleScaleType = (event) => {
-    const currentScale =  event.target.value
-    setScale(currentScale)
+  const handleScaleType = (scaleOptions) => {
+    const currentScale =  scaleOptions
+    console.log('currentScale ->', currentScale)
+    setScale(currentScale.value)
   }
 
   if (!steps) return null
@@ -203,10 +227,13 @@ const Sequencer = () => {
         handleVolume={handleVolume}
         handleSynthType={handleSynthType}
         handleScaleType={handleScaleType}
+        synth={synth}
         bpm={bpm}
         volume={volume}
         synthList={synthList}
         scaleList={scaleList}
+        scaleOptions={scaleOptions}
+        synthOptions={synthOptions}
       />
       <div className="note-sequence" style={{
         fontSize: '50px',
@@ -237,10 +264,7 @@ const Sequencer = () => {
         onClick={() => {
           setIsPlaying(!isPlaying)
         }}
-      >
-        {isPlaying ? 'Stop sound' : 'Play sound'}
-      </button>
-
+      > {isPlaying ? 'Stop sound' : 'Play sound'}</button>
       <form>
         <input 
           className='title-input'
