@@ -49,7 +49,7 @@ const Register = () => {
 
   
   return (
-    <div className='user-form-component'>
+    <div className='user-form component'>
       <form className="signup-form box column is-half is-offset-one-quarter" onSubmit={handleSubmit}>
         <div className="field">
           <p className="control ">

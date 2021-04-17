@@ -60,7 +60,7 @@ const NavBar = () => {
           <Link to={`/profile/${userId}`} className="navbar-item">Profile</Link>
         </>
             }
-            <Link to="/" className="navbar-item">Create</Link>
+            <Link to="/create" className="navbar-item">Create</Link>
             <Link to="/gallery" className="navbar-item">Explore</Link>
           </div>
 

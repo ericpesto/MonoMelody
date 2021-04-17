@@ -25,7 +25,7 @@ const Gallery = () => {
   if (!data) return <h1>NO DATA!</h1>
   // const { title } = data
   return (
-    <div className='gallery-component'>
+    <div className='gallery component'>
 
       <div className='sphere-display columns is-multiline'>
         {data.map(item=>{

@@ -30,7 +30,7 @@ const Login = () => {
   }
   
   return (
-    <div className='user-form-component'>
+    <div className='user-form component'>
       <form onSubmit={handleSubmit}className="box column is-half is-offset-one-quarter">
         <div className="field">
           <label className="label">Email</label>
