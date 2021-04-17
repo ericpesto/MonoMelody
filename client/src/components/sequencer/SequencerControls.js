@@ -1,6 +1,6 @@
-import React, {  } from 'react'
+import React from 'react'
 
-const SequencerControls = ({ bpm, volume, synthList, handleBpm, handleVolume, handleSynthType }) => {
+const SequencerControls = ({ bpm, volume, synthList, scaleList, handleBpm, handleVolume, handleSynthType, handleScaleType }) => {
   
   return (
     <div>
@@ -22,6 +22,14 @@ const SequencerControls = ({ bpm, volume, synthList, handleBpm, handleVolume, ha
           <select name="synth-type" onChange={handleSynthType}>
             {synthList.map(synth => {
               return <option key={synth} value={synth}>{synth}</option>
+            })}
+          </select>
+        </div>
+        <div>
+          <label>scale: </label>
+          <select name="scale" onChange={handleScaleType}>
+            {scaleList.map(scale => {
+              return <option key={scale} value={scale}>{scale}</option>
             })}
           </select>
         </div>

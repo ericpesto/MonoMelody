@@ -20,9 +20,22 @@ const Sequencer = () => {
   const [scale, setScale] = useState('major')
 
   // * Instrument State
-  const [synth, setSynth] = useState('monoSynth')
+  const [synth, setSynth] = useState('duoSynth')
   const [synthList, setSynthList] = useState([])
   const [notes, setNotes] = useState([])
+
+  // * Form State
+  const [loopTitle, setLoopTitle] = useState('')
+  const [genres, setGenres] = useState([])
+  const [genresArray, setGenresArray] = useState([])
+  // console.log('🐝 ~ file: Sequencer.js ~ line 32 ~ genres', genres)
+  const [formData, setFormData] = useState({
+    title: loopTitle,
+    bpm: bpm,
+    steps: steps,
+    synth: synth,
+    genres: genresArray,
+  })
 
   // * Global Variables
   // const synthListArray = ['amSynth', 'duoSynth', 'fmSynth', 'membraneSynth', 'metalSynth', 'monoSynth', 'pluckSynth', 'synth']
@@ -33,9 +46,9 @@ const Sequencer = () => {
     { id: '2', value: 2, name: 'Rock', label: 'Rock' },
     { id: '3', value: 3, name: 'Pop', label: 'Pop' }
   ]
+  const scaleList = ['major', 'minor', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'locrian' ] 
 
-
-  const handleScale = () => {
+  const handleScales = () => {
     console.log('SCALE', scale)
     if (scale === 'major') {
       notesArray = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4']
@@ -62,7 +75,6 @@ const Sequencer = () => {
       setNotes(['C3', 'D3', 'E3', 'F#3', 'G3', 'A3', 'B3', 'C4'])
     }
 
-
     if (scale === 'mixolydian') {
       notesArray = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'Bb3', 'C4']
       setNotes(['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'Bb3', 'C4'])
@@ -73,24 +85,11 @@ const Sequencer = () => {
       setNotes(['C3', 'Db3', 'Eb3', 'F3', 'Gb3', 'Ab3', 'Bb3', 'C4'])
     }
 
-    
-
     return notesArray
   }
 
 
-  // * Form State
-  const [loopTitle, setLoopTitle] = useState('')
-  const [genres, setGenres] = useState([])
-  const [genresArray, setGenresArray] = useState([])
-  // console.log('🐝 ~ file: Sequencer.js ~ line 32 ~ genres', genres)
-  const [formData, setFormData] = useState({
-    title: loopTitle,
-    bpm: bpm,
-    steps: steps,
-    synth: synth,
-    genres: genresArray,
-  })
+
 
   useEffect(() => {
     setSteps([null])
@@ -99,12 +98,11 @@ const Sequencer = () => {
     setSynthList(synthListArray)
     //setNotes(notesArray)
     setLoopTitle('test frontend loop')
-    setScale('minor')
+    setScale('phrygian')
   }, []) 
 
   useEffect(() => {
-    handleScale()
-    console.log('notes array ->', notesArray)
+    handleScales()
   }, [scale])
 
   useEffect(() => {
@@ -168,6 +166,11 @@ const Sequencer = () => {
     setGenresArray(genreValuesArray)
   }
 
+  const handleScaleType = (event) => {
+    const currentScale =  event.target.value
+    setScale(currentScale)
+  }
+
   if (!steps) return null
   const listStyle = {
     listStyle: 'none',
@@ -179,6 +182,7 @@ const Sequencer = () => {
   return (
     <div className="keyboard-wrapper">
       <Song 
+        // isPlaying={isPlaying}
         isPlaying={isPlaying}
         bpm={bpm}
         volume={volume}>
@@ -198,9 +202,11 @@ const Sequencer = () => {
         handleBpm={handleBpm}
         handleVolume={handleVolume}
         handleSynthType={handleSynthType}
+        handleScaleType={handleScaleType}
         bpm={bpm}
         volume={volume}
         synthList={synthList}
+        scaleList={scaleList}
       />
       <div className="note-sequence" style={{
         fontSize: '50px',
@@ -213,7 +219,14 @@ const Sequencer = () => {
       </div>
       <div className="keys-row">
         {notes.map(note => {
-          return  <button key={note} value={note} className="key" onClick={handleKeyboardKeyPress}>{note}</button>
+          return  <button 
+            key={note} 
+            value={note} 
+            className="key" 
+            onClick={handleKeyboardKeyPress}
+            // onMouseDown={() => setNotes([{ name: note }])}
+            // onMouseUp={() => setNotes([null])} 
+          >{note}</button>
         })}
       </div>
       <hr />
@@ -236,18 +249,6 @@ const Sequencer = () => {
           onChange={handleChange}
           value={formData.title}
         />
-
-        {/* <select name="genres" onChange={handleGenres} multiple>
-          <option value="1">Hip-Hop</option>
-          <option value="2">Rock</option>
-          <option value="3">Pop</option>
-        </select> */}
-        {/* <select name="genres" onChange={handleGenres} multiple>
-          <option value="1">Hip-Hop</option>
-          <option value="2">Rock</option>
-          <option value="3">Pop</option>
-        </select> */}
-
         <Select
           defaultValue={[genreOptions[0], genreOptions[2]]}
           isMulti
@@ -258,17 +259,8 @@ const Sequencer = () => {
           onChange={handleGenreSelect}
           value={genres}
         />
-
-
-
       </form>
-
-
-      <button onClick={handleSave}>
-        SAVE
-      </button>
-
-
+      <button onClick={handleSave}>SAVE</button>
     </div>
   )
 }
