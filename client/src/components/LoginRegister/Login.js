@@ -31,6 +31,10 @@ const Login = () => {
   
   return (
     <div>
+      <hr />
+      <hr />
+      <hr />
+      <hr />
       <form onSubmit={handleSubmit}className="box column is-half is-offset-one-quarter">
         <div className="field">
           <label className="label">Username or Email</label>

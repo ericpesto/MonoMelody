@@ -9,6 +9,7 @@ from .serializers.populated import PopulatedLoopSerializer
 
 
 class LoopListView(APIView):
+
     permission_classes = (IsAuthenticatedOrReadOnly,)
 
     def get(self, _request):
@@ -20,11 +21,11 @@ class LoopListView(APIView):
         print('🟥 request loops-> view: ', request.data)
         request.data["owner"] = request.user.id
         loop_to_add = LoopSerializer(data=request.data)
+        print('loop_to_add ->', loop_to_add)
 
         if loop_to_add.is_valid():
             loop_to_add.save()
             return Response(loop_to_add.data, status=status.HTTP_201_CREATED)
-
         return Response(loop_to_add.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 

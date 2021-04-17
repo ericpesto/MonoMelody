@@ -19,11 +19,11 @@ const App = () => {
         </Route>
 
         <Route path='/login'>
-          <Login/>
+          <Login />
         </Route>
 
         <Route path='/register'>
-          <Register/>
+          <Register />
         </Route>
 
       </Switch>

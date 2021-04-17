@@ -50,6 +50,10 @@ const Register = () => {
   
   return (
     <div>
+      <hr />
+      <hr />
+      <hr />
+      <hr />
       <form className="signup-form box column is-half is-offset-one-quarter" onSubmit={handleSubmit}>
         <div className="field">
           <p className="control ">

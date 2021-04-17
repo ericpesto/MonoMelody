@@ -1,7 +1,7 @@
 from django.db import models
 # from django.contrib.postgres.fields import JSONField
 from django.db.models import JSONField
-from django.contrib.postgres.fields import ArrayField   
+# from django.contrib.postgres.fields import ArrayField   
 
 class Loop(models.Model):
     title = models.CharField(max_length=50, null=True, unique=True) #//! change to required 
@@ -14,7 +14,7 @@ class Loop(models.Model):
         related_name='loops_created',
         on_delete = models.CASCADE
     ) 
-    genres = models.ManyToManyField('genres.Genre', related_name="loops")
+    genres = models.ManyToManyField('genres.Genre', related_name="loops", blank=True)
 
     # comments
     # likes 

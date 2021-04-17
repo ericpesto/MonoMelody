@@ -4,6 +4,8 @@ import '../../styles/main.scss'
 
 import SequencerControls from './SequencerControls'
 import axios from 'axios'
+import Select from 'react-select'
+import { getTokenFromLocalStorage } from '../../helpers/authHelp'
 
 
 const Sequencer = () => {
@@ -15,38 +17,95 @@ const Sequencer = () => {
 
   // * Track State
   const [steps, setSteps] = useState(null)
+  const [scale, setScale] = useState('major')
 
   // * Instrument State
   const [synth, setSynth] = useState('monoSynth')
   const [synthList, setSynthList] = useState([])
   const [notes, setNotes] = useState([])
 
-  // * Instrument Variables
-  const synthListArray = ['amSynth', 'duoSynth', 'fmSynth', 'membraneSynth', 'metalSynth', 'monoSynth', 'pluckSynth', 'synth']
-  const notesArray = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4']
+  // * Global Variables
+  // const synthListArray = ['amSynth', 'duoSynth', 'fmSynth', 'membraneSynth', 'metalSynth', 'monoSynth', 'pluckSynth', 'synth']
+  const synthListArray = ['duoSynth', 'fmSynth', 'membraneSynth', 'pluckSynth', 'synth']
+  let notesArray = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4']
+  const genreOptions = [
+    { id: '1', value: 1, name: 'Hip-Hop', label: 'Hip-Hop' },
+    { id: '2', value: 2, name: 'Rock', label: 'Rock' },
+    { id: '3', value: 3, name: 'Pop', label: 'Pop' }
+  ]
+
+
+  const handleScale = () => {
+    console.log('SCALE', scale)
+    if (scale === 'major') {
+      notesArray = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4']
+      setNotes(['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4'])
+    }
+
+    if (scale === 'minor') {
+      notesArray = ['C3', 'D3', 'Eb3', 'F3', 'G3', 'Ab3', 'Bb3', 'C4']
+      setNotes(['C3', 'D3', 'Eb3', 'F3', 'G3', 'Ab3', 'Bb3', 'C4'])
+    }
+
+    if (scale === 'dorian') {
+      notesArray = ['C3', 'D3', 'Eb3', 'F3', 'G3', 'A3', 'Bb3', 'C4']
+      setNotes(['C3', 'D3', 'Eb3', 'F3', 'G3', 'A3', 'Bb3', 'C4'])
+    }
+
+    if (scale === 'phrygian') {
+      notesArray = ['C3', 'Db3', 'Eb3', 'F3', 'G3', 'Ab3', 'Bb3', 'C4']
+      setNotes(['C3', 'Db3', 'Eb3', 'F3', 'G3', 'Ab3', 'Bb3', 'C4'])
+    }
+
+    if (scale === 'lydian') {
+      notesArray = ['C3', 'D3', 'E3', 'F#3', 'G3', 'A3', 'B3', 'C4']
+      setNotes(['C3', 'D3', 'E3', 'F#3', 'G3', 'A3', 'B3', 'C4'])
+    }
+
+
+    if (scale === 'mixolydian') {
+      notesArray = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'Bb3', 'C4']
+      setNotes(['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'Bb3', 'C4'])
+    }
+
+    if (scale === 'locrian') {
+      notesArray = ['C3', 'Db3', 'Eb3', 'F3', 'Gb3', 'Ab3', 'Bb3', 'C4']
+      setNotes(['C3', 'Db3', 'Eb3', 'F3', 'Gb3', 'Ab3', 'Bb3', 'C4'])
+    }
+
+    
+
+    return notesArray
+  }
 
 
   // * Form State
   const [loopTitle, setLoopTitle] = useState('')
   const [genres, setGenres] = useState([])
-  console.log('🐝 ~ file: Sequencer.js ~ line 32 ~ genres', genres)
+  const [genresArray, setGenresArray] = useState([])
+  // console.log('🐝 ~ file: Sequencer.js ~ line 32 ~ genres', genres)
   const [formData, setFormData] = useState({
     title: loopTitle,
     bpm: bpm,
     steps: steps,
     synth: synth,
-    genres: genres,
+    genres: genresArray,
   })
 
   useEffect(() => {
-    setSteps(['C3'])
+    setSteps([null])
     setBpm(120)
     setVolume(-5)
     setSynthList(synthListArray)
-    setNotes(notesArray)
+    //setNotes(notesArray)
     setLoopTitle('test frontend loop')
-    setGenres([])
+    setScale('minor')
   }, []) 
+
+  useEffect(() => {
+    handleScale()
+    console.log('notes array ->', notesArray)
+  }, [scale])
 
   useEffect(() => {
     const newFormData = {
@@ -54,39 +113,32 @@ const Sequencer = () => {
       steps: steps,
       bpm: bpm,
       synth: synth,
-      genres: genres,
+      genres: genresArray,
     }
     setFormData(newFormData)
-    console.log('FORM DATA ->>',formData)
-  }, [bpm,volume,steps,currentStepIndex,synth,genres])
+  }, [loopTitle])
 
 
   const handleChange = (event) => {
     const newFormData = { ...formData, [event.target.name]: event.target.value }
-    // console.log('🐝 ~ file: Login.js ~ line 14 ~ event', event)
-    console.log('🐝 ~ file: Sequencer.js ~ line 68 ~ newFormData', newFormData)
     setFormData(newFormData)
   }
 
   const handleSave =  async () => {
     const stringSteps = steps.join(' ')
-    console.log('stringSteps: ', stringSteps)
     const formToSend = { ...formData, steps: stringSteps }
+    console.log('formToSend-> ', formToSend)
+
     try {
-      // await axios.post('/api/loops/', formData)
-      const response = await axios.post('/api/loops/', formToSend, { headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTYxOTIxNzM0NX0.JzgEhd-ITt03F8h7VAbFNCPx7Xv6a0wTroVEXWnR4EE',
-        'Content-Type': 'application/json',
-      } })
-      console.log('🐝 ~ file: Sequencer.js ~ line 75 ~ formToSend', response)
+      await axios.post('/api/loops/', formToSend, { headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}`, 'Content-Type': 'application/json' } })
     } catch (err) {
-      console.log('🔴  Error sending loop', err)
+      console.log(err)
     }
-    console.log('🐝 ~ file: Sequencer.js ~ line 75 ~ formToSend', formToSend)
+
   }
 
   const handleKeyboardKeyPress = (event) => { // handles when a note is clicked to add 
     const newSteps = [...steps, event.target.value] 
-    console.log('🐝 ~ file: SequencerTest.js ~ line 98 ~ newSteps', newSteps)
     setIsPlaying(false)
     setSteps(newSteps)
     // ! play note of button value
@@ -106,13 +158,15 @@ const Sequencer = () => {
     setSynth(currentSynth)
   }
 
-  const handleGenres = (event) => {
-    event.preventDefault()
-    const newGenres = Number(event.target.value)
-    const genreToSet = [newGenres]
-    setGenres(genreToSet)
+  const handleGenreSelect = (genreOptions) => {
+    const genreValuesArray = []
+    genreOptions.map(option => {
+      genreValuesArray.push(option.value)
+    })
+    console.log('genreValuesArray ->', genreValuesArray)
+    setGenres(genreOptions)
+    setGenresArray(genreValuesArray)
   }
-
 
   if (!steps) return null
   const listStyle = {
@@ -188,11 +242,23 @@ const Sequencer = () => {
           <option value="2">Rock</option>
           <option value="3">Pop</option>
         </select> */}
-        <select name="genres" onChange={handleGenres} multiple>
+        {/* <select name="genres" onChange={handleGenres} multiple>
           <option value="1">Hip-Hop</option>
           <option value="2">Rock</option>
           <option value="3">Pop</option>
-        </select>
+        </select> */}
+
+        <Select
+          defaultValue={[genreOptions[0], genreOptions[2]]}
+          isMulti
+          name="genres"
+          options={genreOptions}
+          className="basic-multi-select"
+          classNamePrefix="select"
+          onChange={handleGenreSelect}
+          value={genres}
+        />
+
 
 
       </form>
@@ -206,4 +272,5 @@ const Sequencer = () => {
     </div>
   )
 }
+
 export default Sequencer

@@ -51,7 +51,7 @@ class LoginView(APIView):
 class UserListView(APIView):
     def get(self, request):
         users = User.objects.all()
-        serialized_users = Serializer(users, many=True)
+        serialized_users = UserSerializer(users, many=True)
         return Response(serialized_users.data, status=status.HTTP_200_OK)
 
 
