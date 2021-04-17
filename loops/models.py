@@ -8,6 +8,7 @@ class Loop(models.Model):
     steps = models.CharField(max_length=2000000)
     bpm = models.IntegerField(default=120)
     synth = models.CharField(max_length=50, default="fmSynth")
+    scale = models.CharField(max_length=50, default="major")
     owner = models.ForeignKey(
         'jwt_auth.User',
         # related_name='created_loops',

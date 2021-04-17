@@ -35,6 +35,7 @@ const Sequencer = () => {
     steps: steps,
     synth: synth,
     genres: genresArray,
+    scale: scale,
   })
 
   // * Global Variables
@@ -106,9 +107,6 @@ const Sequencer = () => {
     return notesArray
   }
 
-
-
-
   useEffect(() => {
     setSteps([null])
     setBpm(120)
@@ -123,6 +121,10 @@ const Sequencer = () => {
     handleScales()
   }, [scale])
 
+  // useEffect(() => {
+  //   handleScales()
+  // }, [steps])
+
   useEffect(() => {
     const newFormData = {
       title: loopTitle,
@@ -130,6 +132,7 @@ const Sequencer = () => {
       bpm: bpm,
       synth: synth,
       genres: genresArray,
+      scale: scale,
     }
     setFormData(newFormData)
   }, [loopTitle])
@@ -153,12 +156,17 @@ const Sequencer = () => {
 
   }
 
-  const handleKeyboardKeyPress = (event) => { // handles when a note is clicked to add 
-    const newSteps = [...steps, event.target.value] 
-    setIsPlaying(false)
+
+  const handleKeyboardKeyPress = (event) => { 
+    setIsPlaying(false) 
+    const newSteps = [...steps, event.target.value]
     setSteps(newSteps)
-    // ! play note of button value
   } 
+
+  useEffect(() => {
+    setIsPlaying(!isPlaying)
+  }, [steps])
+
   const handleBpm = (event) => {
     const currentBpm = Number(event.target.value)
     setBpm(currentBpm)
@@ -174,8 +182,8 @@ const Sequencer = () => {
   //   setSynth(currentSynth)
   // }
 
-  const handleSynthType = (scaleOptions) => {
-    const currentSynth = scaleOptions.value
+  const handleSynthType = (synthOptions) => {
+    const currentSynth = synthOptions.value
     setSynth(currentSynth)
   }
 
@@ -193,6 +201,11 @@ const Sequencer = () => {
     const currentScale =  scaleOptions
     console.log('currentScale ->', currentScale)
     setScale(currentScale.value)
+  }
+
+  const handleResetSteps = () => {
+    setSteps([null])
+    setIsPlaying(false)
   }
 
   if (!steps) return null
@@ -235,15 +248,7 @@ const Sequencer = () => {
         scaleOptions={scaleOptions}
         synthOptions={synthOptions}
       />
-      <div className="note-sequence" style={{
-        fontSize: '50px',
-      }}>
-        <ol style={listStyle}>
-          {steps.map((step, index) => {
-            return <li key={index} id={index} style={index === currentStepIndex ? { color: 'green' } : { color: 'black' } } className={index === currentStepIndex ? 'note-playing' : 'note-off'}> {step} </li>
-          })}
-        </ol>
-      </div>
+
       <div className="keys-row">
         {notes.map(note => {
           return  <button 
@@ -285,6 +290,16 @@ const Sequencer = () => {
         />
       </form>
       <button onClick={handleSave}>SAVE</button>
+      <button onClick={handleResetSteps}>RESET</button> 
+      <hr />
+      <div className="note-sequence" style={{ fontSize: '3vmax' }}>
+
+        <ol style={listStyle}>
+          {steps.map((step, index) => {
+            return <li key={index} style={{ margin: '0 12px' }}><div id={index} style={index === currentStepIndex ? { color: 'green', transform: 'scale(1.4)', transition: 'all 0.4s' } : { color: 'black', transition: 'all 0.4s' } } className={index === currentStepIndex ? 'note-playing' : 'note-off'}> {step} </div></li>
+          })}
+        </ol>
+      </div>
     </div>
   )
 }
