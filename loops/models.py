@@ -8,6 +8,7 @@ class Loop(models.Model):
     steps = models.CharField(max_length=2000000)
     bpm = models.IntegerField(default=120)
     synth = models.CharField(max_length=50, default="fmSynth")
+    key = models.CharField(max_length=10, default="c")
     scale = models.CharField(max_length=50, default="major")
     effect = models.CharField(max_length=50, default="freeverb")
     owner = models.ForeignKey(

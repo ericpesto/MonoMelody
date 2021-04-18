@@ -5,13 +5,13 @@ const Keyboard = ({ notes, handleKeyboardKeyPress }) => {
   return (
     <div>
       <div className="keys-row">
-        {notes.map((note, index) => {
+        {notes.map((note) => {
           return  <button 
             key={note} 
             value={note} 
             className="key" 
             onClick={handleKeyboardKeyPress}
-          >{index + 1}</button>
+          >{note}</button>
         })}
       </div>
     </div>

@@ -1,7 +1,9 @@
 import React from 'react'
 import Select from 'react-select'
 
-const SequencerControls = ({ synth, effect, scale, bpm, volume, handleBpm, handleVolume, handleSynthType, handleScaleType, scaleOptions, synthOptions, effectOptions, handleEffectType, isPlaying, setIsPlaying, handleChange, formData, genreOptions, handleGenreSelect, genres, handleSave, handleResetSteps }) => {
+const SequencerControls = ({ synth, effect, scale, bpm, volume, handleBpm, handleVolume, handleSynthType, handleScaleType, scaleOptions, synthOptions, effectOptions, handleEffectType, isPlaying, setIsPlaying, handleChange, formData, genreOptions, handleGenreSelect, genres, handleSave, handleResetSteps, key, keyOptions, handleKey }) => {
+
+  // ! Select bug!
   
   return (
     <div>
@@ -27,6 +29,17 @@ const SequencerControls = ({ synth, effect, scale, bpm, volume, handleBpm, handl
             // classNamePrefix="select"
             onChange={handleSynthType}
             value={synth}
+          />
+        </div>
+        <div>
+          <label>key: {key} </label>
+          <Select
+            defaultValue={key}
+            name="key"
+            options={keyOptions}
+            // classNamePrefix="select"
+            onChange={handleKey}
+            value={key}
           />
         </div>
         <div>
