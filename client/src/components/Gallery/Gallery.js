@@ -14,7 +14,7 @@ const Gallery = () => {
   const [genres, setGenres] = useState(null)
   // console.log('🐝 ~ file: Gallery.js ~ line 12 ~ genres', genres)
   
-  //* array of the genre IDs from the buttons.
+  //* array of the genre IDs from the genres array.
   const [genreFilter, setGenreFilter] = useState([])
 
   useEffect(() => {
@@ -27,17 +27,16 @@ const Gallery = () => {
     const getGenres = async () => {
       const response = await axios.get('/api/genres/')
       const dataArray = response.data
-      setGenres(dataArray)
       const genreArray = [...genreFilter]
       console.log('🐝 ~ file: Gallery.js ~ line 35 ~ genreArray', genreArray)
       dataArray.map(item=>{
         console.log('🐝 ~ file: Gallery.js ~ line 39 ~ item.id', item.id)
         genreArray.push(item.id)
       })
+      setGenres(dataArray)
       setGenreFilter(genreArray)
     }
 
-    
     
     getGenres()
     getData()
@@ -95,6 +94,7 @@ const Gallery = () => {
       <div className='sphere-display columns is-multiline'>
        
         {data.map(item=>{
+          //need a way to compare two arrays for matches
           const itemGenreId = item.genres[0].id
           const checkIfInFilter = genreFilter.findIndex(e => e === itemGenreId)
           if (checkIfInFilter > -1)
