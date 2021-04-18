@@ -2,7 +2,7 @@ import React from 'react'
 import Select from 'react-select'
 import '../../styles/main.scss'
 
-const SequencerControls = ({ synth, effect, scale, bpm, volume, handleBpm, handleVolume, handleSynthType, handleScaleType, scaleOptions, synthOptions, effectOptions, handleEffectType, isPlaying, setIsPlaying, handleChange, formData, genreOptions, handleGenreSelect, genres, handleSave, handleResetSteps, key, keyOptions, handleKey }) => {
+const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleBpm, handleVolume, handleSynthType, handleScaleType, scaleOptions, synthOptions, effectOptions, handleEffectType, isPlaying, setIsPlaying, handleChange, formData, genreOptions, handleGenreSelect, genres, handleSave, keyOptions, handleKey }) => {
 
   // ! Select bug!
   
@@ -66,12 +66,12 @@ const SequencerControls = ({ synth, effect, scale, bpm, volume, handleBpm, handl
             <label>key:</label>
             <Select
               className='react-select-container'
-              defaultValue={key}
+              defaultValue={loopKey}
               name="key"
               options={keyOptions}
               onChange={handleKey}
-              value={key}
-              placeholder={key}
+              value={loopKey}
+              placeholder={loopKey}
             />
           </div>
         </div>
@@ -109,7 +109,6 @@ const SequencerControls = ({ synth, effect, scale, bpm, volume, handleBpm, handl
           />
         </form>
         <button onClick={handleSave}>SAVE</button>
-        <button onClick={handleResetSteps}>RESET</button> 
       </div>
 
     </div>

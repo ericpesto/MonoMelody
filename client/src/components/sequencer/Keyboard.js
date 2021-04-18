@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Keyboard = ({ notes, handleKeyboardKeyPress }) => {
+const Keyboard = ({ notes, handleKeyboardKeyPress, handleResetSteps }) => {
   
   return (
     <div>
@@ -14,6 +14,7 @@ const Keyboard = ({ notes, handleKeyboardKeyPress }) => {
           >{note}</button>
         })}
       </div>
+      <button onClick={handleResetSteps}>RESET</button> 
     </div>
   )
 }
