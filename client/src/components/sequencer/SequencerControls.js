@@ -25,7 +25,7 @@ const SequencerControls = ({ synth, effect, scale, bpm, volume, handleBpm, handl
         </div>
         <div className="synth-controls-col">
           <div>
-            <label>synth: {synth} </label>
+            <label>synth:</label>
             <Select
               className='react-select-container'
               defaultValue={synth}
@@ -37,7 +37,7 @@ const SequencerControls = ({ synth, effect, scale, bpm, volume, handleBpm, handl
             />
           </div>
           <div>
-            <label>effect: {effect} </label>
+            <label>effect:</label>
             <Select
               className='react-select-container'
               defaultValue={effect}
@@ -51,7 +51,7 @@ const SequencerControls = ({ synth, effect, scale, bpm, volume, handleBpm, handl
         </div>
         <div className="synth-controls-col">
           <div>
-            <label>scale: {scale} </label>
+            <label>scale:</label>
             <Select
               className='react-select-container'
               defaultValue={scale}
@@ -63,7 +63,7 @@ const SequencerControls = ({ synth, effect, scale, bpm, volume, handleBpm, handl
             />
           </div>
           <div>
-            <label>key: {key} </label>
+            <label>key:</label>
             <Select
               className='react-select-container'
               defaultValue={key}

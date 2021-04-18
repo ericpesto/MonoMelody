@@ -274,7 +274,8 @@ const LoopNew = () => {
       key: key,
     }
     setFormData(newFormData)
-  }, [loopTitle, steps, bpm, synth, genresArray, scale, effect, key])
+  }, [])
+  // }, [loopTitle, steps, bpm, synth, genresArray, scale, effect, key])
 
   const handleChange = (event) => {
     const newFormData = { ...formData, [event.target.name]: event.target.value }
@@ -329,16 +330,16 @@ const LoopNew = () => {
     setGenresArray(genreValuesArray)
   }
 
-  const handleScaleType = (scaleOptions) => {
-    const currentScale =  scaleOptions.value
-    console.log('currentScale ->', currentScale)
-    setScale(currentScale)
-  }
-
   const handleEffectType = (effectOptions) => {
     const currentEffect =  effectOptions.value
     console.log('currentEffect ->', currentEffect)
     setEffect(currentEffect)
+  }
+
+  const handleScaleType = (scaleOptions) => {
+    const currentScale =  scaleOptions.value
+    console.log('currentScale ->', currentScale)
+    setScale(currentScale)
   }
 
   const handleKey = (keyOptions) => {
