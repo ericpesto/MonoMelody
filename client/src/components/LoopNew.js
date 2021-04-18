@@ -633,6 +633,7 @@ const LoopNew = () => {
         handleScaleType={handleScaleType}
         handleEffectType={handleEffectType}
         synth={synth}
+        scale={scale}
         effect={effect}
         bpm={bpm}
         volume={volume}
