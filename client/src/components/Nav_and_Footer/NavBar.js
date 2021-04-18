@@ -29,7 +29,6 @@ const NavBar = () => {
 
   return (
     <nav className="navbar custom-nav">
-     
       <div className="container">
         <div className="navbar-brand">
           <Link to="/">

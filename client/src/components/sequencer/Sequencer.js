@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Song, Track, Instrument } from 'reactronica'
+import { Song, Track, Instrument, Effect } from 'reactronica'
 import '../../styles/main.scss'
 
 import SequencerControls from './SequencerControls'
+import Keyboard from './Keyboard'
 import axios from 'axios'
 import Select from 'react-select'
 import { getTokenFromLocalStorage } from '../../helpers/authHelp'
@@ -21,14 +22,15 @@ const Sequencer = () => {
 
   // * Instrument State
   const [synth, setSynth] = useState('duoSynth')
-  const [synthList, setSynthList] = useState([])
   const [notes, setNotes] = useState([])
+
+  // * Effect State
+  const [effect, setEffect] = useState('freeverb')
 
   // * Form State
   const [loopTitle, setLoopTitle] = useState('')
   const [genres, setGenres] = useState([])
   const [genresArray, setGenresArray] = useState([])
-  // console.log('🐝 ~ file: Sequencer.js ~ line 32 ~ genres', genres)
   const [formData, setFormData] = useState({
     title: loopTitle,
     bpm: bpm,
@@ -36,11 +38,10 @@ const Sequencer = () => {
     synth: synth,
     genres: genresArray,
     scale: scale,
+    effect: effect,
   })
 
   // * Global Variables
-  // const synthListArray = ['amSynth', 'duoSynth', 'fmSynth', 'membraneSynth', 'metalSynth', 'monoSynth', 'pluckSynth', 'synth']
-  const synthListArray = ['duoSynth', 'fmSynth', 'membraneSynth', 'pluckSynth', 'synth']
   const synthOptions = [
     { value: 'duoSynth', label: 'duoSynth' },
     { value: 'fmSynth', label: 'fmSynth' },
@@ -49,7 +50,6 @@ const Sequencer = () => {
     { value: 'synth', label: 'synth' }
   ]
   let notesArray = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4']
-  const scaleList = ['major', 'minor', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'locrian' ]
 
   const scaleOptions = [
     { value: 'major', label: 'major' },
@@ -61,6 +61,19 @@ const Sequencer = () => {
     { value: 'locrian' , label: 'locrian'  }, 
     { value: 'phrygian', label: 'phrygian' }
   ]
+
+  const effectOptions = [
+    { value: 'autoFilter', label: 'autoFilter' },
+    { value: 'autoPanner', label: 'autoPanner' },
+    { value: 'autoWah', label: 'autoWah' },
+    { value: 'bitCrusher', label: 'bitCrusher' }, 
+    { value: 'distortion', label: 'distortion' }, 
+    { value: 'feedbackDelay', label: 'feedbackDelay' }, 
+    { value: 'freeverb' , label: 'freeverb'  }, 
+    { value: 'panVol', label: 'panVol' },
+    { value: 'tremolo', label: 'tremolo' }
+  ]
+
   const genreOptions = [
     { id: '1', value: 1, name: 'Hip-Hop', label: 'Hip-Hop' },
     { id: '2', value: 2, name: 'Rock', label: 'Rock' },
@@ -107,23 +120,17 @@ const Sequencer = () => {
     return notesArray
   }
 
+  // ! FORM BUG
   useEffect(() => {
     setSteps([null])
-    setBpm(120)
     setVolume(-5)
-    setSynthList(synthListArray)
-    //setNotes(notesArray)
-    setLoopTitle('test frontend loop')
-    setScale('phrygian')
+    // setSynthList(synthListArray)
+    setLoopTitle('')
   }, []) 
 
   useEffect(() => {
     handleScales()
   }, [scale])
-
-  // useEffect(() => {
-  //   handleScales()
-  // }, [steps])
 
   useEffect(() => {
     const newFormData = {
@@ -133,9 +140,10 @@ const Sequencer = () => {
       synth: synth,
       genres: genresArray,
       scale: scale,
+      effect: effect,
     }
     setFormData(newFormData)
-  }, [loopTitle])
+  }, [loopTitle, steps, bpm, synth, genresArray, scale, effect])
 
 
   const handleChange = (event) => {
@@ -156,11 +164,14 @@ const Sequencer = () => {
 
   }
 
-
   const handleKeyboardKeyPress = (event) => { 
-    setIsPlaying(false) 
+    
     const newSteps = [...steps, event.target.value]
-    setSteps(newSteps)
+    if (newSteps.length <= 9) {
+      setIsPlaying(false) 
+      setSteps(newSteps)
+    }
+
   } 
 
   useEffect(() => {
@@ -176,11 +187,6 @@ const Sequencer = () => {
     const currentVolume = parseFloat(event.target.value)
     setVolume(currentVolume)
   }
-
-  // const handleSynthType = (event) => {
-  //   const currentSynth = event.target.value
-  //   setSynth(currentSynth)
-  // }
 
   const handleSynthType = (synthOptions) => {
     const currentSynth = synthOptions.value
@@ -198,9 +204,15 @@ const Sequencer = () => {
   }
 
   const handleScaleType = (scaleOptions) => {
-    const currentScale =  scaleOptions
+    const currentScale =  scaleOptions.value
     console.log('currentScale ->', currentScale)
-    setScale(currentScale.value)
+    setScale(currentScale)
+  }
+
+  const handleEffectType = (effectOptions) => {
+    const currentEffect =  effectOptions.value
+    console.log('currentEffect ->', currentEffect)
+    setEffect(currentEffect)
   }
 
   const handleResetSteps = () => {
@@ -231,8 +243,7 @@ const Sequencer = () => {
           <Instrument 
             type={synth}
           />
-          {/* <Effect type="feedbackDelay" />
-          <Effect type="distortion" /> */}
+          <Effect type={effect} />
         </Track>
       </Song>
       <SequencerControls 
@@ -240,27 +251,17 @@ const Sequencer = () => {
         handleVolume={handleVolume}
         handleSynthType={handleSynthType}
         handleScaleType={handleScaleType}
+        handleEffectType={handleEffectType}
         synth={synth}
+        effect={effect}
         bpm={bpm}
         volume={volume}
-        synthList={synthList}
-        scaleList={scaleList}
         scaleOptions={scaleOptions}
         synthOptions={synthOptions}
+        effectOptions={effectOptions}
       />
-
-      <div className="keys-row">
-        {notes.map(note => {
-          return  <button 
-            key={note} 
-            value={note} 
-            className="key" 
-            onClick={handleKeyboardKeyPress}
-            // onMouseDown={() => setNotes([{ name: note }])}
-            // onMouseUp={() => setNotes([null])} 
-          >{note}</button>
-        })}
-      </div>
+      <hr />
+      <Keyboard notes={notes} handleKeyboardKeyPress={handleKeyboardKeyPress} />
       <hr />
       <button
         style={{
@@ -270,27 +271,31 @@ const Sequencer = () => {
           setIsPlaying(!isPlaying)
         }}
       > {isPlaying ? 'Stop sound' : 'Play sound'}</button>
-      <form>
-        <input 
-          className='title-input'
-          placeholder="title"
-          name="title"
-          onChange={handleChange}
-          value={formData.title}
-        />
-        <Select
-          defaultValue={[genreOptions[0], genreOptions[2]]}
-          isMulti
-          name="genres"
-          options={genreOptions}
-          className="basic-multi-select"
-          classNamePrefix="select"
-          onChange={handleGenreSelect}
-          value={genres}
-        />
-      </form>
-      <button onClick={handleSave}>SAVE</button>
-      <button onClick={handleResetSteps}>RESET</button> 
+
+      <div>
+        <form>
+          <input 
+            className='title-input'
+            placeholder="title"
+            name="title"
+            onChange={handleChange}
+            value={formData.title}
+          />
+          <Select
+            defaultValue={[genreOptions[0], genreOptions[2]]}
+            isMulti
+            name="genres"
+            options={genreOptions}
+            className="basic-multi-select"
+            classNamePrefix="select"
+            onChange={handleGenreSelect}
+            value={genres}
+          />
+        </form>
+        <button onClick={handleSave}>SAVE</button>
+        <button onClick={handleResetSteps}>RESET</button> 
+      </div>
+      
       <hr />
       <div className="note-sequence" style={{ fontSize: '3vmax' }}>
 

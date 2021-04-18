@@ -5,6 +5,9 @@ import Register from './components/LoginRegister/Register'
 import NavBar from './components/Nav_and_Footer/NavBar'
 
 import Sequencer from './components/sequencer/Sequencer'
+import LoopEdit from './components/sequencer/LoopEdit'
+import LoopNew from './components/sequencer/LoopNew'
+import LoopShow from './components/sequencer/LoopShow'
 
 const App = () => {
 
@@ -24,6 +27,18 @@ const App = () => {
 
         <Route path='/register'>
           <Register />
+        </Route>
+
+        <Route path='/loop/create'>
+          <LoopNew />
+        </Route>
+
+        <Route path='/loop/:id/edit'>
+          <LoopEdit />
+        </Route>
+
+        <Route path='/loop/:id'>
+          <LoopShow />
         </Route>
 
       </Switch>

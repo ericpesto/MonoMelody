@@ -1,7 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
 
-const SequencerControls = ({ synth, scale, bpm, volume, handleBpm, handleVolume, handleSynthType, handleScaleType, scaleOptions, synthOptions }) => {
+const SequencerControls = ({ synth, effect, scale, bpm, volume, handleBpm, handleVolume, handleSynthType, handleScaleType, scaleOptions, synthOptions, effectOptions, handleEffectType }) => {
   
   return (
     <div>
@@ -19,35 +19,36 @@ const SequencerControls = ({ synth, scale, bpm, volume, handleBpm, handleVolume,
           </div>
         </div>
         <div>
-          <label>synth: </label>
-          {/* <select name="synth-type" onChange={handleSynthType}>
-            {synthList.map(synth => {
-              return <option key={synth} value={synth}>{synth}</option>
-            })}
-          </select> */}
+          <label>synth: {synth} </label>
           <Select
             defaultValue={synth}
-            name="synth-type"
+            name="synth"
             options={synthOptions}
-            classNamePrefix="select"
+            // classNamePrefix="select"
             onChange={handleSynthType}
-            value={scale}
+            value={synth}
           />
         </div>
         <div>
-          <label>scale: </label>
-          {/* <select name="scale" onChange={handleScaleType}>
-            {scaleList.map(scale => {
-              return <option key={scale} value={scale}>{scale}</option>
-            })}
-          </select> */}
+          <label>scale: {scale} </label>
           <Select
             defaultValue={scale}
             name="scale"
             options={scaleOptions}
-            classNamePrefix="select"
+            // classNamePrefix="select"
             onChange={handleScaleType}
             value={scale}
+          />
+        </div>
+        <div>
+          <label>effect: {effect} </label>
+          <Select
+            defaultValue={effect}
+            name="effect"
+            options={effectOptions}
+            // classNamePrefix="select"
+            onChange={handleEffectType}
+            value={effect}
           />
         </div>
       </form>
