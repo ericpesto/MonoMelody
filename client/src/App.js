@@ -5,9 +5,9 @@ import Register from './components/LoginRegister/Register'
 import NavBar from './components/Nav_and_Footer/NavBar'
 
 import Sequencer from './components/sequencer/Sequencer'
-import LoopEdit from './components/sequencer/LoopEdit'
-import LoopNew from './components/sequencer/LoopNew'
-import LoopShow from './components/sequencer/LoopShow'
+import LoopEdit from './components/LoopEdit'
+import LoopNew from './components/LoopNew'
+import LoopShow from './components/LoopShow'
 
 const App = () => {
 

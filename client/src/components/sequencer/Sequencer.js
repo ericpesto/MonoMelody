@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { Song, Track, Instrument, Effect } from 'reactronica'
 import '../../styles/main.scss'
 
+import axios from 'axios'
+import { getTokenFromLocalStorage } from '../../helpers/authHelp'
+
 import SequencerControls from './SequencerControls'
 import Keyboard from './Keyboard'
-import axios from 'axios'
-import Select from 'react-select'
-import { getTokenFromLocalStorage } from '../../helpers/authHelp'
+import StepsDisplay from './StepsDisplay'
 
 
 const Sequencer = () => {
@@ -42,6 +43,9 @@ const Sequencer = () => {
   })
 
   // * Global Variables
+
+  let notesArray = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4']
+
   const synthOptions = [
     { value: 'duoSynth', label: 'duoSynth' },
     { value: 'fmSynth', label: 'fmSynth' },
@@ -49,8 +53,7 @@ const Sequencer = () => {
     { value: 'pluckSynth', label: 'pluckSynth' }, 
     { value: 'synth', label: 'synth' }
   ]
-  let notesArray = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4']
-
+  
   const scaleOptions = [
     { value: 'major', label: 'major' },
     { value: 'minor', label: 'minor' },
@@ -80,7 +83,7 @@ const Sequencer = () => {
     { id: '3', value: 3, name: 'Pop', label: 'Pop' }
   ]
 
-  const handleScales = () => {
+  useEffect(() => {
     console.log('SCALE', scale)
     if (scale === 'major') {
       notesArray = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4']
@@ -116,9 +119,8 @@ const Sequencer = () => {
       notesArray = ['C3', 'Db3', 'Eb3', 'F3', 'Gb3', 'Ab3', 'Bb3', 'C4']
       setNotes(['C3', 'Db3', 'Eb3', 'F3', 'Gb3', 'Ab3', 'Bb3', 'C4'])
     }
-
     return notesArray
-  }
+  }, [scale])
 
   // ! FORM BUG
   useEffect(() => {
@@ -127,10 +129,6 @@ const Sequencer = () => {
     // setSynthList(synthListArray)
     setLoopTitle('')
   }, []) 
-
-  useEffect(() => {
-    handleScales()
-  }, [scale])
 
   useEffect(() => {
     const newFormData = {
@@ -145,7 +143,6 @@ const Sequencer = () => {
     setFormData(newFormData)
   }, [loopTitle, steps, bpm, synth, genresArray, scale, effect])
 
-
   const handleChange = (event) => {
     const newFormData = { ...formData, [event.target.name]: event.target.value }
     setFormData(newFormData)
@@ -155,23 +152,19 @@ const Sequencer = () => {
     const stringSteps = steps.join(' ')
     const formToSend = { ...formData, steps: stringSteps }
     console.log('formToSend-> ', formToSend)
-
     try {
       await axios.post('/api/loops/', formToSend, { headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}`, 'Content-Type': 'application/json' } })
     } catch (err) {
       console.log(err)
     }
-
   }
 
   const handleKeyboardKeyPress = (event) => { 
-    
     const newSteps = [...steps, event.target.value]
     if (newSteps.length <= 9) {
       setIsPlaying(false) 
       setSteps(newSteps)
     }
-
   } 
 
   useEffect(() => {
@@ -221,17 +214,9 @@ const Sequencer = () => {
   }
 
   if (!steps) return null
-  const listStyle = {
-    listStyle: 'none',
-    margin: 0,
-    padding: 0,
-    display: 'flex',
-  }
-
   return (
     <div className="keyboard-wrapper">
       <Song 
-        // isPlaying={isPlaying}
         isPlaying={isPlaying}
         bpm={bpm}
         volume={volume}>
@@ -259,52 +244,22 @@ const Sequencer = () => {
         scaleOptions={scaleOptions}
         synthOptions={synthOptions}
         effectOptions={effectOptions}
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+        handleChange={handleChange}
+        formData={formData}
+        genreOptions={genreOptions}
+        handleGenreSelect={handleGenreSelect}
+        genres={genres}
+        handleSave={handleSave}
+        handleResetSteps={handleResetSteps}
       />
       <hr />
       <Keyboard notes={notes} handleKeyboardKeyPress={handleKeyboardKeyPress} />
       <hr />
-      <button
-        style={{
-          fontSize: '2rem',
-        }}
-        onClick={() => {
-          setIsPlaying(!isPlaying)
-        }}
-      > {isPlaying ? 'Stop sound' : 'Play sound'}</button>
-
-      <div>
-        <form>
-          <input 
-            className='title-input'
-            placeholder="title"
-            name="title"
-            onChange={handleChange}
-            value={formData.title}
-          />
-          <Select
-            defaultValue={[genreOptions[0], genreOptions[2]]}
-            isMulti
-            name="genres"
-            options={genreOptions}
-            className="basic-multi-select"
-            classNamePrefix="select"
-            onChange={handleGenreSelect}
-            value={genres}
-          />
-        </form>
-        <button onClick={handleSave}>SAVE</button>
-        <button onClick={handleResetSteps}>RESET</button> 
-      </div>
-      
-      <hr />
-      <div className="note-sequence" style={{ fontSize: '3vmax' }}>
-
-        <ol style={listStyle}>
-          {steps.map((step, index) => {
-            return <li key={index} style={{ margin: '0 12px' }}><div id={index} style={index === currentStepIndex ? { color: 'green', transform: 'scale(1.4)', transition: 'all 0.4s' } : { color: 'black', transition: 'all 0.4s' } } className={index === currentStepIndex ? 'note-playing' : 'note-off'}> {step} </div></li>
-          })}
-        </ol>
-      </div>
+      <StepsDisplay 
+        currentStepIndex={currentStepIndex} 
+        steps={steps} />
     </div>
   )
 }

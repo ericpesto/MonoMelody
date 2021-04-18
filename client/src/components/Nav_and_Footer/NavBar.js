@@ -52,8 +52,8 @@ const NavBar = () => {
         </>
             }
             {/* <Link to="/doodle-new" className="navbar-item">Doodle</Link> */}
-            <Link to="/doodle-new" className="navbar-item">Doodle</Link>
-            <Link to="/gallery" className="navbar-item">Gallery</Link>
+            <Link to="/loop/create" className="navbar-item">Create a loop</Link>
+            <Link to="/gallery" className="navbar-item">Loops</Link>
           </div>
 
           <div className="navbar-end">
