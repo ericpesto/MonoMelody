@@ -35,7 +35,7 @@ const App = () => {
           <Register />
         </Route>
 
-        <Route path='/loop/create'>
+        <Route path='/create'>
           <LoopNew />
         </Route>
 
