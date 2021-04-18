@@ -97,7 +97,6 @@ const LoopNew = () => {
   useEffect(() => {
     console.log('SCALE', scale)
     if (key === 'a') {
-      setKey('a')
 
       if (scale === 'major') {
         notesArray = ['A2', 'B2', 'C#3', 'D3', 'E3', 'F#3', 'G#3', 'A4']
@@ -137,7 +136,6 @@ const LoopNew = () => {
 
 
     if (key === 'b') {
-      setKey('b')
 
       if (scale === 'major') {
         notesArray = ['B2', 'C#3', 'D#3', 'E3', 'F#3', 'G#3', 'A#3', 'B3']
@@ -176,7 +174,6 @@ const LoopNew = () => {
     }
 
     if (key === 'c') {
-      setKey('c')
 
       if (scale === 'major') {
         notesArray = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4']
@@ -215,7 +212,6 @@ const LoopNew = () => {
     }
 
     if (key === 'd') {
-      setKey('d')
 
       if (scale === 'major') {
         notesArray = ['D3', 'E3', 'F#3', 'G3', 'A3', 'B3', 'C#4', 'D4']
@@ -260,8 +256,8 @@ const LoopNew = () => {
 
   // ! FORM BUG
   useEffect(() => {
-    setSteps([null])
-    setVolume(-5)
+    setSteps([])
+    setVolume(-15)
     // setSynthList(synthListArray)
     setLoopTitle('')
   }, []) 
@@ -358,7 +354,7 @@ const LoopNew = () => {
 
   if (!steps) return null
   return (
-    <div className="keyboard-wrapper">
+    <div className="loop-page-wrapper">
       <Song 
         isPlaying={isPlaying}
         bpm={bpm}
@@ -374,6 +370,12 @@ const LoopNew = () => {
           <Effect type={effect} />
         </Track>
       </Song>
+      <hr />
+      <Keyboard notes={notes} handleKeyboardKeyPress={handleKeyboardKeyPress} />
+      <hr />
+      <StepsDisplay 
+        currentStepIndex={currentStepIndex} 
+        steps={steps} />
       <SequencerControls 
         handleBpm={handleBpm}
         handleVolume={handleVolume}
@@ -400,12 +402,6 @@ const LoopNew = () => {
         handleResetSteps={handleResetSteps}
         handleKey={handleKey}
       />
-      <hr />
-      <Keyboard notes={notes} handleKeyboardKeyPress={handleKeyboardKeyPress} />
-      <hr />
-      <StepsDisplay 
-        currentStepIndex={currentStepIndex} 
-        steps={steps} />
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
+import '../../styles/main.scss'
 
 const SequencerControls = ({ synth, effect, scale, bpm, volume, handleBpm, handleVolume, handleSynthType, handleScaleType, scaleOptions, synthOptions, effectOptions, handleEffectType, isPlaying, setIsPlaying, handleChange, formData, genreOptions, handleGenreSelect, genres, handleSave, handleResetSteps, key, keyOptions, handleKey }) => {
 
@@ -7,63 +8,75 @@ const SequencerControls = ({ synth, effect, scale, bpm, volume, handleBpm, handl
   
   return (
     <div>
-      <form>
-        <div>
-          <label>vol(db): {volume}</label>
-          <div className="slidecontainer">
-            <input type="range" min="-20" max="20" value={volume} onChange={handleVolume} />
+      <form className="synth-controls-wrapper">
+        <div className="synth-controls-col">
+          <div>
+            <label>vol(db): {volume}</label>
+            <div className="slidecontainer">
+              <input type="range" min="-40" max="10" value={volume} onChange={handleVolume} />
+            </div>
+          </div>
+          <div>
+            <label>bpm: {bpm}</label>
+            <div className="slidecontainer">
+              <input type="range" min="30" max="280" value={bpm} onChange={handleBpm} />
+            </div>
           </div>
         </div>
-        <div>
-          <label>bpm: {bpm}</label>
-          <div className="slidecontainer">
-            <input type="range" min="30" max="280" value={bpm} onChange={handleBpm} />
+        <div className="synth-controls-col">
+          <div>
+            <label>synth: {synth} </label>
+            <Select
+              className='react-select-container'
+              defaultValue={synth}
+              name="synth"
+              options={synthOptions}
+              onChange={handleSynthType}
+              value={synth}
+              placeholder={synth}
+            />
+          </div>
+          <div>
+            <label>effect: {effect} </label>
+            <Select
+              className='react-select-container'
+              defaultValue={effect}
+              name="effect"
+              options={effectOptions}
+              onChange={handleEffectType}
+              value={effect}
+              placeholder={effect}
+            />
           </div>
         </div>
-        <div>
-          <label>synth: {synth} </label>
-          <Select
-            defaultValue={synth}
-            name="synth"
-            options={synthOptions}
-            // classNamePrefix="select"
-            onChange={handleSynthType}
-            value={synth}
-          />
+        <div className="synth-controls-col">
+          <div>
+            <label>scale: {scale} </label>
+            <Select
+              className='react-select-container'
+              defaultValue={scale}
+              name="scale"
+              options={scaleOptions}
+              onChange={handleScaleType}
+              value={scale}
+              placeholder={scale}
+            />
+          </div>
+          <div>
+            <label>key: {key} </label>
+            <Select
+              className='react-select-container'
+              defaultValue={key}
+              name="key"
+              options={keyOptions}
+              onChange={handleKey}
+              value={key}
+              placeholder={key}
+            />
+          </div>
         </div>
-        <div>
-          <label>key: {key} </label>
-          <Select
-            defaultValue={key}
-            name="key"
-            options={keyOptions}
-            // classNamePrefix="select"
-            onChange={handleKey}
-            value={key}
-          />
-        </div>
-        <div>
-          <label>scale: {scale} </label>
-          <Select
-            defaultValue={scale}
-            name="scale"
-            options={scaleOptions}
-            // classNamePrefix="select"
-            onChange={handleScaleType}
-            value={scale}
-          />
-        </div>
-        <div>
-          <label>effect: {effect} </label>
-          <Select
-            defaultValue={effect}
-            name="effect"
-            options={effectOptions}
-            // classNamePrefix="select"
-            onChange={handleEffectType}
-            value={effect}
-          />
-        </div>
+        
+        
       </form>
 
       <button
