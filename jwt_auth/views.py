@@ -28,6 +28,7 @@ class LoginView(APIView):
         print('request:🟨 ', request.data)
         # get some data off the request
         email = request.data.get('email')
+        print('email: ', email)
         password = request.data.get('password')
         # get user from the db
         try:

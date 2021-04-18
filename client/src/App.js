@@ -1,24 +1,30 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+
+import Gallery from './components/Gallery/Gallery'
+import HomePage from './components/Home/HomePage'
 import Login from './components/LoginRegister/Login'
 import Register from './components/LoginRegister/Register'
+import Footer from './components/Nav_and_Footer/Footer'
 import NavBar from './components/Nav_and_Footer/NavBar'
-
 import Sequencer from './components/sequencer/Sequencer'
 import LoopEdit from './components/LoopEdit'
 import LoopNew from './components/LoopNew'
 import LoopShow from './components/LoopShow'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
 
 
   return (
+         
     <BrowserRouter>
       <NavBar/>
       <Switch>
 
         <Route exact path="/">
-          <Sequencer />
+          <HomePage/>
         </Route>
 
         <Route path='/login'>
@@ -41,8 +47,19 @@ const App = () => {
           <LoopShow />
         </Route>
 
+        <Route path='/gallery'>
+          <Gallery/>
+        </Route>
+
+        <Route path='/create'> 
+          <Sequencer />
+        </Route>
+
       </Switch>
+      <Footer/>
+      <ToastContainer />
     </BrowserRouter>
+    
   )
 }
 

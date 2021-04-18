@@ -10,8 +10,10 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-select": "^4.3.0",
+    "react-toastify": "^7.0.3",
     "reactronica": "^0.4.6",
     "sass": "^1.32.8",
+    "toastify": "^2.0.1",
     "tone": "^14.7.77"
   },
   "scripts": {

@@ -1,2 +1,23 @@
-// @import "bulma/sass/utilities/_all.sass";
-// @import "bulma/sass/grid/columns.sass"
+$brand-color: #8929d8;
+
+
+
+.user-form{
+  padding:2rem;
+  height: 100vh;
+
+  background-color: #252525;
+  
+  label{ color: rgb(255, 255, 255)}
+  form{background-color:black}
+  input{background-color: #000; color:white;}
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(255, 255, 255);
+    opacity: 1; /* Firefox */
+  }
+  .input:focus {
+    outline: none ;
+    border:1px solid $brand-color;
+    box-shadow: 0 0 10px #ffffff;
+}
+}

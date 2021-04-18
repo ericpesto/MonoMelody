@@ -5,26 +5,26 @@ import { toast } from 'react-toastify'
 export const loginPopUp = (wasLoginSuccess) => { //* boolean
   //console.log('🐝 ~ file: Login.js ~ line 46 ~ wasLoginSuccess', wasLoginSuccess)
   if (wasLoginSuccess === true){
-    toast.success('User Logged in 😁 Enjoy doodling!', {
-      position: 'top-center',
+    toast.success('Login successful', {
+      position: 'top-right',
       autoClose: 2500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: false,
       draggable: true,
       progress: undefined,
-      pauseOnFocusLoss: false
+      pauseOnFocusLoss: false,
     })
   } else if (wasLoginSuccess === false) {
     toast.error('🙀 something went wrong... Please try again!', {
-      position: 'top-center',
+      position: 'top-right',
       autoClose: 2500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: false,
       draggable: true,
       progress: undefined,
-      pauseOnFocusLoss: false
+      pauseOnFocusLoss: false,
     }) 
   }
 }
@@ -39,7 +39,7 @@ export const commentPopup = (wasCommentSuccessful) => {
       pauseOnHover: false,
       draggable: true,
       progress: undefined,
-      pauseOnFocusLoss: false
+      pauseOnFocusLoss: false,
     })
   }
   //console.log('🐝 ~ file: Login.js ~ line 46 ~ wasLoginSuccess', wasLoginSuccess)
@@ -52,7 +52,7 @@ export const commentPopup = (wasCommentSuccessful) => {
       pauseOnHover: false,
       draggable: true,
       progress: undefined,
-      pauseOnFocusLoss: false
+      pauseOnFocusLoss: false,
     })
   } else if (wasCommentSuccessful === false) {
     toast.error('🙀 something went wrong... Please try again!', {
@@ -63,7 +63,7 @@ export const commentPopup = (wasCommentSuccessful) => {
       pauseOnHover: false,
       draggable: true,
       progress: undefined,
-      pauseOnFocusLoss: false
+      pauseOnFocusLoss: false,
     }) 
   }
 }
@@ -78,7 +78,7 @@ export const ratingPopup = (isThereRating) => {
       pauseOnHover: false,
       draggable: true,
       progress: undefined,
-      pauseOnFocusLoss: false
+      pauseOnFocusLoss: false,
     })
   }
   //console.log('🐝 ~ file: Login.js ~ line 46 ~ wasLoginSuccess', wasLoginSuccess)
@@ -94,7 +94,7 @@ export const doodlePopup = (isThereTitle) => {
       pauseOnHover: false,
       draggable: true,
       progress: undefined,
-      pauseOnFocusLoss: false
+      pauseOnFocusLoss: false,
     })
   } else if (isThereTitle === true)  {
     toast.success('🥳 Doodle saved 🥳', {
@@ -105,7 +105,7 @@ export const doodlePopup = (isThereTitle) => {
       pauseOnHover: false,
       draggable: true,
       progress: undefined,
-      pauseOnFocusLoss: false
+      pauseOnFocusLoss: false,
     })
   }
 }
@@ -120,7 +120,7 @@ export const userNeedsToLogin = (message) => {
     pauseOnHover: false,
     draggable: true,
     progress: undefined,
-    pauseOnFocusLoss: false
+    pauseOnFocusLoss: false,
   })
 
 }

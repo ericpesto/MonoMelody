@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import { getPayloadFromToken, userIsAuthenticated } from '../../helpers/authHelp'
 import './navbar.scss'
+import logo from '../../assets/logo-left-white.svg'
+
 
 const NavBar = () => {
   const [userId, setUserId] = useState(null)
@@ -24,6 +26,11 @@ const NavBar = () => {
   }, [getPayloadFromToken()])
 
 
+  const logoStyle = {
+    width: '100px',
+    marginTop: '1rem',
+  }
+
   //make a onclick change the state or something 
   const [isActive, setIsActive] = React.useState(false)
 
@@ -31,7 +38,9 @@ const NavBar = () => {
     <nav className="navbar custom-nav">
       <div className="container">
         <div className="navbar-brand">
-          <Link to="/">
+
+          <Link to="/" >
+            <img src={logo} style={logoStyle} alt='logo'/>
           </Link>
           
           <a onClick={() => {
@@ -48,12 +57,10 @@ const NavBar = () => {
             { userIsAuthenticated() &&
         <>
           <Link to={`/profile/${userId}`} className="navbar-item">Profile</Link>
-          {/* <Link to="/doodle-new" className="navbar-item">Doodle</Link> */}
         </>
             }
-            {/* <Link to="/doodle-new" className="navbar-item">Doodle</Link> */}
-            <Link to="/loop/create" className="navbar-item">Create a loop</Link>
-            <Link to="/gallery" className="navbar-item">Loops</Link>
+            <Link to="/create" className="navbar-item">Create</Link>
+            <Link to="/gallery" className="navbar-item">Explore</Link>
           </div>
 
           <div className="navbar-end">
