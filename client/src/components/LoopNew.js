@@ -619,12 +619,14 @@ const LoopNew = () => {
         </Track>
       </Song>
       <hr />
-      <Keyboard notes={notes} handleKeyboardKeyPress={handleKeyboardKeyPress} />
+      <Keyboard 
+        notes={notes} 
+        handleKeyboardKeyPress={handleKeyboardKeyPress}
+        handleResetSteps={handleResetSteps} />
       <hr />
       <StepsDisplay 
         currentStepIndex={currentStepIndex} 
         steps={steps} 
-        handleResetSteps={handleResetSteps}
       />
       <SequencerControls 
         handleBpm={handleBpm}

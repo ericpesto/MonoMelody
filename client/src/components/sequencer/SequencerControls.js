@@ -4,8 +4,6 @@ import '../../styles/main.scss'
 
 const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleBpm, handleVolume, handleSynthType, handleScaleType, scaleOptions, synthOptions, effectOptions, handleEffectType, isPlaying, setIsPlaying, handleChange, formData, genreOptions, handleGenreSelect, genres, handleSave, keyOptions, handleKey }) => {
 
-  // ! Select bug!
-  
   return (
     <div>
       <form className="synth-controls-wrapper">
