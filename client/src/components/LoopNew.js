@@ -94,7 +94,7 @@ const LoopNew = () => {
     // { value: 'g', label: 'G' }
   ]
 
-  const handleKeyandScale = () => {
+  useEffect(() => {
     console.log('SCALE', scale)
     if (key === 'a') {
 
@@ -178,7 +178,6 @@ const LoopNew = () => {
     }
 
     if (key === 'c') {
-
       // setKey('c')
 
       if (scale === 'major') {
@@ -259,182 +258,8 @@ const LoopNew = () => {
 
     return notesArray
     
-  }
-
-  useEffect(() => {
-    handleKeyandScale()
-  }, [key])
-
-  useEffect(() => {
-    handleKeyandScale()
-  }, [scale])
-
-  // useEffect(() => {
-  //   console.log('SCALE', scale)
-  //   if (key === 'a') {
-
-  //     // setKey('a')
-
-  //     if (scale === 'major') {
-  //       notesArray = ['A2', 'B2', 'C#3', 'D3', 'E3', 'F#3', 'G#3', 'A4']
-  //       setNotes(['A2', 'B2', 'C#3', 'D3', 'E3', 'F#3', 'G#3', 'A4'])
-  //     }
-  
-  //     if (scale === 'minor') {
-  //       notesArray = ['A2', 'B2', 'C3', 'D3', 'E3', 'F3', 'G3', 'A4']
-  //       setNotes(['A2', 'B2', 'C3', 'D3', 'E3', 'F3', 'G3', 'A4'])
-  //     }
-  
-  //     if (scale === 'dorian') {
-  //       notesArray = ['A2', 'B2', 'C3', 'D3', 'E3', 'F#3', 'G3', 'A4']
-  //       setNotes(['A2', 'B2', 'C3', 'D3', 'E3', 'F#3', 'G3', 'A4'])
-  //     }
-  
-  //     if (scale === 'phrygian') {
-  //       notesArray = ['A2', 'Bb2', 'C3', 'D3', 'E3', 'F3', 'G3', 'A4']
-  //       setNotes(['A2', 'Bb2', 'C3', 'D3', 'E3', 'F3', 'G3', 'A4'])
-  //     }
-  
-  //     if (scale === 'lydian') {
-  //       notesArray = ['A2', 'B2', 'C#3', 'D#3', 'E3', 'F#3', 'G#3', 'A4']
-  //       setNotes(['A2', 'B2', 'C#3', 'D#3', 'E3', 'F#3', 'G#3', 'A4'])
-  //     }
-  
-  //     if (scale === 'mixolydian') {
-  //       notesArray = ['A2', 'B2', 'C#3', 'D3', 'E3', 'F#3', 'G3', 'A4']
-  //       setNotes(['A2', 'B2', 'C#3', 'D3', 'E3', 'F#3', 'G3', 'A4'])
-  //     }
-  
-  //     if (scale === 'locrian') {
-  //       notesArray = ['A2', 'Bb2', 'C3', 'D3', 'Eb3', 'F3', 'G3', 'A4']
-  //       setNotes(['A2', 'Bb2', 'C3', 'D3', 'Eb3', 'F3', 'G3', 'A4'])
-  //     }
-  //   }
-
-
-  //   if (key === 'b') {
-
-  //     // setKey('b')
-
-  //     if (scale === 'major') {
-  //       notesArray = ['B2', 'C#3', 'D#3', 'E3', 'F#3', 'G#3', 'A#3', 'B3']
-  //       setNotes(['B2', 'C#3', 'D#3', 'E3', 'F#3', 'G#3', 'A#3', 'B3'])
-  //     }
-  
-  //     if (scale === 'minor') {
-  //       notesArray = ['B2', 'C#3', 'D3', 'E3', 'F#3', 'G3', 'A3', 'B3']
-  //       setNotes(['B2', 'C#3', 'D3', 'E3', 'F#3', 'G3', 'A3', 'B3'])
-  //     }
-  
-  //     if (scale === 'dorian') {
-  //       notesArray = ['B2', 'C#3', 'D3', 'E3', 'F#3', 'G#3', 'A3', 'B3']
-  //       setNotes(['B2', 'C#3', 'D3', 'E3', 'F#3', 'G#3', 'A3', 'B3'])
-  //     }
-  
-  //     if (scale === 'phrygian') {
-  //       notesArray = ['B2', 'C3', 'D3', 'E3', 'F#3', 'G3', 'A3', 'B3']
-  //       setNotes(['B2', 'C3', 'D3', 'E3', 'F#3', 'G3', 'A3', 'B3'])
-  //     }
-  
-  //     if (scale === 'lydian') {
-  //       notesArray = ['B2', 'C#3', 'D#3', 'E#3', 'F#3', 'G#3', 'A#3', 'B3']
-  //       setNotes(['B2', 'C#3', 'D#3', 'E#3', 'F#3', 'G#3', 'A#3', 'B3'])
-  //     }
-  
-  //     if (scale === 'mixolydian') {
-  //       notesArray = ['B2', 'C#3', 'D#3', 'E3', 'F#3', 'G#3', 'A3', 'B3']
-  //       setNotes(['B2', 'C#3', 'D#3', 'E3', 'F#3', 'G#3', 'A3', 'B3'])
-  //     }
-  
-  //     if (scale === 'locrian') {
-  //       notesArray = ['B2', 'C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3']
-  //       setNotes(['B2', 'C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3'])
-  //     }
-  //   }
-
-  //   if (key === 'c') {
-  //     // setKey('c')
-
-  //     if (scale === 'major') {
-  //       notesArray = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4']
-  //       setNotes(['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4'])
-  //     }
-  
-  //     if (scale === 'minor') {
-  //       notesArray = ['C3', 'D3', 'Eb3', 'F3', 'G3', 'Ab3', 'Bb3', 'C4']
-  //       setNotes(['C3', 'D3', 'Eb3', 'F3', 'G3', 'Ab3', 'Bb3', 'C4'])
-  //     }
-  
-  //     if (scale === 'dorian') {
-  //       notesArray = ['C3', 'D3', 'Eb3', 'F3', 'G3', 'A3', 'Bb3', 'C4']
-  //       setNotes(['C3', 'D3', 'Eb3', 'F3', 'G3', 'A3', 'Bb3', 'C4'])
-  //     }
-  
-  //     if (scale === 'phrygian') {
-  //       notesArray = ['C3', 'Db3', 'Eb3', 'F3', 'G3', 'Ab3', 'Bb3', 'C4']
-  //       setNotes(['C3', 'Db3', 'Eb3', 'F3', 'G3', 'Ab3', 'Bb3', 'C4'])
-  //     }
-  
-  //     if (scale === 'lydian') {
-  //       notesArray = ['C3', 'D3', 'E3', 'F#3', 'G3', 'A3', 'B3', 'C4']
-  //       setNotes(['C3', 'D3', 'E3', 'F#3', 'G3', 'A3', 'B3', 'C4'])
-  //     }
-  
-  //     if (scale === 'mixolydian') {
-  //       notesArray = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'Bb3', 'C4']
-  //       setNotes(['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'Bb3', 'C4'])
-  //     }
-  
-  //     if (scale === 'locrian') {
-  //       notesArray = ['C3', 'Db3', 'Eb3', 'F3', 'Gb3', 'Ab3', 'Bb3', 'C4']
-  //       setNotes(['C3', 'Db3', 'Eb3', 'F3', 'Gb3', 'Ab3', 'Bb3', 'C4'])
-  //     }  
-  //   }
-
-  //   if (key === 'd') {
-
-  //     // setKey('d')
-
-  //     if (scale === 'major') {
-  //       notesArray = ['D3', 'E3', 'F#3', 'G3', 'A3', 'B3', 'C#4', 'D4']
-  //       setNotes(['D3', 'E3', 'F#3', 'G3', 'A3', 'B3', 'C#4', 'D4'])
-  //     }
-  
-  //     if (scale === 'minor') {
-  //       notesArray = ['D3', 'E3', 'F3', 'G3', 'A3', 'Bb3', 'C4', 'D4']
-  //       setNotes(['D3', 'E3', 'F3', 'G3', 'A3', 'Bb3', 'C4', 'D4'])
-  //     }
-  
-  //     if (scale === 'dorian') {
-  //       notesArray = ['D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4', 'D4']
-  //       setNotes(['D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4', 'D4'])
-  //     }
-  
-  //     if (scale === 'phrygian') {
-  //       notesArray = ['D3', 'Eb3', 'F3', 'G3', 'A3', 'Bb3', 'C4', 'D4']
-  //       setNotes(['D3', 'Eb3', 'F3', 'G3', 'A3', 'Bb3', 'C4', 'D4'])
-  //     }
-  
-  //     if (scale === 'lydian') {
-  //       notesArray = ['D3', 'E3', 'F#3', 'G#3', 'A3', 'B3', 'C#4', 'D4']
-  //       setNotes(['D3', 'E3', 'F#3', 'G#3', 'A3', 'B3', 'C#4', 'D4'])
-  //     }
-  
-  //     if (scale === 'mixolydian') {
-  //       notesArray = ['D3', 'E3', 'F#3', 'G3', 'A3', 'B3', 'C4', 'D4']
-  //       setNotes(['D3', 'E3', 'F#3', 'G3', 'A3', 'B3', 'C4', 'D4'])
-  //     }
-  
-  //     if (scale === 'locrian') {
-  //       notesArray = ['D3', 'Eb3', 'F3', 'G3', 'Ab3', 'Bb3', 'C4', 'D4']
-  //       setNotes(['D3', 'Eb3', 'F3', 'G3', 'Ab3', 'Bb3', 'C4', 'D4'])
-  //     }  
-  //   }
-
-  //   return notesArray
-    
-  // // }, [scale, key])
-  // }, [key, scale])
+  // }, [scale, key])
+  }, [key, scale])
 
   // ! FORM BUG
   useEffect(() => {
@@ -443,22 +268,6 @@ const LoopNew = () => {
     // setSynthList(synthListArray)
     setLoopTitle('')
   }, []) 
-
-  // useEffect(() => {
-  //   const newFormData = {
-  //     ...formData,
-  //     title: loopTitle,
-  //     steps: steps,
-  //     bpm: bpm,
-  //     synth: synth,
-  //     genres: genresArray,
-  //     scale: scale,
-  //     effect: effect,
-  //     key: key,
-  //   }
-  //   setFormData(newFormData)
-  // // }, [])
-  // }, [loopTitle, steps, bpm, synth, genresArray, scale, effect, key])
 
   useEffect(() => {
     const newFormData = {
@@ -596,7 +405,7 @@ const LoopNew = () => {
   }
 
   const handleResetSteps = () => {
-    setSteps([null])
+    setSteps([])
     setIsPlaying(false)
   }
 

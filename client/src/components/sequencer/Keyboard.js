@@ -4,6 +4,7 @@ const Keyboard = ({ notes, handleKeyboardKeyPress, handleResetSteps }) => {
   
   return (
     <div>
+      <p>Steps</p>
       <div className="keys-row">
         {notes.map((note) => {
           return  <button 
