@@ -8,6 +8,8 @@ import Register from './components/LoginRegister/Register'
 import Footer from './components/Nav_and_Footer/Footer'
 import NavBar from './components/Nav_and_Footer/NavBar'
 import Sequencer from './components/sequencer/Sequencer'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
 
@@ -40,7 +42,9 @@ const App = () => {
 
       </Switch>
       <Footer/>
+      <ToastContainer />
     </BrowserRouter>
+    
   )
 }
 

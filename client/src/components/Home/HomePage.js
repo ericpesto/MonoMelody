@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './homepage.scss'
 const HomePage = () => {
 
 
@@ -10,8 +10,14 @@ const HomePage = () => {
       <div className='homepage component'>
 
         <header>
-          <h1> Welcome to MonoMelody </h1>
+          <div> Welcome to MonoMelody </div>
         </header>
+        <div className='homepage-content'>
+          <p>
+          
+          </p>
+        </div>
+
 
       </div>
 

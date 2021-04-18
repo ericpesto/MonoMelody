@@ -14,26 +14,33 @@ $background-color: #252525;
   font-family: MyFont;
 }
 
+body{height: 100vh;}
+
 nav{
   height: 10vh !important;
+  z-index: 100000;
 }
 .component{
   height: 80vh !important;
-
+  // overflow:auto;
 }
 
 footer{ 
   width: 100vw;
   height: 10vh !important;;
   // z-index: 10;
+  
   display:flex;
   justify-content: center;
   align-items: center;
+
 
   background-color: black;  
 
   a{margin-right: 1rem;}
 }
+
+
 .keyboard-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -107,4 +114,9 @@ footer{
   font-size: 43px;
   font-weight: 700;
 }
+}
+
+.load-page{
+  background-color:$background-color;
+  height: 100vh;
 }
