@@ -19,10 +19,10 @@ const LoopNew = () => {
 
   // * Track State
   const [steps, setSteps] = useState(null)
-  const [scale, setScale] = useState('major')
-  const [key, setKey] = useState('a')
+  const [scale, setScale] = useState('phrygian')
+  const [key, setKey] = useState('d')
   // * Instrument State
-  const [synth, setSynth] = useState('duoSynth')
+  const [synth, setSynth] = useState('synth')
   const [notes, setNotes] = useState([])
 
   // * Effect State
@@ -462,7 +462,6 @@ const LoopNew = () => {
         handleResetSteps={handleResetSteps} 
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying} />
-      <hr />
       <StepsDisplay 
         currentStepIndex={currentStepIndex} 
         steps={steps} 

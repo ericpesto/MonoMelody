@@ -2,6 +2,8 @@ import React from 'react'
 import Select from 'react-select'
 import '../../styles/main.scss'
 
+import { userIsAuthenticated } from '../../helpers/authHelp'
+
 const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleBpm, handleVolume, handleSynthType, handleScaleType, scaleOptions, synthOptions, effectOptions, handleEffectType, handleChange, formData, genreOptions, handleGenreSelect, genres, handleSave, keyOptions, handleKey }) => {
 
   return (
@@ -73,31 +75,31 @@ const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleB
             />
           </div>
         </div>
-        
-        
       </form>
-      <div>
-        <form>
-          <input 
-            className='input'
-            placeholder="title"
-            name="title"
-            onChange={handleChange}
-            value={formData.title}
-          />
-          <Select
-            defaultValue={[genreOptions[0], genreOptions[2]]}
-            isMulti
-            name="genres"
-            options={genreOptions}
-            className="basic-multi-select"
-            classNamePrefix="select"
-            onChange={handleGenreSelect}
-            value={genres}
-          />
-        </form>
-        <button className="button" onClick={handleSave}>SAVE</button>
-      </div>
+      { userIsAuthenticated() &&
+        <>
+          <form>
+            <input 
+              className='input'
+              placeholder="title"
+              name="title"
+              onChange={handleChange}
+              value={formData.title}
+            />
+            <Select
+              defaultValue={[genreOptions[0], genreOptions[2]]}
+              isMulti
+              name="genres"
+              options={genreOptions}
+              className="basic-multi-select genre"
+              classNamePrefix="select"
+              onChange={handleGenreSelect}
+              value={genres}
+            />
+          </form>
+          <button className="button" onClick={handleSave}>SAVE</button>
+        </>
+      }
 
     </div>
   )

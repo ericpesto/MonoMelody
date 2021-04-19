@@ -4,6 +4,11 @@
   src: local('MyFont'), url(../assets/Disket-Mono-Regular.ttf) format('truetype');
 }
 
+@font-face {
+  font-family: 'VaporWave';
+  src: local('VaporWave'), url(../assets/vaporwave.ttf) format('truetype');
+}
+
 
 
 $brand-color: #8929d8;
@@ -112,59 +117,19 @@ footer{
   //color: 
 }
 
-.key:nth-of-type(1):hover {
-  background-color: #80ff00;
-  color: white;
-}
-
-.key:nth-of-type(2):hover {
-  background-color: #00ffff;
+.key:hover {
+  background-color: rgb(109, 109, 109);
   color: white;
 }
 
 
-.key:nth-of-type(3):hover {
-  background-color: #0080ff;
-  color: white;
-}
-
-
-.key:nth-of-type(4):hover {
-  background-color: #0000ff;
-  color: white;
-}
-
-
-.key:nth-of-type(5):hover {
-  background-color: #8000ff;
-  color: white;
-}
-
-
-.key:nth-of-type(6):hover {
-  background-color: #ff00ff;
-  color: white;
-}
-
-
-.key:nth-of-type(7):hover {
-  background-color: #ff0080;
-  color: white;
-}
-
-
-
-.key:nth-of-type(8):hover {
-  background-color: #ff8000;
-  color: white;
-}
 
 
 // return <li key={index} style={{ margin: '0 12px' }}><div id={index} style={index === currentStepIndex ? { color: 'green', transform: 'scale(1.4)', transition: 'all 0.4s' } : { color: 'grey', transition: 'all 0.4s' } } className={index === currentStepIndex ? 'note-playing' : 'note-off'}> {step} </div></li>
 //           })}
 
 .box {
-  width: 800px;
+  width: 750px;
 }
 
 .sequence-wrapper {
@@ -180,8 +145,6 @@ footer{
   font-size: 32px;
 }
 
-
-
 .step-div-inactive {
   color: grey;
   transition: all 0.4s;
@@ -191,7 +154,43 @@ footer{
   color: green;
   transition: all 0.4s;
   transform: scale(1.4);
+}
 
+.step-div-active:nth-of-type(1) {
+  color: #80ff00;
+}
+
+.step-div-active:nth-of-type(2) {
+  color: #00ffff;
+}
+
+
+.step-div-active:nth-of-type(3) {
+  color: #0080ff;
+}
+
+
+.step-div-active:nth-of-type(4) {
+  color: #0000ff;
+}
+
+
+.step-div-active:nth-of-type(5) {
+  color: #8000ff;
+}
+
+
+.step-div-active:nth-of-type(6) {
+  color: #ff00ff;
+}
+
+
+.step-div-active:nth-of-type(7) {
+  color: #ff0080;
+}
+
+.step-div-active:nth-of-type(8) {
+  color: #ff8000;
 }
 
 .text-block {
@@ -230,5 +229,9 @@ footer{
 .load-page {
   background-color:$background-color;
   height: 100vh;
+}
+
+.basic-multi-select .genre {
+  font-family: VaporWave !important;
 }
 }

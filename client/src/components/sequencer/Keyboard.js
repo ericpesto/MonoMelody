@@ -5,7 +5,6 @@ const Keyboard = ({ notes, handleKeyboardKeyPress, handleResetSteps, isPlaying, 
   
   return (
     <div className="box keyboard-wrapper">
-      <p>Steps</p>
       <div className="keys-row">
         {notes.map((note) => {
           return  <button 
@@ -16,6 +15,7 @@ const Keyboard = ({ notes, handleKeyboardKeyPress, handleResetSteps, isPlaying, 
           >{note}</button>
         })}
       </div>
+      <hr />
       <div>
         <button className={isPlaying ? 'button is-danger' : 'button is-success'} onClick={() => setIsPlaying(!isPlaying)} > {isPlaying ? 'STOP' : 'PLAY'}</button>
         <button className="button is-warning"  onClick={handleResetSteps}>RESET</button> 
