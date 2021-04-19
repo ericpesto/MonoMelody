@@ -351,7 +351,7 @@ const LoopNew = () => {
 
   const handleKeyboardKeyPress = (event) => { 
     const newSteps = [...steps, event.target.value]
-    if (newSteps.length <= 9) {
+    if (newSteps.length <= 8) {
       setIsPlaying(false) 
       setSteps(newSteps)
     }
@@ -411,7 +411,7 @@ const LoopNew = () => {
 
   if (!steps) return null
   return (
-    <div className="loop-page-wrapper">
+    <div className="loop-wrapper">
       <Song 
         isPlaying={isPlaying}
         bpm={bpm}
@@ -428,15 +428,7 @@ const LoopNew = () => {
         </Track>
       </Song>
       <hr />
-      <Keyboard 
-        notes={notes} 
-        handleKeyboardKeyPress={handleKeyboardKeyPress}
-        handleResetSteps={handleResetSteps} />
-      <hr />
-      <StepsDisplay 
-        currentStepIndex={currentStepIndex} 
-        steps={steps} 
-      />
+
       <SequencerControls 
         handleBpm={handleBpm}
         handleVolume={handleVolume}
@@ -455,14 +447,25 @@ const LoopNew = () => {
         synthOptions={synthOptions}
         effectOptions={effectOptions}
         keyOptions={keyOptions}
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
+        // isPlaying={isPlaying}
+        // setIsPlaying={setIsPlaying}
         handleChange={handleChange}
         genreOptions={genreOptions}
         handleGenreSelect={handleGenreSelect}
         handleSave={handleSave}
         // handleResetSteps={handleResetSteps}
         handleKey={handleKey}
+      />
+      <Keyboard 
+        notes={notes} 
+        handleKeyboardKeyPress={handleKeyboardKeyPress}
+        handleResetSteps={handleResetSteps} 
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying} />
+      <hr />
+      <StepsDisplay 
+        currentStepIndex={currentStepIndex} 
+        steps={steps} 
       />
     </div>
   )

@@ -2,10 +2,10 @@ import React from 'react'
 import Select from 'react-select'
 import '../../styles/main.scss'
 
-const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleBpm, handleVolume, handleSynthType, handleScaleType, scaleOptions, synthOptions, effectOptions, handleEffectType, isPlaying, setIsPlaying, handleChange, formData, genreOptions, handleGenreSelect, genres, handleSave, keyOptions, handleKey }) => {
+const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleBpm, handleVolume, handleSynthType, handleScaleType, scaleOptions, synthOptions, effectOptions, handleEffectType, handleChange, formData, genreOptions, handleGenreSelect, genres, handleSave, keyOptions, handleKey }) => {
 
   return (
-    <div>
+    <div className="box">
       <form className="synth-controls-wrapper">
         <div className="synth-controls-col">
           <div>
@@ -76,20 +76,10 @@ const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleB
         
         
       </form>
-
-      <button
-        style={{
-          fontSize: '2rem',
-        }}
-        onClick={() => {
-          setIsPlaying(!isPlaying)
-        }}
-      > {isPlaying ? 'Stop sound' : 'Play sound'}</button>
-
       <div>
         <form>
           <input 
-            className='title-input'
+            className='input'
             placeholder="title"
             name="title"
             onChange={handleChange}
@@ -106,7 +96,7 @@ const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleB
             value={genres}
           />
         </form>
-        <button onClick={handleSave}>SAVE</button>
+        <button className="button" onClick={handleSave}>SAVE</button>
       </div>
 
     </div>

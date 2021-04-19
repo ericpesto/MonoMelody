@@ -41,7 +41,7 @@ footer{
 }
 
 
-.keyboard-wrapper {
+.loop-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -66,7 +66,7 @@ footer{
   grid-template-columns: 1fr 1fr;
   -ms-grid-rows: auto auto;
   grid-template-rows: auto auto;
-  background-color: rgb(128, 128, 128);
+  background-color: rgb(0, 0, 0);
 
 
 .keys-row {
@@ -105,8 +105,93 @@ footer{
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 50%;
+  border-radius: 6px;
   background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  //color: 
+}
+
+.key:nth-of-type(1):hover {
+  background-color: #80ff00;
+  color: white;
+}
+
+.key:nth-of-type(2):hover {
+  background-color: #00ffff;
+  color: white;
+}
+
+
+.key:nth-of-type(3):hover {
+  background-color: #0080ff;
+  color: white;
+}
+
+
+.key:nth-of-type(4):hover {
+  background-color: #0000ff;
+  color: white;
+}
+
+
+.key:nth-of-type(5):hover {
+  background-color: #8000ff;
+  color: white;
+}
+
+
+.key:nth-of-type(6):hover {
+  background-color: #ff00ff;
+  color: white;
+}
+
+
+.key:nth-of-type(7):hover {
+  background-color: #ff0080;
+  color: white;
+}
+
+
+
+.key:nth-of-type(8):hover {
+  background-color: #ff8000;
+  color: white;
+}
+
+
+// return <li key={index} style={{ margin: '0 12px' }}><div id={index} style={index === currentStepIndex ? { color: 'green', transform: 'scale(1.4)', transition: 'all 0.4s' } : { color: 'grey', transition: 'all 0.4s' } } className={index === currentStepIndex ? 'note-playing' : 'note-off'}> {step} </div></li>
+//           })}
+
+.box {
+  width: 800px;
+}
+
+.sequence-wrapper {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-evenly;
+} 
+
+.note {
+  // margin: 0 px;
+  font-size: 32px;
+}
+
+
+
+.step-div-inactive {
+  color: grey;
+  transition: all 0.4s;
+}
+
+.step-div-active {
+  color: green;
+  transition: all 0.4s;
+  transform: scale(1.4);
+
 }
 
 .text-block {
