@@ -122,12 +122,6 @@ footer{
   color: white;
 }
 
-
-
-
-// return <li key={index} style={{ margin: '0 12px' }}><div id={index} style={index === currentStepIndex ? { color: 'green', transform: 'scale(1.4)', transition: 'all 0.4s' } : { color: 'grey', transition: 'all 0.4s' } } className={index === currentStepIndex ? 'note-playing' : 'note-off'}> {step} </div></li>
-//           })}
-
 .box {
   width: 750px;
 }
@@ -218,11 +212,16 @@ footer{
   align-items: flex-start;
 }
 
-.select {
-  width: 600px;
-}
+// .select {
+//   width: 6000px;
+// }
 
 .react-select-container {
+  width: 260px;
+}
+
+.react-select-container .genre {
+  font-family: VaporWave !important;
   width: 200px;
 }
 
@@ -232,6 +231,6 @@ footer{
 }
 
 .basic-multi-select .genre {
-  font-family: VaporWave !important;
+
 }
 }
