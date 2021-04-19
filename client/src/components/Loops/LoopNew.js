@@ -26,12 +26,16 @@ const LoopNew = () => {
   const [notes, setNotes] = useState([])
 
   // * Effect State
-  const [effect, setEffect] = useState('freeverb')
+  //const [effect, setEffect] = useState('freeverb')
+  const [effect, setEffect] = useState([])
+  const [effectsArray, setEffectsArray] = useState([])
 
   // * Form State
   const [loopTitle, setLoopTitle] = useState('')
   const [genres, setGenres] = useState([])
   const [genresArray, setGenresArray] = useState([])
+  const [genresDb, setGenresDb] = useState([])
+
   const [formData, setFormData] = useState({
     title: loopTitle,
     bpm: bpm,
@@ -39,7 +43,7 @@ const LoopNew = () => {
     synth: synth,
     genres: genresArray,
     scale: scale,
-    effect: effect,
+    effect: effectsArray.join(' '),
     key: key,
   })
 
@@ -78,13 +82,18 @@ const LoopNew = () => {
     { value: 'tremolo', label: 'tremolo' }
   ]
 
-  const genreOptions = [
-    { id: '1', value: 1, name: 'a', label: 'a' },
-    { id: '2', value: 2, name: 'b', label: 'b' },
-    { id: '3', value: 3, name: 'c', label: 'c' },
-    { id: '4', value: 4, name: 'd', label: 'd' },
-    { id: '5', value: 5, name: 'e', label: 'e' }
-  ]
+  const createGenreOptions = () => {
+    const genreOptionsArray = []
+    //if (genresDb.length === 0) return {}
+    genresDb.map(genre => {
+      const genreOptionTemplate = { value: genre.id, label: genre.name }
+      return genreOptionsArray.push(genreOptionTemplate)
+    })
+    console.log('genreOptionsArray ->', genreOptionsArray)
+    return genreOptionsArray
+  }
+  
+  const genreOptions = [ ...createGenreOptions() ]
 
   const keyOptions = [
     { value: 'a', label: 'A' },
@@ -257,13 +266,22 @@ const LoopNew = () => {
         setNotes(['D3', 'Eb3', 'F3', 'G3', 'Ab3', 'Bb3', 'C4', 'D4'])
       }  
     }
-
     return notesArray
-    
-  // }, [scale, key])
   }, [key, scale])
 
-  // ! FORM BUG
+  useEffect(() => {
+    const getGenres = async() => {
+      const response = await axios.get('/api/genres')
+      setGenresDb(response.data)
+    }
+    getGenres()
+  }, [])
+
+  useEffect(() => {
+    createGenreOptions()
+    console.log(genresDb)
+  }, [genresDb])
+
   useEffect(() => {
     setSteps([])
     setVolume(-15)
@@ -330,10 +348,10 @@ const LoopNew = () => {
   useEffect(() => {
     const newFormData = {
       ...formData,
-      effect: effect,
+      effect: effectsArray.join(' '),
     }
     setFormData(newFormData)
-  }, [effect])
+  }, [effectsArray])
 
   const handleChange = (event) => {
     const newFormData = { ...formData, [event.target.name]: event.target.value }
@@ -354,14 +372,10 @@ const LoopNew = () => {
   const handleKeyboardKeyPress = (event) => { 
     const newSteps = [...steps, event.target.value]
     if (newSteps.length <= 8) {
-      setIsPlaying(false) 
+      // setIsPlaying(false) 
       setSteps(newSteps)
     }
   } 
-
-  useEffect(() => {
-    setIsPlaying(!isPlaying)
-  }, [steps])
 
   const handleBpm = (event) => {
     const currentBpm = Number(event.target.value)
@@ -388,10 +402,15 @@ const LoopNew = () => {
     setGenresArray(genreValuesArray)
   }
 
+
   const handleEffectType = (effectOptions) => {
-    const currentEffect =  effectOptions.value
-    console.log('currentEffect ->', currentEffect)
-    setEffect(currentEffect)
+    const effectValuesArray = []
+    effectOptions.map(option => {
+      effectValuesArray.push(option.value)
+    })
+
+    setEffect(effectOptions)
+    setEffectsArray(effectValuesArray) 
   }
 
   const handleScaleType = (scaleOptions) => {
@@ -426,7 +445,10 @@ const LoopNew = () => {
           <Instrument 
             type={synth}
           />
-          <Effect type={effect} />
+          {effectsArray.map((effectType, index) => {
+            return <Effect key={index} type={effectType} />
+          })}
+          {/* <Effect type={effect} /> */}
         </Track>
       </Song>
       <hr />

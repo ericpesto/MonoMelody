@@ -39,13 +39,14 @@ const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleB
           <div>
             <label>effect:</label>
             <Select
+              isMulti
               className='react-select-container'
-              defaultValue={effect}
+              // defaultValue={[effectOptions[3]]}
               name="effect"
               options={effectOptions}
               onChange={handleEffectType}
               value={effect}
-              placeholder={effect}
+              // placeholder={effect[0]}
             />
           </div>
         </div>
