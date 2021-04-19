@@ -72,7 +72,7 @@ const Gallery = () => {
   return (
     <div className='gallery component'>
       <div className='gallery-filter'>
-        {
+        { !genres ? null :
         // * maps through genres in db to make buttons
           genres.map(genre=>{
             return (
@@ -81,7 +81,7 @@ const Gallery = () => {
                 value={genre.id}
                 onClick={handleGenreSelect}
               >
-              #{genre.name}
+                {genre.name}
               </button>
             )
           })}

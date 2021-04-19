@@ -29,6 +29,34 @@ export const loginPopUp = (wasLoginSuccess) => { //* boolean
   }
 }
 
+export const signupPopup = (successful,message) =>{
+  console.log('🐝 ~ file: popUps.js ~ line 33 ~ message', message)
+  if (successful === true){
+    toast.success(message, {
+      position: 'top-right',
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      pauseOnFocusLoss: false,
+    })
+  } else if (successful === false) {
+    toast.error(message, {
+      position: 'top-right',
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      pauseOnFocusLoss: false,
+    }) 
+  }
+}
+
+
 export const commentPopup = (wasCommentSuccessful) => {
   if (wasCommentSuccessful === 0) {
     toast('Please write a comment', {
@@ -109,7 +137,6 @@ export const doodlePopup = (isThereTitle) => {
     })
   }
 }
-
 
 export const userNeedsToLogin = (message) => {
   toast.error(`${message}`, {

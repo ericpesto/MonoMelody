@@ -1,15 +1,18 @@
 import { React, useState } from 'react'
 import axios from 'axios'
-// import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { loginPopUp } from '../../helpers/popUps'
 
 const Login = () => {
   
   const [formData, setFormData] = useState({
-    email: '',
+    // email: '',
+    username: '',
     password: '', 
   })
-  
+  const history = useHistory()
+
+
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
@@ -18,6 +21,7 @@ const Login = () => {
       // setWasLoginSuccess(true)
       loginPopUp(true)
       window.localStorage.setItem('token',response.data.token)
+      history.push('/')
     } catch (err) {
       loginPopUp(false)
       console.log('🐝 ~ file: Login.js ~ line 24 ~ err', err)
@@ -34,14 +38,15 @@ const Login = () => {
     <div className='user-form component'>
       <form onSubmit={handleSubmit}className="box column is-half is-offset-one-quarter">
         <div className="field">
-          <label className="label">Email</label>
+          <label className="label">username</label>
           <div className="control">
             <input
               className="input"
-              placeholder="Email"
-              name="email"
+              placeholder="Username"
+              // name="email"
+              name="username"
               onChange={handleChange}
-              value={formData.email}
+              value={formData.username}
             />
           </div>
         </div>

@@ -33,7 +33,7 @@ const NavBar = () => {
   }
 
   //make a onclick change the state or something 
-  const [isActive, setIsActive] = React.useState(false)
+  const [isActive, setIsActive] = useState(false)
 
   return (
     <nav className="navbar custom-nav">
@@ -45,8 +45,9 @@ const NavBar = () => {
           </Link>
           
           <a onClick={() => {
-            setIsActive(!isActive)
+            setIsActive(!isActive) 
           }}role="button" className={`navbar-burger burger ${isActive ? 'is-active' : ''}`} aria-label="menu" aria-expanded="false">
+
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -57,28 +58,42 @@ const NavBar = () => {
           <div className="navbar-start">
             { userIsAuthenticated() &&
         <>
-          <Link to={`/profile/${userId}`} className="navbar-item">Profile</Link>
+          <Link  to={`/profile/${userId}`} onClick={() => {
+            setIsActive(!isActive) 
+          }}className="navbar-item" >Profile</Link>
         </>
             }
-            <Link to="/create" className="navbar-item">Create</Link>
-            <Link to="/gallery" className="navbar-item">Explore</Link>
+            <Link to="/create" onClick={() => {
+              setIsActive(!isActive) 
+            }}className="navbar-item">Create</Link>
+
+            <Link to="/gallery" onClick={() => {
+              setIsActive(!isActive) 
+            }} className="navbar-item">Explore</Link>
+          
           </div>
 
           <div className="navbar-end">
             { !userIsAuthenticated() &&
         <>
-          <Link to="/register" className="navbar-item">
+          <Link to="/register"onClick={() => {
+            setIsActive(!isActive) 
+          }} className="navbar-item">
             Sign Up
           </Link>
 
-          <Link to="/login" className="navbar-item">
+          <Link to="/login"onClick={() => {
+            setIsActive(!isActive) 
+          }} className="navbar-item">
             Login
           </Link>
         </>
             }
             { userIsAuthenticated() &&
         <>
-          <div className="navbar-item" onClick={handleLogout}>
+          <div className="navbar-item"  onClick={() => {
+            setIsActive(!isActive), handleLogout()
+          }}>
             Logout
           </div>
         </>

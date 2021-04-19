@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import './userForms.scss'
 import axios from 'axios'
+// eslint-disable-next-line no-unused-vars
+import { loginPopUp, signupPopup } from '../../helpers/popUps'
+// import { useHistory } from 'react-router-dom'
+
+
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -29,19 +34,51 @@ const Register = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    let wasSignupSuccess = null
     try {
       const dataToSend = formData
       console.log('🤖 ~ formData', formData)
       const response =  await axios.post('api/auth/register/', dataToSend)
-      console.log('🟢 ~ file: JoinPage.js ~ line 44 ~ response', response)
+      console.log('🟢 ~ file: register.js ~ line 44 ~ response', response)
       //history.push('/login') //!change back to /
+      wasSignupSuccess = true
+      signupPopup(true,'Sign up success')
+      
     } catch (err) {
       setErrors(err.response.data)
-      console.log('🔴 ~ file: JoinPage.js ~ line 44 ~ response',err)
-      console.log('🔴  ERROR MESSAGE',err.response.data)
-      //setWasLoginSuccess(false)
-      // loginPopUp(false)
+      console.log('🔴 ~ file: register.js ~ line 44 ~ response',err)
+      console.log('🔴  ERROR MESSAGE',err.response.data) 
+
+      // const errorMessage = err.response.data.email[0]
+      // setWasLoginSuccess(false)
+      wasSignupSuccess = false
+      // signupPopup(false,errorMessage)
+      signupPopup(false,'Sign up failed')
     }
+    if (wasSignupSuccess){
+
+      const loginData = {
+        username: formData.username,
+        password: formData.password,
+      }
+      try {
+        const response = await axios.post('/api/auth/login/', loginData)
+        console.log('🐝 ~ file: Login.js ~ line 26 ~ response', response.data.message)
+        // setWasLoginSuccess(true)
+        loginPopUp(true)
+        window.localStorage.setItem('token',response.data.token)
+      } catch (err) {
+        loginPopUp(false)
+        console.log('🐝 ~ file: Login.js ~ line 24 ~ err', err)
+      }
+
+
+
+      
+    }
+
+
+
   }
 
 
@@ -57,6 +94,7 @@ const Register = () => {
               name="username" 
               placeholder="Username" 
               value={formData.username}
+              // value={errors.username}
               onChange={handleChange}
             />
 
