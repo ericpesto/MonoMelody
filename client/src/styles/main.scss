@@ -141,13 +141,13 @@ footer{
 
 .step-div-inactive {
   color: grey;
-  transition: all 0.4s;
+  transition: all 0.3s;
 }
 
 .step-div-active {
   color: green;
-  transition: all 0.4s;
-  transform: scale(1.4);
+  transition: all 0.3s;
+  transform: scale(1.5);
 }
 
 .step-div-active:nth-of-type(1) {

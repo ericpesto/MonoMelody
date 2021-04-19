@@ -10,7 +10,7 @@ class Loop(models.Model):
     synth = models.CharField(max_length=50, default="fmSynth")
     key = models.CharField(max_length=10, default="c")
     scale = models.CharField(max_length=50, default="major")
-    effect = models.CharField(max_length=50, default="freeverb")
+    effect = models.CharField(max_length=500, default="freeverb")
     owner = models.ForeignKey(
         'jwt_auth.User',
         # related_name='created_loops',
