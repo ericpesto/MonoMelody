@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
-
+import './profilepage.scss'
 const ProfilePage = () => {
   
   const [userData,setUserData] = useState(null)
@@ -30,16 +30,15 @@ const ProfilePage = () => {
 
 
       <section className='profile-top-section'>
+       
+      
+        <img style={{ width: '15rem', height: '15rem' }} src={userData.profile_image}  alt='profile picture'/>
         <div className='profile-details'>
+          <h1>{`${userData.username}'s bio`}</h1>
           <p>
             {userData.bio}
-
-
           </p>
         </div>
-
-        <img style={{ width: '15rem', height: '15rem' }} src={'https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Terry_Crews_by_Gage_Skidmore_5.jpg/1200px-Terry_Crews_by_Gage_Skidmore_5.jpg'}  alt='profile picture'/>
-      
       
       
       </section>

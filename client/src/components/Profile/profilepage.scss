@@ -1,0 +1,20 @@
+.profile-page {
+  background-color: black;
+  color: white;
+
+  .profile-top-section {
+    padding-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .profile-details {
+      height: 200px;
+      width: 200px;
+    }
+    p {
+      border: 1px solid rgb(255, 0, 242);
+      height: 100%;
+    }
+  }
+}
