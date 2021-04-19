@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../styles/keyboard.scss'
 
-const Keyboard = ({ notes, handleKeyboardKeyPress, handleResetSteps, isPlaying, setIsPlaying }) => {
+const Keyboard = ({ notes, handleKeyboardKeyPress }) => {
   
   return (
     <div className="box keyboard-wrapper">
@@ -14,11 +14,6 @@ const Keyboard = ({ notes, handleKeyboardKeyPress, handleResetSteps, isPlaying, 
             onClick={handleKeyboardKeyPress}
           >{note}</button>
         })}
-      </div>
-      <hr />
-      <div>
-        <button className={isPlaying ? 'button is-danger' : 'button is-success'} onClick={() => setIsPlaying(!isPlaying)} > {isPlaying ? 'STOP' : 'PLAY'}</button>
-        <button className="button is-warning"  onClick={handleResetSteps}>RESET</button> 
       </div>
     </div>
   )

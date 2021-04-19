@@ -72,19 +72,15 @@ const LoopNew = () => {
 
   const effectOptions = [
     { value: 'autoFilter', label: 'autoFilter' },
-    { value: 'autoPanner', label: 'autoPanner' },
     { value: 'autoWah', label: 'autoWah' },
     { value: 'bitCrusher', label: 'bitCrusher' }, 
     { value: 'distortion', label: 'distortion' }, 
     { value: 'feedbackDelay', label: 'feedbackDelay' }, 
-    { value: 'freeverb' , label: 'freeverb'  }, 
-    { value: 'panVol', label: 'panVol' },
-    { value: 'tremolo', label: 'tremolo' }
+    { value: 'freeverb' , label: 'freeverb'  }
   ]
 
   const createGenreOptions = () => {
     const genreOptionsArray = []
-    //if (genresDb.length === 0) return {}
     genresDb.map(genre => {
       const genreOptionTemplate = { value: genre.id, label: genre.name }
       return genreOptionsArray.push(genreOptionTemplate)
@@ -112,38 +108,38 @@ const LoopNew = () => {
       // setKey('a')
 
       if (scale === 'major') {
-        notesArray = ['A2', 'B2', 'C#3', 'D3', 'E3', 'F#3', 'G#3', 'A4']
-        setNotes(['A2', 'B2', 'C#3', 'D3', 'E3', 'F#3', 'G#3', 'A4'])
+        notesArray = ['A2', 'B2', 'C#3', 'D3', 'E3', 'F#3', 'G#3', 'A3']
+        setNotes(['A2', 'B2', 'C#3', 'D3', 'E3', 'F#3', 'G#3', 'A3'])
       }
   
       if (scale === 'minor') {
-        notesArray = ['A2', 'B2', 'C3', 'D3', 'E3', 'F3', 'G3', 'A4']
-        setNotes(['A2', 'B2', 'C3', 'D3', 'E3', 'F3', 'G3', 'A4'])
+        notesArray = ['A2', 'B2', 'C3', 'D3', 'E3', 'F3', 'G3', 'A3']
+        setNotes(['A2', 'B2', 'C3', 'D3', 'E3', 'F3', 'G3', 'A3'])
       }
   
       if (scale === 'dorian') {
-        notesArray = ['A2', 'B2', 'C3', 'D3', 'E3', 'F#3', 'G3', 'A4']
-        setNotes(['A2', 'B2', 'C3', 'D3', 'E3', 'F#3', 'G3', 'A4'])
+        notesArray = ['A2', 'B2', 'C3', 'D3', 'E3', 'F#3', 'G3', 'A3']
+        setNotes(['A2', 'B2', 'C3', 'D3', 'E3', 'F#3', 'G3', 'A3'])
       }
   
       if (scale === 'phrygian') {
-        notesArray = ['A2', 'Bb2', 'C3', 'D3', 'E3', 'F3', 'G3', 'A4']
-        setNotes(['A2', 'Bb2', 'C3', 'D3', 'E3', 'F3', 'G3', 'A4'])
+        notesArray = ['A2', 'Bb2', 'C3', 'D3', 'E3', 'F3', 'G3', 'A3']
+        setNotes(['A2', 'Bb2', 'C3', 'D3', 'E3', 'F3', 'G3', 'A3'])
       }
   
       if (scale === 'lydian') {
-        notesArray = ['A2', 'B2', 'C#3', 'D#3', 'E3', 'F#3', 'G#3', 'A4']
-        setNotes(['A2', 'B2', 'C#3', 'D#3', 'E3', 'F#3', 'G#3', 'A4'])
+        notesArray = ['A2', 'B2', 'C#3', 'D#3', 'E3', 'F#3', 'G#3', 'A3']
+        setNotes(['A2', 'B2', 'C#3', 'D#3', 'E3', 'F#3', 'G#3', 'A3'])
       }
   
       if (scale === 'mixolydian') {
-        notesArray = ['A2', 'B2', 'C#3', 'D3', 'E3', 'F#3', 'G3', 'A4']
-        setNotes(['A2', 'B2', 'C#3', 'D3', 'E3', 'F#3', 'G3', 'A4'])
+        notesArray = ['A2', 'B2', 'C#3', 'D3', 'E3', 'F#3', 'G3', 'A3']
+        setNotes(['A2', 'B2', 'C#3', 'D3', 'E3', 'F#3', 'G3', 'A3'])
       }
   
       if (scale === 'locrian') {
-        notesArray = ['A2', 'Bb2', 'C3', 'D3', 'Eb3', 'F3', 'G3', 'A4']
-        setNotes(['A2', 'Bb2', 'C3', 'D3', 'Eb3', 'F3', 'G3', 'A4'])
+        notesArray = ['A2', 'Bb2', 'C3', 'D3', 'Eb3', 'F3', 'G3', 'A3']
+        setNotes(['A2', 'Bb2', 'C3', 'D3', 'Eb3', 'F3', 'G3', 'A3'])
       }
     }
 
@@ -279,13 +275,11 @@ const LoopNew = () => {
 
   useEffect(() => {
     createGenreOptions()
-    console.log(genresDb)
   }, [genresDb])
 
   useEffect(() => {
     setSteps([])
     setVolume(-15)
-    // setSynthList(synthListArray)
     setLoopTitle('')
   }, []) 
 
@@ -402,7 +396,6 @@ const LoopNew = () => {
     setGenresArray(genreValuesArray)
   }
 
-
   const handleEffectType = (effectOptions) => {
     const effectValuesArray = []
     effectOptions.map(option => {
@@ -448,11 +441,8 @@ const LoopNew = () => {
           {effectsArray.map((effectType, index) => {
             return <Effect key={index} type={effectType} />
           })}
-          {/* <Effect type={effect} /> */}
         </Track>
       </Song>
-      <hr />
-
       <SequencerControls 
         handleBpm={handleBpm}
         handleVolume={handleVolume}
@@ -471,25 +461,21 @@ const LoopNew = () => {
         synthOptions={synthOptions}
         effectOptions={effectOptions}
         keyOptions={keyOptions}
-        // isPlaying={isPlaying}
-        // setIsPlaying={setIsPlaying}
         handleChange={handleChange}
         genreOptions={genreOptions}
         handleGenreSelect={handleGenreSelect}
         handleSave={handleSave}
-        // handleResetSteps={handleResetSteps}
         handleKey={handleKey}
       />
       <Keyboard 
         notes={notes} 
-        handleKeyboardKeyPress={handleKeyboardKeyPress}
-        handleResetSteps={handleResetSteps} 
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying} />
+        handleKeyboardKeyPress={handleKeyboardKeyPress} />
       <StepsDisplay 
         currentStepIndex={currentStepIndex} 
         steps={steps} 
-      />
+        handleResetSteps={handleResetSteps} 
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying} />
     </div>
   )
 }
