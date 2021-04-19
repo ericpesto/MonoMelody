@@ -11,6 +11,8 @@ import Sequencer from './components/sequencer/Sequencer'
 import LoopEdit from './components/LoopEdit'
 import LoopNew from './components/LoopNew'
 import LoopShow from './components/LoopShow'
+import ProfilePage from './components/Profile/ProfilePage'
+
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -33,6 +35,12 @@ const App = () => {
 
         <Route path='/register'>
           <Register />
+        </Route>
+        
+        <Route path='/profile/:id'>
+        
+          <ProfilePage/>
+        
         </Route>
 
         <Route path='/create'>

@@ -28,9 +28,9 @@ const Gallery = () => {
       const response = await axios.get('/api/genres/')
       const dataArray = response.data
       const genreArray = [...genreFilter]
-      console.log('🐝 ~ file: Gallery.js ~ line 35 ~ genreArray', genreArray)
+      // console.log('🐝 ~ file: Gallery.js ~ line 35 ~ genreArray', genreArray)
       dataArray.map(item=>{
-        console.log('🐝 ~ file: Gallery.js ~ line 39 ~ item.id', item.id)
+        // console.log('🐝 ~ file: Gallery.js ~ line 39 ~ item.id', item.id)
         genreArray.push(item.id)
       })
       setGenres(dataArray)
@@ -46,7 +46,7 @@ const Gallery = () => {
   // eslint-disable-next-line no-unused-vars
 
 
-  console.log('🐝 ~ file: Gallery.js ~ line 34 ~ genreFilter', genreFilter)
+  // console.log('🐝 ~ file: Gallery.js ~ line 34 ~ genreFilter', genreFilter)
 
   const handleGenreSelect = (event) => {
     const genreId =  Number(event.target.value)
@@ -59,7 +59,7 @@ const Gallery = () => {
       genreArray.push(genreId)
       setGenreFilter(genreArray)
     } else {
-      console.log('🐝 ~ file: Gallery.js ~ line 46 ~ genreArray', genreArray)
+      // console.log('🐝 ~ file: Gallery.js ~ line 46 ~ genreArray', genreArray) 
       genreArray.splice(preventDuplicate, 1)
       setGenreFilter(genreArray)
     }
@@ -76,7 +76,7 @@ const Gallery = () => {
         // * maps through genres in db to make buttons
           genres.map(genre=>{
             return (
-              <button className='genre' 
+              <button className='genre-tag-button' 
                 key={genre.id} 
                 value={genre.id}
                 onClick={handleGenreSelect}
@@ -92,7 +92,6 @@ const Gallery = () => {
 
 
       <div className='sphere-display columns is-multiline'>
-       
         {data.map(item=>{
           //need a way to compare two arrays for matches
           const itemGenreId = item.genres[0].id

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # //? this was commented out. how come? 
     # 'django.contrib.postgres',
     'django.contrib.admin',
     'django.contrib.auth',
