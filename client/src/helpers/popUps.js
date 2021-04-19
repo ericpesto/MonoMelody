@@ -2,6 +2,39 @@ import { toast } from 'react-toastify'
 
 //**** just import the function and pass in parameter!! */
 
+
+export const toastifyPopUp = (success = true,message = 'Success!') =>{
+  console.log('🐝 ~ file: popUps.js ~ line 7 ~ ' )
+  if (success === true){
+    toast.success(message, {
+      position: 'top-right',
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      pauseOnFocusLoss: false,
+    })
+  } else if (success === false) {
+    toast.error(message, {
+      position: 'top-right',
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      pauseOnFocusLoss: false,
+    }) 
+  }
+}
+
+
+
+
+
+
 export const loginPopUp = (wasLoginSuccess) => { //* boolean
   //console.log('🐝 ~ file: Login.js ~ line 46 ~ wasLoginSuccess', wasLoginSuccess)
   if (wasLoginSuccess === true){
