@@ -1,10 +1,10 @@
 import React from 'react'
+import '../../styles/keyboard.scss'
 
-const Keyboard = ({ notes, handleKeyboardKeyPress, handleResetSteps }) => {
+const Keyboard = ({ notes, handleKeyboardKeyPress, handleResetSteps, isPlaying, setIsPlaying }) => {
   
   return (
-    <div>
-      <p>Steps</p>
+    <div className="box keyboard-wrapper">
       <div className="keys-row">
         {notes.map((note) => {
           return  <button 
@@ -15,7 +15,11 @@ const Keyboard = ({ notes, handleKeyboardKeyPress, handleResetSteps }) => {
           >{note}</button>
         })}
       </div>
-      <button onClick={handleResetSteps}>RESET</button> 
+      <hr />
+      <div>
+        <button className={isPlaying ? 'button is-danger' : 'button is-success'} onClick={() => setIsPlaying(!isPlaying)} > {isPlaying ? 'STOP' : 'PLAY'}</button>
+        <button className="button is-warning"  onClick={handleResetSteps}>RESET</button> 
+      </div>
     </div>
   )
 }

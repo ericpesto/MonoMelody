@@ -2,10 +2,12 @@ import React from 'react'
 import Select from 'react-select'
 import '../../styles/main.scss'
 
-const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleBpm, handleVolume, handleSynthType, handleScaleType, scaleOptions, synthOptions, effectOptions, handleEffectType, isPlaying, setIsPlaying, handleChange, formData, genreOptions, handleGenreSelect, genres, handleSave, keyOptions, handleKey }) => {
+import { userIsAuthenticated } from '../../helpers/authHelp'
+
+const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleBpm, handleVolume, handleSynthType, handleScaleType, scaleOptions, synthOptions, effectOptions, handleEffectType, handleChange, formData, genreOptions, handleGenreSelect, genres, handleSave, keyOptions, handleKey }) => {
 
   return (
-    <div>
+    <div className="box">
       <form className="synth-controls-wrapper">
         <div className="synth-controls-col">
           <div>
@@ -73,41 +75,31 @@ const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleB
             />
           </div>
         </div>
-        
-        
       </form>
-
-      <button
-        style={{
-          fontSize: '2rem',
-        }}
-        onClick={() => {
-          setIsPlaying(!isPlaying)
-        }}
-      > {isPlaying ? 'Stop sound' : 'Play sound'}</button>
-
-      <div>
-        <form>
-          <input 
-            className='title-input'
-            placeholder="title"
-            name="title"
-            onChange={handleChange}
-            value={formData.title}
-          />
-          <Select
-            defaultValue={[genreOptions[0], genreOptions[2]]}
-            isMulti
-            name="genres"
-            options={genreOptions}
-            className="basic-multi-select"
-            classNamePrefix="select"
-            onChange={handleGenreSelect}
-            value={genres}
-          />
-        </form>
-        <button onClick={handleSave}>SAVE</button>
-      </div>
+      { userIsAuthenticated() &&
+        <>
+          <form>
+            <input 
+              className='input'
+              placeholder="title"
+              name="title"
+              onChange={handleChange}
+              value={formData.title}
+            />
+            <Select
+              placeholder="t u y m"
+              //defaultValue={[genreOptions[0]]}
+              isMulti
+              name="genres"
+              options={genreOptions}
+              className="basic-multi-select"
+              onChange={handleGenreSelect}
+              value={genres}
+            />
+          </form>
+          <button className="button" onClick={handleSave}>SAVE</button>
+        </>
+      }
 
     </div>
   )

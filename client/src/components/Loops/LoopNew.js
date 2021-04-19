@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Song, Track, Instrument, Effect } from 'reactronica'
-import '../styles/main.scss'
+import '../../styles/main.scss'
 
 import axios from 'axios'
-import { getTokenFromLocalStorage } from '../helpers/authHelp'
+import { getTokenFromLocalStorage } from '../../helpers/authHelp'
 
-import SequencerControls from './sequencer/SequencerControls'
-import Keyboard from './sequencer/Keyboard'
-import StepsDisplay from './sequencer/StepsDisplay'
+import SequencerControls from '../sequencer/SequencerControls'
+import Keyboard from '../sequencer/Keyboard'
+import StepsDisplay from '../sequencer/StepsDisplay'
 
 
 const LoopNew = () => {
@@ -19,10 +19,10 @@ const LoopNew = () => {
 
   // * Track State
   const [steps, setSteps] = useState(null)
-  const [scale, setScale] = useState('major')
-  const [key, setKey] = useState('a')
+  const [scale, setScale] = useState('phrygian')
+  const [key, setKey] = useState('d')
   // * Instrument State
-  const [synth, setSynth] = useState('duoSynth')
+  const [synth, setSynth] = useState('synth')
   const [notes, setNotes] = useState([])
 
   // * Effect State
@@ -79,9 +79,11 @@ const LoopNew = () => {
   ]
 
   const genreOptions = [
-    { id: '1', value: 1, name: 'Hip-Hop', label: 'Hip-Hop' },
-    { id: '2', value: 2, name: 'Rock', label: 'Rock' },
-    { id: '3', value: 3, name: 'Pop', label: 'Pop' }
+    { id: '1', value: 1, name: 'a', label: 'a' },
+    { id: '2', value: 2, name: 'b', label: 'b' },
+    { id: '3', value: 3, name: 'c', label: 'c' },
+    { id: '4', value: 4, name: 'd', label: 'd' },
+    { id: '5', value: 5, name: 'e', label: 'e' }
   ]
 
   const keyOptions = [
@@ -351,7 +353,7 @@ const LoopNew = () => {
 
   const handleKeyboardKeyPress = (event) => { 
     const newSteps = [...steps, event.target.value]
-    if (newSteps.length <= 9) {
+    if (newSteps.length <= 8) {
       setIsPlaying(false) 
       setSteps(newSteps)
     }
@@ -411,7 +413,7 @@ const LoopNew = () => {
 
   if (!steps) return null
   return (
-    <div className="loop-page-wrapper">
+    <div className="loop-wrapper">
       <Song 
         isPlaying={isPlaying}
         bpm={bpm}
@@ -428,15 +430,7 @@ const LoopNew = () => {
         </Track>
       </Song>
       <hr />
-      <Keyboard 
-        notes={notes} 
-        handleKeyboardKeyPress={handleKeyboardKeyPress}
-        handleResetSteps={handleResetSteps} />
-      <hr />
-      <StepsDisplay 
-        currentStepIndex={currentStepIndex} 
-        steps={steps} 
-      />
+
       <SequencerControls 
         handleBpm={handleBpm}
         handleVolume={handleVolume}
@@ -455,14 +449,24 @@ const LoopNew = () => {
         synthOptions={synthOptions}
         effectOptions={effectOptions}
         keyOptions={keyOptions}
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
+        // isPlaying={isPlaying}
+        // setIsPlaying={setIsPlaying}
         handleChange={handleChange}
         genreOptions={genreOptions}
         handleGenreSelect={handleGenreSelect}
         handleSave={handleSave}
         // handleResetSteps={handleResetSteps}
         handleKey={handleKey}
+      />
+      <Keyboard 
+        notes={notes} 
+        handleKeyboardKeyPress={handleKeyboardKeyPress}
+        handleResetSteps={handleResetSteps} 
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying} />
+      <StepsDisplay 
+        currentStepIndex={currentStepIndex} 
+        steps={steps} 
       />
     </div>
   )
