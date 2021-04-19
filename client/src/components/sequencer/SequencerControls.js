@@ -87,12 +87,12 @@ const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleB
               value={formData.title}
             />
             <Select
-              defaultValue={[genreOptions[0], genreOptions[2]]}
+              placeholder="t u y m"
+              //defaultValue={[genreOptions[0]]}
               isMulti
               name="genres"
               options={genreOptions}
-              className="basic-multi-select genre"
-              classNamePrefix="select"
+              className="basic-multi-select"
               onChange={handleGenreSelect}
               value={genres}
             />

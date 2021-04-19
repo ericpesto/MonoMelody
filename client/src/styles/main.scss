@@ -15,7 +15,7 @@ $brand-color: #8929d8;
 $background-color: #252525;
 
 
-*{
+body{
   font-family: MyFont;
 }
 
@@ -220,9 +220,18 @@ footer{
   width: 260px;
 }
 
-.react-select-container .genre {
+.input {
+  font-family: MyFont !important;
+}
+
+.button {
+  font-family: MyFont !important;
+}
+
+.basic-multi-select {
   font-family: VaporWave !important;
-  width: 200px;
+  font-size: 26px;
+  width: 100%;
 }
 
 .load-page {
@@ -230,7 +239,7 @@ footer{
   height: 100vh;
 }
 
-.basic-multi-select .genre {
+// .basic-multi-select .genre {
 
-}
+// }
 }

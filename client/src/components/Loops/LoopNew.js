@@ -79,9 +79,11 @@ const LoopNew = () => {
   ]
 
   const genreOptions = [
-    { id: '1', value: 1, name: 'Hip-Hop', label: 'Hip-Hop' },
-    { id: '2', value: 2, name: 'Rock', label: 'Rock' },
-    { id: '3', value: 3, name: 'Pop', label: 'Pop' }
+    { id: '1', value: 1, name: 'a', label: 'a' },
+    { id: '2', value: 2, name: 'b', label: 'b' },
+    { id: '3', value: 3, name: 'c', label: 'c' },
+    { id: '4', value: 4, name: 'd', label: 'd' },
+    { id: '5', value: 5, name: 'e', label: 'e' }
   ]
 
   const keyOptions = [
