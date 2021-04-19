@@ -7,10 +7,13 @@ const MelodySphere = (props) => {
   const genre = props.genres[0].name
   console.log('🐝 ~ file: MelodySphere.js ~ line 8 ~ genre', genre)
   
-   
+  const randomHexCode  = Math.floor(Math.random() * 16777215).toString(16)
+  const boxShadowRandomizer = {
+    boxShadow: `0 0 20px #${randomHexCode}`,
+  }
   
   return (
-    <div className={`sphere bounceInDown ${genre.toLowerCase()}`}>
+    <div style={boxShadowRandomizer} className={`sphere bounceInDown ${genre.toLowerCase()} `}>
       <div className='sphere-content'>
         <h1>{title}</h1> 
         <h2>{genre}</h2> 

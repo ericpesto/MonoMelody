@@ -4,7 +4,7 @@ import '../../styles/main.scss'
 
 import axios from 'axios'
 import { getTokenFromLocalStorage } from '../../helpers/authHelp'
-import { toastifyPopUp } from '../../helpers/popUps'
+import { toastifyPopUp, getErrorsToastify } from '../../helpers/popUps'
 import SequencerControls from '../sequencer/SequencerControls'
 import Keyboard from '../sequencer/Keyboard'
 import StepsDisplay from '../sequencer/StepsDisplay'
@@ -363,25 +363,16 @@ const LoopNew = () => {
     console.log('formToSend-> ', formToSend)
     try {
       await axios.post('/api/loops/', formToSend, { headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}`, 'Content-Type': 'application/json' } })
-      toastifyPopUp(true)
+      toastifyPopUp(true,'Save successful!')
     } catch (err) {
       toastifyPopUp(false,'Could not save!')
-      console.log('🐝 ~ file: LoopNew.js ~ line 369 ~ err', err.response.data)
-      const message = Object.entries(err.response.data)
-
-      console.log('🐝 ~ file: LoopNew.js ~ line 370 ~ message', message)
-      var myJSON = JSON.stringify(message)
-      console.log('🐝 ~ file: LoopNew.js ~ line 376 ~ myJSON', myJSON)
-      message.map(error=>{
-        const messageToSend = `Error with ${error[0]} - ${error[1].toString()}`
-        console.log('🐝 ~ file: LoopNew.js ~ line 520 ~ messageToSend', messageToSend)
-        toastifyPopUp(false,messageToSend)
-        return null
-      })
+      getErrorsToastify(err)
 
 
     }
   }
+
+
 
   const handleKeyboardKeyPress = (event) => { 
     const newSteps = [...steps, event.target.value]

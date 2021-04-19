@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './userForms.scss'
 import axios from 'axios'
 // eslint-disable-next-line no-unused-vars
-import { loginPopUp, signupPopup } from '../../helpers/popUps'
+import { loginPopUp, signupPopup, getErrorsToastify } from '../../helpers/popUps'
 // import { useHistory } from 'react-router-dom'
 
 
@@ -48,7 +48,7 @@ const Register = () => {
       setErrors(err.response.data)
       console.log('🔴 ~ file: register.js ~ line 44 ~ response',err)
       console.log('🔴  ERROR MESSAGE',err.response.data) 
-
+      getErrorsToastify(err)
       // const errorMessage = err.response.data.email[0]
       // setWasLoginSuccess(false)
       wasSignupSuccess = false

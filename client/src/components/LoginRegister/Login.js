@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
-import { loginPopUp } from '../../helpers/popUps'
+import { loginPopUp, getErrorsToastify } from '../../helpers/popUps'
 
 const Login = () => {
   
@@ -23,7 +23,8 @@ const Login = () => {
       window.localStorage.setItem('token',response.data.token)
       history.push('/')
     } catch (err) {
-      loginPopUp(false)
+      // loginPopUp(false)
+      getErrorsToastify(err)
       console.log('🐝 ~ file: Login.js ~ line 24 ~ err', err)
     }
   }
