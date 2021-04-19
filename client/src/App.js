@@ -8,9 +8,9 @@ import Register from './components/LoginRegister/Register'
 import Footer from './components/Nav_and_Footer/Footer'
 import NavBar from './components/Nav_and_Footer/NavBar'
 import Sequencer from './components/sequencer/Sequencer'
-import LoopEdit from './components/LoopEdit'
-import LoopNew from './components/LoopNew'
-import LoopShow from './components/LoopShow'
+import LoopEdit from './components/Loops/LoopEdit'
+import LoopNew from './components/Loops/LoopNew'
+import LoopShow from './components/Loops/LoopShow'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -18,7 +18,7 @@ const App = () => {
 
 
   return (
-         
+
     <BrowserRouter>
       <NavBar/>
       <Switch>

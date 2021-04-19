@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Song, Track, Instrument, Effect } from 'reactronica'
-import '../styles/main.scss'
+import '../../styles/main.scss'
 
 import axios from 'axios'
-import { getTokenFromLocalStorage } from '../helpers/authHelp'
+import { getTokenFromLocalStorage } from '../../helpers/authHelp'
 
-import SequencerControls from './sequencer/SequencerControls'
-import Keyboard from './sequencer/Keyboard'
-import StepsDisplay from './sequencer/StepsDisplay'
+import SequencerControls from '../sequencer/SequencerControls'
+import Keyboard from '../sequencer/Keyboard'
+import StepsDisplay from '../sequencer/StepsDisplay'
 
 
 const LoopNew = () => {
