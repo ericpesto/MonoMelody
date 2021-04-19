@@ -24,8 +24,7 @@ const ProfilePage = () => {
 
   const userLoops = userData.loops_created
   console.log('🐝 ~ file: ProfilePage.js ~ line 22 ~ userLoops', userLoops)
-  
-  
+    
   return (
     <div className='component profile-page'>
 
