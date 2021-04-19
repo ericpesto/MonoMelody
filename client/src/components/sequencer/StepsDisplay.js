@@ -8,7 +8,7 @@ const StepsDisplay = ({ steps, currentStepIndex }) => {
     <div className="box">
       <div className="sequence-wrapper">
         {steps.map((step, index) => {
-          return <div key={index} id={index} className={index === currentStepIndex ? 'step-div-active note' : 'step-div-inactive note' }> {index} </div>
+          return <div key={index} id={index} className={index === currentStepIndex ? 'step-div-active note' : 'step-div-inactive note' }> {index + 1} </div>
         })}
       </div>
     </div>
