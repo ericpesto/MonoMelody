@@ -84,7 +84,7 @@ const LoopNew = () => {
 
   const createGenreOptions = () => {
     const genreOptionsArray = []
-    if (genresDb.length === 0) return null
+    //if (genresDb.length === 0) return {}
     genresDb.map(genre => {
       const genreOptionTemplate = { value: genre.id, label: genre.name }
       return genreOptionsArray.push(genreOptionTemplate)
@@ -92,16 +92,7 @@ const LoopNew = () => {
     console.log('genreOptionsArray ->', genreOptionsArray)
     return genreOptionsArray
   }
-
-
-  // const genreOptions = [
-  //   { value: 1, label: 'a' },
-  //   { value: 2, label: 'b' },
-  //   { value: 3, label: 'c' },
-  //   { value: 4, abel: 'd' },
-  //   { value: 5, label: 'e' }
-  // ]
-
+  
   const genreOptions = [ ...createGenreOptions() ]
 
   const keyOptions = [
