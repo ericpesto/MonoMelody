@@ -33,7 +33,7 @@ const ProfilePage = () => {
        
       
         <img style={{ width: '15rem', height: '15rem' }} src={userData.profile_image}  alt='profile picture'/>
-        
+
         <div className='profile-details'>
           <h1>{`${userData.username}'s bio`}</h1>
           <p>
