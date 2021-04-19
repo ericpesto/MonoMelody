@@ -1,5 +1,7 @@
 import React from 'react'
 import './homepage.scss'
+import Typing from 'react-typing-animation'
+
 const HomePage = () => {
 
 
@@ -10,7 +12,11 @@ const HomePage = () => {
       <div className='homepage component'>
 
         <header>
-          <div> Welcome to MonoMelody </div>
+          <Typing>
+            <Typing.Delay ms={1000} />
+            <div> Welcome to Mono<strong>Melody.</strong> 🎶</div>
+          </Typing>
+          
         </header>
         <div className='homepage-content'>
           <p>
