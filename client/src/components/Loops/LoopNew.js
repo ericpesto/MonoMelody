@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Song, Track, Instrument, Effect } from 'reactronica'
 import '../../styles/main.scss'
 
 import axios from 'axios'
 import { getTokenFromLocalStorage } from '../../helpers/authHelp'
 
+import Sequencer from '../sequencer/Sequencer'
 import SequencerControls from '../sequencer/SequencerControls'
 import Keyboard from '../sequencer/Keyboard'
 import StepsDisplay from '../sequencer/StepsDisplay'
@@ -26,7 +26,6 @@ const LoopNew = () => {
   const [notes, setNotes] = useState([])
 
   // * Effect State
-  //const [effect, setEffect] = useState('freeverb')
   const [effect, setEffect] = useState([])
   const [effectsArray, setEffectsArray] = useState([])
 
@@ -426,23 +425,15 @@ const LoopNew = () => {
   if (!steps) return null
   return (
     <div className="loop-wrapper">
-      <Song 
+      <Sequencer 
         isPlaying={isPlaying}
         bpm={bpm}
-        volume={volume}>
-        <Track 
-          steps={steps}
-          onStepPlay={(_stepNotes, index) => {
-            setCurrentStepIndex(index)
-          }}>
-          <Instrument 
-            type={synth}
-          />
-          {effectsArray.map((effectType, index) => {
-            return <Effect key={index} type={effectType} />
-          })}
-        </Track>
-      </Song>
+        volume={volume}
+        steps={steps}
+        synth={synth}
+        setCurrentStepIndex={setCurrentStepIndex}
+        effectsArray={effectsArray}  
+      />
       <SequencerControls 
         handleBpm={handleBpm}
         handleVolume={handleVolume}
@@ -469,13 +460,15 @@ const LoopNew = () => {
       />
       <Keyboard 
         notes={notes} 
-        handleKeyboardKeyPress={handleKeyboardKeyPress} />
+        handleKeyboardKeyPress={handleKeyboardKeyPress} 
+      />
       <StepsDisplay 
         currentStepIndex={currentStepIndex} 
         steps={steps} 
         handleResetSteps={handleResetSteps} 
         isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying} />
+        setIsPlaying={setIsPlaying} 
+      />
     </div>
   )
 }
