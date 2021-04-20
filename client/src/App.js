@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
@@ -20,54 +21,56 @@ const App = () => {
 
 
   return (
+    <>
+      <BrowserRouter>
 
-    <BrowserRouter>
-      <NavBar/>
-      <Switch>
+        <NavBar/>
+        <Switch>
 
-        <Route exact path="/">
-          <HomePage/>
-        </Route>
+          <Route exact path="/">
+            <HomePage/>
+          </Route>
 
-        <Route path='/login'>
-          <Login />
-        </Route>
+          <Route path='/login'>
+            <Login />
+          </Route>
 
-        <Route path='/register'>
-          <Register />
-        </Route>
+          <Route path='/register'>
+            <Register />
+          </Route>
         
-        <Route path='/profile/:id'>
+          <Route path='/profile/:id'>
         
-          <ProfilePage/>
+            <ProfilePage/>
         
-        </Route>
+          </Route>
 
-        <Route path='/create'>
-          <LoopNew />
-        </Route>
+          <Route path='/create'>
+            <LoopNew />
+          </Route>
 
-        <Route path='/loop/:id/edit'>
-          <LoopEdit />
-        </Route>
+          <Route path='/loop/:id/edit'>
+            <LoopEdit />
+          </Route>
 
-        <Route path='/loop/:id'>
-          <LoopShow />
-        </Route>
+          <Route path='/loop/:id'>
+            <LoopShow />
+          </Route>
 
-        <Route path='/gallery'>
-          <Gallery/>
-        </Route>
+          <Route path='/gallery'>
+            <Gallery/>
+          </Route>
 
-        <Route path='/create'> 
-          <Sequencer />
-        </Route>
+          <Route path='/create'> 
+            <Sequencer />
+          </Route>
 
-      </Switch>
-      <Footer/>
-      <ToastContainer />
-    </BrowserRouter>
-    
+        </Switch>
+        <Footer/>
+        
+        <ToastContainer />
+      </BrowserRouter>
+    </>
   )
 }
 
