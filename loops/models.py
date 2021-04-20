@@ -11,6 +11,7 @@ class Loop(models.Model):
     key = models.CharField(max_length=10, default="c")
     scale = models.CharField(max_length=50, default="major")
     effect = models.CharField(max_length=500, default="freeverb")
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
     owner = models.ForeignKey(
         'jwt_auth.User',
         # related_name='created_loops',

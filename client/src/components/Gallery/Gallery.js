@@ -39,7 +39,7 @@ const Gallery = () => {
       setGenreFilter(genreArray)
     }
   }
-  if (!data) return <div className='load-page'><h1>NO DATA!</h1></div>
+  if (!data || !genres) return <div className='load-page'><h1>NO DATA!</h1></div>
   return ( 
     <>
       <div className='gallery component'>
@@ -50,10 +50,15 @@ const Gallery = () => {
             genres.map(genre=>{
               console.log(genreFilter)
               const selectedFilter = {
-                backgroundColor: '#FF0000',
+                backgroundColor: 'transparent',
+                color: '#ff7f08',
+                borderColor: '#ff7f08',
               }
               const notSelected = {
-                backgroundColor: '#00FF00',
+                backgroundColor: 'transparent',
+                color: 'white',
+                borderColor: 'white',
+              
               }
               let style = notSelected
               //if genre.id is in the filter array then change color 
