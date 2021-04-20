@@ -6,34 +6,24 @@ import axios from 'axios'
 //import { getTokenFromLocalStorage } from '../../helpers/authHelp'
 
 import Sequencer from '../sequencer/Sequencer'
-// import SequencerControls from '../sequencer/SequencerControls'
-import StepsDisplay from '../sequencer/StepsDisplay'
+import SequencerPlayback from '../sequencer/SequencerPlayback'
+import LoopInfoCard from '../sequencer/LoopInfoCard'
 
 
 const LoopShow = () => {
   const [loop, setLoop] = useState(null)
 
   // * Song State
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [bpm, setBpm] = useState(120)
-  // const [volume, setVolume] = useState(100)
+  const [isPlaying, setIsPlaying] = useState(true)
+  const [volume, setVolume] = useState(-10)
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
 
   // * Track State
   const [steps, setSteps] = useState(null)
-  const [scale, setScale] = useState('')
-  const [key, setKey] = useState('')
-  // * Instrument State
-  const [synth, setSynth] = useState('')
 
   // * Effect State
   const [effect, setEffect] = useState('')
   const [effectsArray, setEffectsArray] = useState([])
-
-  // * Form State
-  const [loopTitle, setLoopTitle] = useState('')
-  const [genres, setGenres] = useState('')
-
 
 
   const params = useParams()
@@ -55,14 +45,8 @@ const LoopShow = () => {
     if (!loop) return null
     console.log('loop ->', loop)
 
-    setBpm(loop.bpm)
-    setScale(loop.scale)
-    setKey(loop.key)
-    setSynth(loop.synth)
-    setEffect(loop.effect)
-    setLoopTitle(loop.title)
-    setGenres(loop.genres)
 
+    setEffect(loop.effect)
     setEffectsArray(effectsArray)
   }, [loop])
 
@@ -72,15 +56,10 @@ const LoopShow = () => {
   }, [loop, effect])
 
   useEffect(() => {
-    console.log('bpm ->', bpm)
+
     console.log('steps ->', steps)
-    console.log('scale->', scale)
-    console.log('key ->', key)
-    console.log('synth ->', synth)
     console.log('effect ->', effect)
     console.log('effectArray ->', effectsArray)
-    console.log('loopTitle ->', loopTitle)
-    console.log('genres ->', genres)
   }, [effect])
 
   const stepsIntoArray = () => {
@@ -96,36 +75,35 @@ const LoopShow = () => {
     return effectArray
   }
 
-  // const handleVolume = (event) => {
-  //   const currentVolume = parseFloat(event.target.value)
-  //   setVolume(currentVolume)
-  // }
+  const handleVolume = (event) => {
+    const currentVolume = parseFloat(event.target.value)
+    setVolume(currentVolume)
+  }
 
   if (!loop) return null
   return (
     <div className="loop-wrapper">
       <Sequencer 
         isPlaying={isPlaying}
-        bpm={bpm}
-        // volume={volume}
+        bpm={loop.bpm}
+        volume={volume}
         steps={steps}
-        synth={synth}
+        synth={loop.synth}
         setCurrentStepIndex={setCurrentStepIndex}
         effectsArray={effectsArray}  
       />
-      {/* <SequencerControls 
-        // need controlls for just volume on loop show
-        handleVolume={handleVolume}
-        volume={volume}
-      /> */}
-      <StepsDisplay 
+      <SequencerPlayback 
         currentStepIndex={currentStepIndex} 
         steps={steps} 
-        // handleResetSteps={handleResetSteps} 
         isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying} 
+        setIsPlaying={setIsPlaying}
+        handleVolume={handleVolume}
+        volume={volume} 
       />
-    </div>
+      <LoopInfoCard 
+        loop={loop}
+      />
+    </div> 
   )
 }
 

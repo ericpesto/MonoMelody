@@ -15,11 +15,11 @@ const LoopNew = () => {
   // * Song State
   const [isPlaying, setIsPlaying] = useState(false)
   const [bpm, setBpm] = useState(120)
-  const [volume, setVolume] = useState(100)
+  const [volume, setVolume] = useState(-10)
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
 
   // * Track State
-  const [steps, setSteps] = useState(null)
+  const [steps, setSteps] = useState([])
   const [scale, setScale] = useState('phrygian')
   const [key, setKey] = useState('d')
   // * Instrument State
@@ -277,8 +277,8 @@ const LoopNew = () => {
   }, [genresDb])
 
   useEffect(() => {
-    setSteps([])
-    setVolume(-15)
+    // setSteps([])
+    // setVolume(-10)
     setLoopTitle('')
   }, []) 
 
@@ -365,8 +365,6 @@ const LoopNew = () => {
 
     }
   }
-
-
 
   const handleKeyboardKeyPress = (event) => { 
     const newSteps = [...steps, event.target.value]
