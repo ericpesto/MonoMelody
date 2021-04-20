@@ -12,6 +12,8 @@ const HomePage = () => {
   return (
     <>
       <div className="homepage-wrapper">
+        
+
         <div className="hero">
 
           <Typing>
@@ -24,72 +26,66 @@ const HomePage = () => {
           </Typing>
           
         </div>
+        
+     
         <Particles
           className="particles-wrapper"
+        
           params={{
 	    'particles': {
 	        'number': {
-	            'value': 8,
+	            'value': 20,
 	            'density': {
 	                'enable': true,
-	                'value_area': 800,
+	            },
+	        },
+              'color': {
+                'value': '#ff7f08',
+              },
+	        'size': {
+	            'value': 20,
+	            'random': true,
+	            'anim': {
+	                'speed': 4,
+	                'size_min': 0.3,
 	            },
 	        },
 	        'line_linked': {
 	            'enable': false,
 	        },
 	        'move': {
+	            'random': true,
 	            'speed': 1,
+	            'direction': 'top',
 	            'out_mode': 'out',
 	        },
-	        'shape': {
-	            'type': [
-	                'image',
-	                'circle'
-	            ],
-	            'image': [
-	                {
-	                    'src': '/react.cd2ab268.svg',
-	                    'height': 20,
-	                    'width': 23,
-	                },
-	                {
-	                    'src': '/k8s.2d579d24.svg',
-	                    'height': 20,
-	                    'width': 20,
-	                },
-	                {
-	                    'src': '/code.b3b4c4f4.png',
-	                    'height': 20,
-	                    'width': 20,
-	                }
-	            ],
-	        },
-	        'color': {
-	            'value': '#ff7f08',
-	        },
-	        'size': {
-	            'value': 30,
-	            'random': false,
-	            'anim': {
+	    },
+	    'interactivity': {
+	        'events': {
+	            'onhover': {
 	                'enable': true,
-	                'speed': 4,
-	                'size_min': 10,
-	                'sync': false,
+	                'mode': 'bubble',
+	            },
+	            'onclick': {
+	                'enable': true,
+	                'mode': 'repulse',
+	            },
+	        },
+	        'modes': {
+	            'bubble': {
+	                'distance': 250,
+	                'duration': 2,
+	                'size': 0,
+	                'opacity': 0.1,
+	            },
+	            'repulse': {
+	                'distance': 400,
+	                'duration': 4,
 	            },
 	        },
 	    },
-	    'retina_detect': false,
           }} />
-        {/* <div className='homepage-content'>
-          <p>
-          
-          </p>
-        </div> */}
-
-
       </div>
-
     </>
   )
 }
