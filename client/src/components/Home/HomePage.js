@@ -18,7 +18,7 @@ const HomePage = () => {
 
           <Typing>
             <Typing.Delay ms={1000} />
-            <h1> Welcome to Mono<span className="hero-bold-text">Melody<span id="orange-dot">.</span></span></h1>
+            <h1> Welcome to Mono_<span className="hero-bold-text">Melody<span id="orange-dot">.</span></span></h1>
             <Typing.Delay ms={500} />
             <p className="hero-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed convallis sem lacus, nec laoreet augue dignissim vitae. Nulla facilisi. Donec eu velit pretium nulla rutrum venenatis.</p>
             <Typing.Delay ms={500} />
