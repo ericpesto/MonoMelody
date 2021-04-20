@@ -29,7 +29,7 @@ class LikeHandler(APIView):
             raise NotFound(detail="🆘 Cannot find that loop to like ")
 
     def post(self, request, pk):
-        print('request: 🟩 ', request.user, 'PK', pk)
+        print('request: LIKING  🟩 ', request.user, 'PK', pk)
 
         # request.data["owner"] = request.user.id
         loop_to_like = self.get_loop(pk=pk)

@@ -1,10 +1,11 @@
 {
   "cSpell.words": [
+    "Likebutton",
     "Randomizer",
     "ieogu",
     "toastify",
     "twgq",
     "vnwg"
   ],
-  "python.pythonPath": "/Users/ericpetsopoulos/.local/share/virtualenvs/MonoMelody-p2bSXUo6/bin/python"
+  "python.pythonPath": "/opt/homebrew/bin/python3"
 }
