@@ -13,6 +13,7 @@ import LoopEdit from './components/Loops/LoopEdit'
 import LoopNew from './components/Loops/LoopNew'
 import LoopShow from './components/Loops/LoopShow'
 import ProfilePage from './components/Profile/ProfilePage'
+import About from './components/About/About'
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -63,6 +64,10 @@ const App = () => {
 
           <Route path='/create'> 
             <Sequencer />
+          </Route>
+
+          <Route path='/about'>
+            <About />
           </Route>
 
         </Switch>
