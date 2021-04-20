@@ -46,16 +46,18 @@ const HomePage = () => {
 	            'value': 20,
 	            'random': true,
 	            'anim': {
-	                'speed': 4,
+	                'speed': 3,
 	                'size_min': 0.3,
 	            },
 	        },
 	        'line_linked': {
-	            'enable': false,
+	            'enable': true,
+                'opacity': 0.1,
+                'distance': 280,
 	        },
 	        'move': {
 	            'random': true,
-	            'speed': 1,
+	            'speed': 0.6,
 	            'direction': 'top',
 	            'out_mode': 'out',
 	        },
@@ -79,7 +81,7 @@ const HomePage = () => {
 	                'opacity': 0.1,
 	            },
 	            'repulse': {
-	                'distance': 400,
+	                'distance': 300,
 	                'duration': 4,
 	            },
 	        },
