@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import '../../styles/main.scss'
 
 const LoopInfoCard = ({ loop }) => {
@@ -17,7 +18,7 @@ const LoopInfoCard = ({ loop }) => {
   
   return (
     <div className="box">
-      <h1 className="title">{loop.title}</h1>
+      <h1 className="title">{loop.title} <Link to={`/profile/${loop.owner.id}`} className="loop-owner-text">({loop.owner.username})</Link></h1>
       <p><strong>key:</strong> <span className="orange-text">{loop.key}</span></p>
       <p><strong>scale:</strong> <span className="orange-text">{loop.scale}</span></p>
       <p><strong>bpm:</strong> <span className="orange-text">{loop.bpm}</span></p>
