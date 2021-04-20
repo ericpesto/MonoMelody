@@ -6,6 +6,7 @@ const Gallery = () => {
   const [data, setData] = useState(null)
   const [genres, setGenres] = useState(null)
   const [genreFilter, setGenreFilter] = useState(null) //should be ids to check 
+  //________________________________________________________________________________________________
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get('/api/loops/')
@@ -25,6 +26,7 @@ const Gallery = () => {
     getData()
     getGenres()
   },[])
+  //________________________________________________________________________________________________
   const handleGenreSelect = (event) => {
     const genreId =  Number(event.target.value)
     let genreArray = []
@@ -38,6 +40,7 @@ const Gallery = () => {
       genreArray.splice(preventDuplicate, 1)
       setGenreFilter(genreArray)
     }
+  //________________________________________________________________________________________________
   }
   if (!data || !genres) return <div className='load-page'><h1>NO DATA!</h1></div>
   return ( 
@@ -48,7 +51,6 @@ const Gallery = () => {
           </div>
           { 
             genres.map(genre=>{
-              console.log(genreFilter)
               const selectedFilter = {
                 backgroundColor: 'transparent',
                 color: '#ff7f08',
@@ -115,7 +117,7 @@ const Gallery = () => {
               if (checkIfFilterMatchesGenre())
                 return (
                   <div className='column' key={item.id} >
-                    <MelodySphere  {...item}/>
+                    <MelodySphere  {...item} genreId={genreIdsToCheck}/>
                   </div>
                 )
             })
