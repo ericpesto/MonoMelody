@@ -242,6 +242,11 @@ footer{
   height: 100vh;
 }
 
+.loop-playback-controlls {
+  display: flex; 
+  justify-content: space-between;
+}
+
 // .basic-multi-select .genre {
 
 // }

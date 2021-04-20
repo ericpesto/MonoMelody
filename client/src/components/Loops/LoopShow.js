@@ -6,17 +6,17 @@ import axios from 'axios'
 //import { getTokenFromLocalStorage } from '../../helpers/authHelp'
 
 import Sequencer from '../sequencer/Sequencer'
-// import SequencerControls from '../sequencer/SequencerControls'
-import StepsDisplay from '../sequencer/StepsDisplay'
+import SequencerPlayback from '../sequencer/SequencerPlayback'
+import LoopInfoCard from '../sequencer/LoopInfoCard'
 
 
 const LoopShow = () => {
   const [loop, setLoop] = useState(null)
 
   // * Song State
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(true)
   const [bpm, setBpm] = useState(120)
-  // const [volume, setVolume] = useState(100)
+  const [volume, setVolume] = useState(-10)
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
 
   // * Track State
@@ -96,10 +96,10 @@ const LoopShow = () => {
     return effectArray
   }
 
-  // const handleVolume = (event) => {
-  //   const currentVolume = parseFloat(event.target.value)
-  //   setVolume(currentVolume)
-  // }
+  const handleVolume = (event) => {
+    const currentVolume = parseFloat(event.target.value)
+    setVolume(currentVolume)
+  }
 
   if (!loop) return null
   return (
@@ -107,25 +107,28 @@ const LoopShow = () => {
       <Sequencer 
         isPlaying={isPlaying}
         bpm={bpm}
-        // volume={volume}
+        volume={volume}
         steps={steps}
         synth={synth}
         setCurrentStepIndex={setCurrentStepIndex}
         effectsArray={effectsArray}  
       />
-      {/* <SequencerControls 
-        // need controlls for just volume on loop show
-        handleVolume={handleVolume}
-        volume={volume}
-      /> */}
-      <StepsDisplay 
+      <SequencerPlayback 
         currentStepIndex={currentStepIndex} 
         steps={steps} 
-        // handleResetSteps={handleResetSteps} 
         isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying} 
+        setIsPlaying={setIsPlaying}
+        handleVolume={handleVolume}
+        volume={volume} 
       />
-    </div>
+      <LoopInfoCard 
+        loop={loop}
+        title={loopTitle}
+        bpm={bpm}
+        scale={scale}
+        synth={synth}
+      />
+    </div> 
   )
 }
 
