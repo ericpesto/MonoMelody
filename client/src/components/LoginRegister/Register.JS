@@ -5,6 +5,8 @@ import axios from 'axios'
 import { loginPopUp, signupPopup, getErrorsToastify } from '../../helpers/popUps'
 // import { useHistory } from 'react-router-dom'
 
+import ParticlesBg from '../particles/ParticlesBg'
+
 
 
 const Register = () => {
@@ -86,7 +88,8 @@ const Register = () => {
 
   
   return (
-    <div className='user-form component'>
+    // <div className='user-form component'>
+    <div className='loop-wrapper'>
       <form className="signup-form box column is-half is-offset-one-quarter" onSubmit={handleSubmit}>
         <div className="field">
           <p className="control ">
@@ -139,7 +142,7 @@ const Register = () => {
           <button className="button box is-fullwidth hover-box">Sign Up</button><br />
         </div>
       </form>
-      
+      <ParticlesBg />
     </div>
   )
 }

@@ -3,6 +3,8 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { loginPopUp, getErrorsToastify } from '../../helpers/popUps'
 
+import ParticlesBg from '../particles/ParticlesBg'
+
 const Login = () => {
   
   const [formData, setFormData] = useState({
@@ -36,7 +38,8 @@ const Login = () => {
   }
   
   return (
-    <div className='user-form component'>
+    // <div className='user-form component'>
+    <div className='loop-wrapper'>
       <form onSubmit={handleSubmit}className="box column is-half is-offset-one-quarter">
         <div className="field">
           <label className="label">username</label>
@@ -68,7 +71,7 @@ const Login = () => {
           <button className="button box is-fullwidth hover-box">Login</button><br />
         </div>
       </form>
-      
+      <ParticlesBg />
     </div>
   )
 }
