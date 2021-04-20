@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
@@ -19,6 +20,14 @@ const ProfilePage = () => {
   },[])
   
 
+  // const findUserTopGenres 
+
+
+
+
+
+
+
 
   if (!userData) return <h1>NO DATA </h1>
 
@@ -35,9 +44,9 @@ const ProfilePage = () => {
         <img style={{ width: '15rem', height: '15rem' }} src={userData.profile_image}  alt='profile picture'/>
 
         <div className='profile-details'>
-          <h1>{`${userData.username}'s bio`}</h1>
+          <h1>{`About ${userData.username}`}</h1>
           <p>
-            {userData.bio}
+            {!userData.bio ? "Someone's mysterious..." : userData.bio }
           </p>
         </div>
       

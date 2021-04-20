@@ -19,62 +19,16 @@
   
   // box-shadow: 0 0 10px #ff0000;
 
-  h1 {
-    
-  }
-  
-}
-.grime{
-  box-shadow: 0 0 20px #ffffff;
-}
-
-.trap{box-shadow: 0 0 20px #519e51;
-
-}
-
-.rap{box-shadow: 0 0 20px #003cff;
-
-}
-
-
-
-
-.gallery{
-  background-color: #000000;
-}
-
-.gallery-filter{
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 2rem;
-  padding: 2rem;
-
-  .genre-tag-button{
-    text-align: center;
-    color: white;
-    background-color:blue;  
-    width: 100px;
-    border-radius: 20px;
+  .sphere-genre{
     font-family: VaporWave;
+    font-size: 6rem;
   }
+
   
-  button{
-    
-  }
-
-
+  
 }
 
-.sphere-display {
-  padding-top: 2rem;
-  height: 100%;
 
-  margin-bottom: 2rem;
-}
-.column{
-  text-align: center;
-}
 
 
 .bounceInDown {
@@ -118,7 +72,6 @@
   transform: none;
   }
   }
-  
   @keyframes bounceInDown {
   0%, 60%, 75%, 90%, 100% {
   -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);

@@ -8,13 +8,17 @@
     align-items: center;
     justify-content: center;
 
+
     .profile-details {
-      height: 200px;
-      width: 80px;
-    }
-    p {
+
+      background-color: rgb(202 160 0 / 28%);
+      
+      height: 240px;
       border: 1px solid rgb(255, 0, 242);
-      height: 100%;
+      h1{font-size: 30px;
+        text-align: center;
+      }
     }
   }
 }
+// * {border: 1px solid rgb(255, 0, 242);}
