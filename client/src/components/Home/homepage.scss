@@ -1,12 +1,41 @@
 
 
-.homepage{
-  height: 80vh;
+.homepage-wrapper {
+  height: 90vh;
   text-align: center;
-  
-  header{
-    font-size: 60px;
-  }
-  
-  
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 67px;
+  padding: 120px 60px;
+  position: relative;
+}
+
+.hero {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1280px;
+}
+
+
+.hero-bold-text {
+  font-weight: 900;
+}
+
+#orange-dot {
+  color: #ff7f08;
+}
+
+.hero-text {
+  font-size: 23px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+
+.particles-wrapper {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
 }
