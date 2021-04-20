@@ -6,92 +6,118 @@ import axios from 'axios'
 //import { getTokenFromLocalStorage } from '../../helpers/authHelp'
 
 import Sequencer from '../sequencer/Sequencer'
-import SequencerControls from '../sequencer/SequencerControls'
+// import SequencerControls from '../sequencer/SequencerControls'
 import StepsDisplay from '../sequencer/StepsDisplay'
 
 
 const LoopShow = () => {
-  const [loop, setLoop] = useState({})
+  const [loop, setLoop] = useState(null)
 
   // * Song State
   const [isPlaying, setIsPlaying] = useState(false)
   const [bpm, setBpm] = useState(120)
-  const [volume, setVolume] = useState(100)
+  // const [volume, setVolume] = useState(100)
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
 
   // * Track State
   const [steps, setSteps] = useState(null)
-  const [scale, setScale] = useState('phrygian')
-  const [key, setKey] = useState('d')
+  const [scale, setScale] = useState('')
+  const [key, setKey] = useState('')
   // * Instrument State
-  const [synth, setSynth] = useState('synth')
+  const [synth, setSynth] = useState('')
 
   // * Effect State
-  const [effect, setEffect] = useState([])
+  const [effect, setEffect] = useState('')
   const [effectsArray, setEffectsArray] = useState([])
 
   // * Form State
   const [loopTitle, setLoopTitle] = useState('')
-  const [genres, setGenres] = useState([])
-  const [genresArray, setGenresArray] = useState([])
+  const [genres, setGenres] = useState('')
+
 
 
   const params = useParams()
 
   useEffect(() => {
     const getLoopData = async () => {
-      const response = await axios.get(`/api/loops/${params.id}`)
-      setLoop(response.data)
+      try {
+        const response = await axios.get(`/api/loops/${params.id}`)
+        console.log('response.data ->', response.data)
+        setLoop(response.data)
+      } catch (err) {
+        console.log(err)
+      }
     }
     getLoopData()
   }, [])
 
   useEffect(() => {
+    if (!loop) return null
     console.log('loop ->', loop)
-    setBpm()
-    setSteps()
-    setScale()
-    setKey()
-    setSynth()
-    setEffect()
-    setEffectsArray()
-    setLoopTitle()
-    setGenres()
-    setGenresArray()
-    console.log(bpm)
-    console.log(steps)
-    console.log(scale)
-    console.log(key)
-    console.log(synth)
-    console.log(effect)
-    console.log(effectsArray)
-    console.log(loopTitle)
-    console.log(genres)
-    console.log(genresArray)
+
+    setBpm(loop.bpm)
+    setScale(loop.scale)
+    setKey(loop.key)
+    setSynth(loop.synth)
+    setEffect(loop.effect)
+    setLoopTitle(loop.title)
+    setGenres(loop.genres)
+
+    setEffectsArray(effectsArray)
   }, [loop])
 
-  const handleVolume = (event) => {
-    const currentVolume = parseFloat(event.target.value)
-    setVolume(currentVolume)
+  useEffect(() => {
+    setSteps(stepsIntoArray())
+    setEffectsArray(effectsIntoArray())
+  }, [loop, effect])
+
+  useEffect(() => {
+    console.log('bpm ->', bpm)
+    console.log('steps ->', steps)
+    console.log('scale->', scale)
+    console.log('key ->', key)
+    console.log('synth ->', synth)
+    console.log('effect ->', effect)
+    console.log('effectArray ->', effectsArray)
+    console.log('loopTitle ->', loopTitle)
+    console.log('genres ->', genres)
+  }, [effect])
+
+  const stepsIntoArray = () => {
+    if (!loop) return null
+    console.log(loop.steps)
+    const stepsArray = loop.steps.split(' ')
+    return stepsArray
   }
 
-  if (!steps) return null
+  const effectsIntoArray = () => {
+    if (!loop) return null
+    const effectArray = effect.split(' ')
+    return effectArray
+  }
+
+  // const handleVolume = (event) => {
+  //   const currentVolume = parseFloat(event.target.value)
+  //   setVolume(currentVolume)
+  // }
+
+  if (!loop) return null
   return (
     <div className="loop-wrapper">
       <Sequencer 
         isPlaying={isPlaying}
         bpm={bpm}
-        volume={volume}
+        // volume={volume}
         steps={steps}
         synth={synth}
         setCurrentStepIndex={setCurrentStepIndex}
         effectsArray={effectsArray}  
       />
-      <SequencerControls 
+      {/* <SequencerControls 
         // need controlls for just volume on loop show
         handleVolume={handleVolume}
         volume={volume}
-      />
+      /> */}
       <StepsDisplay 
         currentStepIndex={currentStepIndex} 
         steps={steps} 
