@@ -39,7 +39,7 @@ const Gallery = () => {
       setGenreFilter(genreArray)
     }
   }
-  if (!data) return <div className='load-page'><h1>NO DATA!</h1></div>
+  if (!data || !genres) return <div className='load-page'><h1>NO DATA!</h1></div>
   return ( 
     <>
       <div className='gallery component'>
