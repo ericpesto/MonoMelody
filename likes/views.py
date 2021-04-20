@@ -30,19 +30,14 @@ class LikeHandler(APIView):
 
     def post(self, request, pk):
         print('request: LIKING  🟩 ', request.user, 'PK', pk)
-
-        # request.data["owner"] = request.user.id
         loop_to_like = self.get_loop(pk=pk)
-        # print('loop_to_like: 🟪', LoopSerializer(loop_to_like.likes))
-        # print('loop_to_like: 🟦', PopulatedLoopSerializer(loop_to_like.likes))
-
-        result = Loop.objects.values('likes').annotate(total_likes=Sum('likes'))
-        
-        # !! to get total like count, can we send this like a virtual field? 
-        like_count= Loop.objects.values('likes').count() 
+        result = Loop.objects.values(
+            'likes').annotate(total_likes=Sum('likes'))
+        # !! to get total like count, can we send this like a virtual field?
+        like_count = Loop.objects.values('likes').count()
         count = Loop.objects.filter(likes__loop=loop_to_like).count()
         print('result: 🟫', like_count)
-        print('result: 🟫', count) #This one counts 
+        print('result: 🟫', count)  # This one counts
 
         like_to_add = LikeSerializer(data=request.data)
 
@@ -59,9 +54,19 @@ class LikeHandler(APIView):
 
         return Response(status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-    def delete(self, _request, pk):
-        loop_to_unlike = self.get_loop(pk=pk)
-        # like_to_unlike = self. 
-        # print('loop_to_unlike:🟧 ', loop_to_unlike)
-        # Find like by owner to delete?
-        return Response(status=status.HTTP_200_OK)
+
+
+    def get_like(self,pk):
+        try:
+            print(f'🚀 Loop Found likes')
+            like_to_delete = Like.objects.get(pk=pk)
+            print('like_to_delete: ', like_to_delete)
+            return like_to_delete
+        except Like.DoesNotExist:
+            print("🆘 Cannot find that like to delete")
+            raise NotFound(detail=" 🟥 No like to delete ")
+    
+    def delete(self, request, pk):
+        like_to_delete = self.get_like(pk=pk)
+        like_to_delete.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

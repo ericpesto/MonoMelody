@@ -8,7 +8,7 @@ import logo from '../../assets/color-logo.svg'
 
 const NavBar = () => {
   const [userId, setUserId] = useState(null)
-  console.log('🐝 ~ file: NavBar.js ~ line 10 ~ userId', userId)
+  // console.log('🐝 ~ file: NavBar.js ~ line 10 ~ userId', userId)
 
   const location = useLocation()
   useEffect(() => {

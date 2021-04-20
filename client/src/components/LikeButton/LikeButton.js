@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 // eslint-disable-next-line no-unused-vars
 import { getTokenFromLocalStorage, userIsOwner, getPayloadFromToken, userIsAuthenticated } from '../../helpers/authHelp'
 import axios from 'axios'
-import { userNeedsToLogin } from '../../helpers/popUps'
+import { userNeedsToLogin,getErrorsToastify } from '../../helpers/popUps'
 
 //* Pass in the ID as props from parent component. 
 //* will send authentication header to DB
@@ -13,18 +13,20 @@ import { userNeedsToLogin } from '../../helpers/popUps'
 
 const Likebutton = ({ id }) => {
   const [ ownerId, setOwnerId ] = useState()
-  
-  console.log('🐝 ~ file: SemanticLikeButton.js ~ line 16 ~ id', id)
+  console.log('🐝 ~ ownerId', ownerId)
   const [totalFavourites, setTotalFavourites] = useState(0)
-
-  //?? check here and change this 
+  //?? check here and change this _
   const [userLikedAlready, setUserLikedAlready] = useState(null)
+  console.log('🐝 ~ file: LikeButton.js ~ line 19 ~ userLikedAlready', userLikedAlready)
   
   useEffect(() => {
+    refreshFavourites()
     const payload = getPayloadFromToken()
     const currentUserId = payload.sub
+    console.log('🐝 ~ file: LikeButton.js ~ line 24 ~ currentUserId', currentUserId)
     setOwnerId(currentUserId)
-    refreshFavourites()
+    
+
     const interval = setInterval(refreshFavourites, 100000)
     //?need to return and clear interval instantly to prevent it going nuts
     return () => {
@@ -35,54 +37,92 @@ const Likebutton = ({ id }) => {
   // useEffect(() => {
   //   refreshFavourites()
   // },[userLikedAlready])
-
   const refreshFavourites = async () => {
     const response = await axios.get(`/api/loops/${id}/`)
     const data = response.data
     const latestTotalFavourites = data.likes.length
     setTotalFavourites(latestTotalFavourites)
-    
-    const payload = getPayloadFromToken()
-    const currentUserId = JSON.stringify(payload.sub)
-    
-    // userIsOwner(currentUserId)
-
-    const likesArray = data.likes
-    console.log('🐝 ~ file: LikeButton.js ~ line 51 ~ likesArray', likesArray)
-    const hasUserLikedBefore = likesArray.find(item => JSON.stringify(item.owner) === currentUserId)
-
-    console.log('🐝 ~ file: LikeButton.js ~ line 55 ~ hasUserLikedBefore', hasUserLikedBefore)
-    // if (hasUserLikedBefore){
-    //   setUserLikedAlready(true)
-    // } else if (!hasUserLikedBefore){
-    setUserLikedAlready(false)
-    // }
+    setLikesArray(data.likes)
+    checkIfLiked(data.likes)
   }
   
+  //__________________________________________________________________________
+  // eslint-disable-next-line no-unused-vars
+  const [likesArray, setLikesArray] = useState()
+  const [likeId, setLikeId] = useState()
+  console.log('🐝 ~ likeId', likeId)
+
+
+  const checkIfLiked = (likesArr) => {
+    const areThereLikes = likesArr[0]
+    if (!areThereLikes){ 
+      setUserLikedAlready(false) 
+      return null
+    }
+    const payload = getPayloadFromToken()
+    const ownerId = payload.sub
+    
+    likesArr.map(like=>{
+      if (like.owner.id === ownerId){
+        setUserLikedAlready(true)
+        setLikeId(like.id)
+      } else if (like.owner.id !== ownerId){
+        setUserLikedAlready(false)
+      }
+
+      
+
+
+    })
+  } 
+  //__________________________________________________________________________
 
   const handleLike = async () => {
-
+    const token = getTokenFromLocalStorage()
+    console.log('🐝 ~ token', token)
     if (!userIsAuthenticated()){
       userNeedsToLogin('Please login to like!')
       return null
     }
-    try {   
-      const token = getTokenFromLocalStorage()
-      const likeLoadToSend = {
-        owner: ownerId,
-        loop: id,
-      }
-      console.log('🐝 ~ file: LikeButton.js ~ line 75 ~ likeLoadToSend', likeLoadToSend)
-      const likeResponse = await axios.post(`/api/like/${id}/`, likeLoadToSend, { headers: { Authorization: `Bearer ${token}` } } ) 
-      refreshFavourites()
-      if (likeResponse.data.message === 'liked!') {
-        // notifyPopup(true)
-        // setUserLikedAlready(true)
-      } else {
+
+    console.log('🐝 ~ file: ⚪️', userLikedAlready)
+    if (userLikedAlready){
+      //* If user has liked do delete
+      try {   
+        const unlike = await axios.delete(`/api/like/${likeId}/`, { headers: { Authorization: `Bearer ${token}` } } ) 
+        console.log('🐝 ~ unlike', unlike)
+        
+        //!!!!!!!!!!!!!!!!!! DO DELETE
+        console.log('🟣')
+        // const unlike = {
+        //   owner: ownerId,
+        //   loop: id,
+        // }
+
+        // const likeResponse = await axios.post(`/api/like/${id}/`, likeLoadToSend, { headers: { Authorization: `Bearer ${token}` } } ) 
+        setUserLikedAlready(true)
+        refreshFavourites()
+
+      } catch (err) {
+        getErrorsToastify(err)
         // notifyPopup(false)
       }
-    } catch (err) {
-      // notifyPopup(false)
+    } else if (!userLikedAlready){
+      //* If user hasn't liked do post request
+      try {   
+        console.log('🔺')
+        const likeLoadToSend = {
+          owner: ownerId,
+          loop: id,
+        }
+        const likeResponse = await axios.post(`/api/like/${id}/`, likeLoadToSend, { headers: { Authorization: `Bearer ${token}` } } ) 
+        console.log('🐝 ~ likeResponse 🔺', likeResponse)
+        refreshFavourites()
+
+      } catch (err) {
+        getErrorsToastify(err)
+      }
+      
     }
   }
 
