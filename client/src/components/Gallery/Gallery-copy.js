@@ -31,7 +31,7 @@ const Gallery = () => {
         genreNames.push(item.name)
       })
       setGenres(dataArray)
-      setGenreFilter(genreArray)
+      // setGenreFilter(genreArray)
       setGenresNameArray(genreNames)
     }
     getGenres()
