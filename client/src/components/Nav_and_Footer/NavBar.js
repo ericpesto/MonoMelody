@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import { getPayloadFromToken, userIsAuthenticated } from '../../helpers/authHelp'
+// import { toastifyPopUp } from '../../helpers/popUps'
+
 import './navbar.scss'
 import logo from '../../assets/color-logo.svg'
 

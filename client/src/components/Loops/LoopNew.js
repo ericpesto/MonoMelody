@@ -5,6 +5,7 @@ import axios from 'axios'
 import { getTokenFromLocalStorage } from '../../helpers/authHelp'
 
 import Sequencer from '../sequencer/Sequencer'
+import { toastifyPopUp, getErrorsToastify } from '../../helpers/popUps'
 import SequencerControls from '../sequencer/SequencerControls'
 import Keyboard from '../sequencer/Keyboard'
 import StepsDisplay from '../sequencer/StepsDisplay'
@@ -84,7 +85,6 @@ const LoopNew = () => {
       const genreOptionTemplate = { value: genre.id, label: genre.name }
       return genreOptionsArray.push(genreOptionTemplate)
     })
-    console.log('genreOptionsArray ->', genreOptionsArray)
     return genreOptionsArray
   }
   
@@ -357,10 +357,16 @@ const LoopNew = () => {
     console.log('formToSend-> ', formToSend)
     try {
       await axios.post('/api/loops/', formToSend, { headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}`, 'Content-Type': 'application/json' } })
+      toastifyPopUp(true,'Save successful!')
     } catch (err) {
-      console.log(err)
+      toastifyPopUp(false,'Could not save!')
+      getErrorsToastify(err)
+
+
     }
   }
+
+
 
   const handleKeyboardKeyPress = (event) => { 
     const newSteps = [...steps, event.target.value]
@@ -390,7 +396,6 @@ const LoopNew = () => {
     genreOptions.map(option => {
       genreValuesArray.push(option.value)
     })
-    console.log('genreValuesArray ->', genreValuesArray)
     setGenres(genreOptions)
     setGenresArray(genreValuesArray)
   }

@@ -11,7 +11,7 @@ $brand-color: #ff7f08dc;
 }
 
 a:hover {
-  color: #8929d8;
+  color: $brand-color;
   text-decoration: none;
 }
 .navbar {
