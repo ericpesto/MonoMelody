@@ -15,25 +15,15 @@ const LoopShow = () => {
 
   // * Song State
   const [isPlaying, setIsPlaying] = useState(true)
-  const [bpm, setBpm] = useState(120)
   const [volume, setVolume] = useState(-10)
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
 
   // * Track State
   const [steps, setSteps] = useState(null)
-  const [scale, setScale] = useState('')
-  const [key, setKey] = useState('')
-  // * Instrument State
-  const [synth, setSynth] = useState('')
 
   // * Effect State
   const [effect, setEffect] = useState('')
   const [effectsArray, setEffectsArray] = useState([])
-
-  // * Form State
-  const [loopTitle, setLoopTitle] = useState('')
-  const [genres, setGenres] = useState('')
-
 
 
   const params = useParams()
@@ -55,14 +45,8 @@ const LoopShow = () => {
     if (!loop) return null
     console.log('loop ->', loop)
 
-    setBpm(loop.bpm)
-    setScale(loop.scale)
-    setKey(loop.key)
-    setSynth(loop.synth)
-    setEffect(loop.effect)
-    setLoopTitle(loop.title)
-    setGenres(loop.genres)
 
+    setEffect(loop.effect)
     setEffectsArray(effectsArray)
   }, [loop])
 
@@ -72,15 +56,10 @@ const LoopShow = () => {
   }, [loop, effect])
 
   useEffect(() => {
-    console.log('bpm ->', bpm)
+
     console.log('steps ->', steps)
-    console.log('scale->', scale)
-    console.log('key ->', key)
-    console.log('synth ->', synth)
     console.log('effect ->', effect)
     console.log('effectArray ->', effectsArray)
-    console.log('loopTitle ->', loopTitle)
-    console.log('genres ->', genres)
   }, [effect])
 
   const stepsIntoArray = () => {
@@ -106,10 +85,10 @@ const LoopShow = () => {
     <div className="loop-wrapper">
       <Sequencer 
         isPlaying={isPlaying}
-        bpm={bpm}
+        bpm={loop.bpm}
         volume={volume}
         steps={steps}
-        synth={synth}
+        synth={loop.synth}
         setCurrentStepIndex={setCurrentStepIndex}
         effectsArray={effectsArray}  
       />
@@ -123,10 +102,6 @@ const LoopShow = () => {
       />
       <LoopInfoCard 
         loop={loop}
-        title={loopTitle}
-        bpm={bpm}
-        scale={scale}
-        synth={synth}
       />
     </div> 
   )

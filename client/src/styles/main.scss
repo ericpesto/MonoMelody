@@ -247,6 +247,28 @@ footer{
   justify-content: space-between;
 }
 
+.genre-tag-text {
+  font-family: VaporWave;
+  font-size: 42px;
+  color: #000;
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.genre-tag-text:hover {
+  color: $brand-color;
+  transform: scale(1.3)
+}
+
+.genre-tag-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.orange-text {
+  color: $brand-color;
+}
+
 // .basic-multi-select .genre {
 
 // }
