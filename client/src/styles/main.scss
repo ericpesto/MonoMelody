@@ -11,9 +11,7 @@
 
 
 
-// $brand-color: #8929d8;
-$brand-color: #F9CE20;
-
+$brand-color: #8929d8;
 $background-color: #252525;
 
 
@@ -113,14 +111,18 @@ footer{
   -ms-flex-align: center;
   align-items: center;
   border-radius: 6px;
-  background-color: #fff;
+  background-color: #ff7f08c7;
   cursor: pointer;
   transition: all 0.3s;
+  font-weight: bold;
+  border: none;
+  font-family: MyFont;
+  // color: #fff;
   //color: 
 }
 
 .key:hover {
-  background-color: #ff7f08;
+  background-color: rgba(0, 0, 0, 0.534);
   color: #fff;
 }
 
