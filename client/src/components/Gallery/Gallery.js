@@ -71,7 +71,6 @@ const Gallery = () => {
     <div className='gallery component'>
 
       <div className='chosen-genre-display'>
-       
         {genresNameArray.map(e =>{
           console.log('🐝 ~ file: Gallery.js ~ line 68 ~ e ', e )
           return <p key={e} >{e}</p>
