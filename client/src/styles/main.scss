@@ -232,9 +232,10 @@ footer{
   align-items: flex-start;
 }
 
-// .select {
-//   width: 6000px;
-// }
+.sequencer-controlls {
+  z-index: 22 !important;
+}
+
 
 .react-select-container {
   width: 260px;
@@ -250,6 +251,7 @@ footer{
 
 .basic-multi-select {
   font-family: VaporWave !important;
+  color: black;
   font-size: 26px;
   width: 100%;
 }
@@ -305,7 +307,9 @@ footer{
 }
 
 .box {
-  z-index: 9;
+  z-index: 12;
 }
+
+
 
 }
