@@ -54,8 +54,7 @@ const MelodySphere = (props) => {
             <div className='sphere-ticker'>{nameToMap}</div>
           )}
         </Ticker>
-        <h3>{likes.length} likes</h3>
-        <LikeButton id={id}/>
+        <LikeButton  id={id}/>
       </div>
     </div>
   )

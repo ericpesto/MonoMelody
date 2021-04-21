@@ -1,8 +1,6 @@
-// eslint-disable-next-line no-unused-vars
-//import '../../styles/componentStyles/artCard.scss'
+import './likebutton.scss'
 import React, { useState, useEffect } from 'react'
-// eslint-disable-next-line no-unused-vars
-import { getTokenFromLocalStorage, userIsOwner, getPayloadFromToken, userIsAuthenticated } from '../../helpers/authHelp'
+import { getTokenFromLocalStorage,  getPayloadFromToken, userIsAuthenticated } from '../../helpers/authHelp'
 import axios from 'axios'
 import { userNeedsToLogin,getErrorsToastify } from '../../helpers/popUps'
 
@@ -91,21 +89,10 @@ const Likebutton = ({ id }) => {
       try {   
         const unlike = await axios.delete(`/api/like/${likeId}/`, { headers: { Authorization: `Bearer ${token}` } } ) 
         console.log('🐝 ~ unlike', unlike)
-        
-        //!!!!!!!!!!!!!!!!!! DO DELETE
-        console.log('🟣')
-        // const unlike = {
-        //   owner: ownerId,
-        //   loop: id,
-        // }
-
-        // const likeResponse = await axios.post(`/api/like/${id}/`, likeLoadToSend, { headers: { Authorization: `Bearer ${token}` } } ) 
         setUserLikedAlready(true)
         refreshFavourites()
-
       } catch (err) {
         getErrorsToastify(err)
-        // notifyPopup(false)
       }
     } else if (!userLikedAlready){
       //* If user hasn't liked do post request
@@ -132,13 +119,13 @@ const Likebutton = ({ id }) => {
       <div>
         { !userLikedAlready && 
         <button  color='#42c298' onClick={handleLike}>
-        Like
+        ❤️
         </button>
         }
        
         { userLikedAlready &&  
         <button onClick={handleLike}  color='red' >
-        Unlike
+        🖤
         </button>
         }
         
