@@ -45,13 +45,29 @@ footer{
   a{margin-right: 1rem;}
 }
 
+.comment-feed{
+  max-height: 100px;
+}
+.comment-form{
+  width: 100%;
+  input{
+    margin: 0.5rem 0;
+  }
+  .btn-container{
+    display: flex;
+    justify-content:flex-start;
+  }
+}
+
+
+
 
 .loop-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: 100vh;
+  min-height: 100vh; //!
   padding: 5vmax;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;

@@ -8,16 +8,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(255, 0, 0);
+  background: rgb(0, 0, 0);
   // border:rgba(128, 0, 128, 0) 1px solid;
   border-radius: 50%;
-  height: 250px;
-  width: 250px;
-  background: radial-gradient(circle at 100px 100px, #e0e0e0, #ffffff00);
+  height: 300px;
+  width: 300px;
+  background: radial-gradient(circle at 100px 100px, #f3d2d2, #9b5e5e00);
+  // background: radial-gradient(circle at 100px 100px, #e0e0e0, #ffffff00);
   color: white;
   margin: 0 auto ;
   
   // box-shadow: 0 0 10px #ff0000;
+
+  .sphere-content{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
 
   .sphere-genre{
     font-family: VaporWave;
@@ -26,8 +33,13 @@
 
   .sphere-ticker{
     font-family: VaporWave;
+    width: 250px;  
   }
-  
+  a{
+    color: #737373;
+  }
+
+
 }
 
 
@@ -107,38 +119,4 @@
   transform: none;
   }
   } 
-
-
-
-
-
-
-
-
-  // .glowing::before{
-  //   content: '';
-  //   position: absolute;
-  //   left: -2px;
-  //   top: -2px;
-  //   background: linear-gradient(45deg, #e8f74d, #ff6600d9, #00ff66, #13ff13, #ad27ad, #bd2681, #6512b9, #ff3300de, #5aabde);
-  //   background-size: 400%;
-  //   width: calc(100% + 5px);
-  //   height: calc(100% + 5px);
-  //   z-index: -1;
-  //   animation: glower 20s linear infinite;
-  // }
-  
-  // @keyframes glower {
-  //   0% {
-  //     background-position: 0 0;
-  //   }
-    
-  //   50% {
-  //     background-position: 400% 0;
-  //   }
-    
-  //   100% {
-  //     background-position: 0 0;
-  //   }
-  // }
 

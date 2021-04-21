@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './sphere.scss'
 import Ticker from 'react-ticker'
+import LikeButton from '../LikeButton/LikeButton'
 
 
 const MelodySphere = (props) => {
@@ -45,20 +46,15 @@ const MelodySphere = (props) => {
         <Link to={`/loop/${id}`}>
           <h2 className='sphere-genre'>{mainGenre}</h2>
         </Link>
-
-        <Ticker speed={2}>
+        <Ticker 
+          speed={5}
+          mode='smooth'
+        >
           {() => (
             <div className='sphere-ticker'>{nameToMap}</div>
           )}
         </Ticker>
-
-
-        <h3>{likes.length} likes</h3>
-        
-
-
-
-
+        <LikeButton  id={id}/>
       </div>
     </div>
   )
