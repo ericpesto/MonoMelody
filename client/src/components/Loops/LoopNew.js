@@ -1,5 +1,6 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import '../../styles/main.scss'
 
 import axios from 'axios'
@@ -102,6 +103,8 @@ const LoopNew = () => {
     // { value: 'f', label: 'F' },
     // { value: 'g', label: 'G' }
   ]
+
+  const history = useHistory()
 
   useEffect(() => {
     console.log('SCALE', scale)
@@ -362,6 +365,7 @@ const LoopNew = () => {
     try {
       await axios.post('/api/loops/', formToSend, { headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}`, 'Content-Type': 'application/json' } })
       toastifyPopUp(true,'Save successful!')
+      history.push('/gallery')
     } catch (err) {
       toastifyPopUp(false,'Could not save!')
       getErrorsToastify(err)

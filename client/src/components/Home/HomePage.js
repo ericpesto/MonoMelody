@@ -21,9 +21,9 @@ const HomePage = () => {
             <Typing.Delay ms={1000} />
             <h1> Welcome to Mono_<span className="hero-bold-text">Melody<span id="orange-dot">.</span></span></h1>
             <Typing.Delay ms={500} />
-            <p className="hero-text">monoMelody is a music minded social media platform. Craft your own melodies with our sequencer and share them for others to enjoy.</p>
+            <p className="hero-text">monoMelody is a music minded social media platform. Use our bespoke sequencer to craft your own melodies and share them for others to enjoy.</p>
             <Typing.Delay ms={500} />
-            <Link to="/create" className="home-button">Create a loop</Link>
+            <Link to="/create" className="home-button">Create</Link>
           </Typing>
           
         </div>

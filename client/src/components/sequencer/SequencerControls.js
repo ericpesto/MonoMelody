@@ -19,7 +19,7 @@ const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleB
           <div>
             <label>bpm: {bpm}</label>
             <div className="slidecontainer">
-              <input type="range" min="30" max="280" value={bpm} onChange={handleBpm} />
+              <input type="range" min="60" max="360" value={bpm} onChange={handleBpm} />
             </div>
           </div>
         </div>

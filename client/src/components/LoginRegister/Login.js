@@ -23,7 +23,7 @@ const Login = () => {
       // setWasLoginSuccess(true)
       loginPopUp(true)
       window.localStorage.setItem('token',response.data.token)
-      history.push('/')
+      history.push('/create')
     } catch (err) {
       // loginPopUp(false)
       getErrorsToastify(err)
@@ -40,7 +40,8 @@ const Login = () => {
   return (
     // <div className='user-form component'>
     <div className='loop-wrapper'>
-      <form onSubmit={handleSubmit}className="box column is-half is-offset-one-quarter">
+      <form onSubmit={handleSubmit}className="box column is-half">
+        <h1 className="title">Login</h1>
         <div className="field">
           <label className="label">username</label>
           <div className="control">
@@ -68,7 +69,7 @@ const Login = () => {
           </div>
         </div>
         <div className="field-button">
-          <button className="button box is-fullwidth hover-box">Login</button><br />
+          <button id="form-button" className="button is-fullwidth">Login</button><br />
         </div>
       </form>
       <ParticlesBg />
