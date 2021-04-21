@@ -46,7 +46,7 @@ const ProfilePage = () => {
             isUserOwner(userData.id) &&
           
             <Link to={'/profile/edit'}>
-              <img src={editIcon}/>
+              <img className="edit-icon" src={editIcon}/>
             </Link>
           }
         </div>
