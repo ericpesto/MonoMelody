@@ -11,13 +11,13 @@ const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleB
       <form className="synth-controls-wrapper">
         <div className="synth-controls-col">
           <div>
-            <label>vol(db): {volume}</label>
+            <label className="volume-label" >vol(db):{volume}</label>
             <div className="slidecontainer">
               <input type="range" min="-40" max="10" value={volume} onChange={handleVolume} />
             </div>
           </div>
           <div>
-            <label>bpm: {bpm}</label>
+            <label>bpm:{bpm}</label>
             <div className="slidecontainer">
               <input type="range" min="60" max="360" value={bpm} onChange={handleBpm} />
             </div>
@@ -81,7 +81,7 @@ const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleB
         <>
           <form>
             <input 
-              className='input'
+              className='input title-input'
               placeholder="title"
               name="title"
               onChange={handleChange}
