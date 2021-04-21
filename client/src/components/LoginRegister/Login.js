@@ -38,15 +38,12 @@ const Login = () => {
   }
   
   return (
-    // <div className='user-form component'>
     <div className='loop-wrapper'>
       <form onSubmit={handleSubmit}className="box column is-half">
-        <h1 className="title">Login</h1>
         <div className="field">
-          <label className="label">username</label>
           <div className="control">
             <input
-              className="input"
+              className="input is-medium"
               placeholder="Username"
               // name="email"
               name="username"
@@ -56,10 +53,9 @@ const Login = () => {
           </div>
         </div>
         <div className="field">
-          <label className="label">Password</label>
           <div className="control">
             <input
-              className="input"
+              className="input is-medium"
               type="password"
               placeholder="Password"
               name="password"
@@ -69,7 +65,7 @@ const Login = () => {
           </div>
         </div>
         <div className="field-button">
-          <button id="form-button" className="button is-fullwidth">Login</button><br />
+          <button id="form-button" className="button is-fullwidth is-medium">Login</button><br />
         </div>
       </form>
       <ParticlesBg />

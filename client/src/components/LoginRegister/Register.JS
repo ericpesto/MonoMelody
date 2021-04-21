@@ -93,10 +93,8 @@ const Register = () => {
 
   
   return (
-    // <div className='user-form component'>
     <div className='loop-wrapper'>
       <form className="signup-form box column is-half" onSubmit={handleSubmit}>
-        <h1 className="title">Sign Up</h1>
         <div className="field">
           <p className="control ">
             <input className="input is-medium" 
@@ -106,7 +104,6 @@ const Register = () => {
               // value={errors.username}
               onChange={handleChange}
             />
-
           </p>
         </div>
         <div className="field">
@@ -145,7 +142,7 @@ const Register = () => {
           </p>
         </div>
         <div className="field-button">
-          <button id="form-button" className="button is-fullwidth">Sign Up</button><br />
+          <button id="form-button " className="is-medium button is-fullwidth">Sign Up</button><br />
         </div>
       </form>
       <ParticlesBg />

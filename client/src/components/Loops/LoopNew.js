@@ -7,7 +7,7 @@ import axios from 'axios'
 import { getTokenFromLocalStorage } from '../../helpers/authHelp'
 
 import Sequencer from '../sequencer/Sequencer'
-import { toastifyPopUp, getErrorsToastify } from '../../helpers/popUps'
+import { toastifyPopUp, getErrorsToastify, userNeedsToLogin } from '../../helpers/popUps'
 import SequencerControls from '../sequencer/SequencerControls'
 import Keyboard from '../sequencer/Keyboard'
 import StepsDisplay from '../sequencer/StepsDisplay'
@@ -271,7 +271,13 @@ const LoopNew = () => {
     return notesArray
   }, [key, scale])
 
+
+
   useEffect(() => {
+    if ( !getTokenFromLocalStorage()){
+      userNeedsToLogin('Please login to save')
+    }
+
     const getGenres = async() => {
       const response = await axios.get('/api/genres')
       setGenresDb(response.data)

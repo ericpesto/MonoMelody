@@ -1,5 +1,5 @@
 .profile-page {
-  *{
+  * {
     // border: 1px dashed rgb(255, 0, 242);
   }
   background-color: black;
@@ -11,42 +11,44 @@
     align-items: center;
     justify-content: center;
 
-
-
     .profile-details {
       width: 40vw;
       background-color: rgb(202 160 0 / 28%);
-      
+
       min-height: 10rem;
       border-radius: 5px;
       padding: 1rem;
-      
-      h1{font-size: 30px;
+
+      h1 {
+        font-size: 30px;
         text-align: left;
       }
     }
 
-    img{
+    img {
       max-width: 20vw;
       max-height: 20vw;
       border-radius: 50%;
-      
-    
     }
 
-    button{
+    button {
       width: 5rem;
-      height:5rem;
+      height: 5rem;
     }
   }
 
-.loops-container{
-  display: flex;
-  justify-content:space-evenly;
-  .profile-single-loop-container{}
-
-
+  .loops-container {
+    display: flex;
+    justify-content: space-evenly;
+    .profile-single-loop-container {
+    }
+  }
 }
 
+.main-profile-form {
+  button {
+    background-color: #ff7f08;
+  }
 }
+
 // * {border: 1px solid rgb(255, 0, 242);}

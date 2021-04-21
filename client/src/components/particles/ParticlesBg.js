@@ -2,8 +2,7 @@ import React from 'react'
 import '../../styles/main.scss'
 import Particles from 'react-particles-js'
 
-const ParticlesBg = (props) => {
-  console.log('🐝 ~ props', props)
+const ParticlesBg = () => {
   
   return (
     <Particles

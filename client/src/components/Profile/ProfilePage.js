@@ -4,7 +4,9 @@ import axios from 'axios'
 import { useParams, Link } from 'react-router-dom'
 import './profilepage.scss'
 
-// import { isUserOwner } from '../../helpers/authHelp'
+import editIcon from '../../assets/edit-icon.svg'
+
+import { isUserOwner } from '../../helpers/authHelp'
 
 const ProfilePage = () => {
   
@@ -14,16 +16,14 @@ const ProfilePage = () => {
   const params = useParams()
   console.log('🐝 ~ file: ProfilePage.js ~ line 8 ~ params', params)
   
+  const getUser =  async () => {
+    const response = await axios.get(`/api/auth/users/${params.id}/`)
+    setUserData(response.data)
+  }
+
   useEffect(() => {
-    const getUser =  async () => {
-      const response = await axios.get(`/api/auth/users/${params.id}/`)
-      setUserData(response.data)
-    }
     getUser()
-  },[])
-  
-
-
+  }, [location.pathname])
 
 
   if (!userData) return <h1>NO DATA </h1>
@@ -43,11 +43,10 @@ const ProfilePage = () => {
             {!userData.bio ? "No info! Someone's mysterious..." : userData.bio }
           </p>
           {
-          //  isUserOwner() &&
+            isUserOwner(userData.id) &&
           
             <Link to={'/profile/edit'}>
-              <button className="edit-button">
-              </button>
+              <img src={editIcon}/>
             </Link>
           }
         </div>

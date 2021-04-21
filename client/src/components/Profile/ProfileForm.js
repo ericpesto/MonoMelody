@@ -59,72 +59,74 @@ const ProfileForm = () => {
     <>
       <div className="main-profile-form">
 
-     
-        <h1 className="form-title">Tell us a little bit about yourself</h1>
-        <form
-          onSubmit={handleSubmit}
-        >
-          <div className="field">
-            <label className="label">First Name:</label>
-            <div className="control">
-              <input
-                className="input"
-                type="text"
-                name="first_name"
-                value={formData.first_name}
-                onChange={handleChange}
-              />
+        <div className="box">
+          <h1 className="form-title">Tell us a little bit about yourself</h1>
+          <form
+            onSubmit={handleSubmit}
+          >
+            <div className="field">
+              <label className="label">First Name:</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="text"
+                  name="first_name"
+                  value={formData.first_name}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
-          </div>
-          <div className="field">
-            <label className="label">Last Name:</label>
-            <div className="control">
-              <input
-                className="input"
-                type="text"
-                name="last_name"
-                value={formData.last_name}
-                onChange={handleChange}
-              />
+            <div className="field">
+              <label className="label">Last Name:</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="text"
+                  name="last_name"
+                  value={formData.last_name}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
-          </div>
 
-          {/* <div className="field"
+            {/* <div className="field"
             name="profilePicture"
             value={formData.profilePicture}
             handleImageUrl={handleImageUrl}
           >
           </div> */}
 
-          <div className="field">
-            <label className="label">Location:</label>
-            <div className="control">
-              <input
-                className="input"
-                type="text"
-                name="location"
-                value={formData.location}
-                onChange={handleChange}
-              />
+            <div className="field">
+              <label className="label">Location:</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="text"
+                  name="location"
+                  value={formData.location}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
-          </div>
 
 
-          <div className="field">
-            <label className="label">Bio:</label>
-            <div className="control">
-              <textarea
-                className="textarea"
-                name="bio"
-                value={formData.bio}
-                onChange={handleChange}
-              />
+            <div className="field">
+              <label className="label">Bio:</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  name="bio"
+                  value={formData.bio}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
-          </div>
-          <div className="field">
-            <button className="button is-fullwidth is-dark" type="submit">Submit</button>
-          </div>
-        </form>
+            <div className="field">
+              <button id="orange" className="button is-fullwidth" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+
       </div>
     </>
       
