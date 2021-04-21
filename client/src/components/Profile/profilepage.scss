@@ -1,4 +1,7 @@
 .profile-page {
+  *{
+    // border: 1px dashed rgb(255, 0, 242);
+  }
   background-color: black;
   color: white;
 
@@ -9,16 +12,41 @@
     justify-content: center;
 
 
-    .profile-details {
 
+    .profile-details {
+      width: 40vw;
       background-color: rgb(202 160 0 / 28%);
       
-      height: 240px;
-      border: 1px solid rgb(255, 0, 242);
+      min-height: 10rem;
+      border-radius: 5px;
+      padding: 1rem;
+      
       h1{font-size: 30px;
-        text-align: center;
+        text-align: left;
       }
     }
+
+    img{
+      max-width: 20vw;
+      max-height: 20vw;
+      border-radius: 50%;
+      
+    
+    }
+
+    button{
+      width: 5rem;
+      height:5rem;
+    }
   }
+
+.loops-container{
+  display: flex;
+  justify-content:space-evenly;
+  .profile-single-loop-container{}
+
+
+}
+
 }
 // * {border: 1px solid rgb(255, 0, 242);}

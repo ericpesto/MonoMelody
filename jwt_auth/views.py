@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 from datetime import datetime, timedelta
 from django.conf import settings
 import jwt
-from .serializers.common import UserSerializer
+from .serializers.common import UserSerializer, EditUserSerializer
 from .serializers.populated import PopulatedUserSerializer
 
 User = get_user_model()
@@ -82,7 +82,9 @@ class UserDetailView(APIView):
     
     def put(self, request, pk):
         user_to_edit = self.get_user(pk=pk)
-        updated_user = UserSerializer(user_to_edit, data=request.data)
+        print('user_to_edit: 😎', user_to_edit)
+        updated_user = EditUserSerializer(user_to_edit, data=request.data)
+        print('updated_user: 🤣', updated_user)
         if updated_user.is_valid():
             updated_user.save()
             return Response(updated_user.data, status=status.HTTP_202_ACCEPTED)

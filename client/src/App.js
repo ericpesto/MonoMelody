@@ -17,6 +17,7 @@ import About from './components/About/About'
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import ProfileForm from './components/Profile/ProfileForm'
 
 const App = () => {
 
@@ -39,12 +40,14 @@ const App = () => {
           <Route path='/register'>
             <Register />
           </Route>
+          <Route exact path='/profile/edit'>
+            <ProfileForm/>
+          </Route>
         
           <Route path='/profile/:id'>
-        
             <ProfilePage/>
-        
           </Route>
+          
 
           <Route path='/create'>
             <LoopNew />

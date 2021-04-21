@@ -46,14 +46,17 @@ const MelodySphere = (props) => {
         <Link to={`/loop/${id}`}>
           <h2 className='sphere-genre'>{mainGenre}</h2>
         </Link>
-        <Ticker 
-          speed={5}
-          mode='smooth'
-        >
-          {() => (
-            <div className='sphere-ticker'>{nameToMap}</div>
-          )}
-        </Ticker>
+        <div className='ticker'>
+          <Ticker
+            // height={50}
+            speed={5}
+            mode='chain'
+          >
+            {() => (
+              <div className='sphere-ticker'>{nameToMap}</div>
+            )}
+          </Ticker>
+        </div> 
         <LikeButton  id={id}/>
       </div>
     </div>

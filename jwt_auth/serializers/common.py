@@ -5,8 +5,8 @@ from django.core.exceptions import ValidationError
 
 User = get_user_model()
 
-class UserSerializer(serializers.ModelSerializer):
 
+class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
     password_confirmation = serializers.CharField(write_only=True)
 
@@ -15,17 +15,14 @@ class UserSerializer(serializers.ModelSerializer):
         password = data.pop('password')
         password_confirmation = data.pop('password_confirmation')
 
-        # check if my passwords match
         if password != password_confirmation:
             raise ValidationError({'password': 'passwords do not match'})
 
-        # check if the password is valid
         try:
             password_validation.validate_password(password=password)
         except ValidationError as err:
             raise ValidationError({'password': err.messages})
 
-        # hash the password & add back to the dict 
         data['password'] = make_password(password)
 
         return data
@@ -33,6 +30,15 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
-        # fields = ('id', 'username', 'email', 'password', 'password_confirmation',) 
-        # fields = ('id', 'username', 'password', 'password_confirmation', 'loops_created')  
-        #!! Have to remove loops_created otherwise user needs to register with this. 
+        # fields = ('id', 'username', 'email', 'password', 'password_confirmation',)
+        # fields = ('id', 'username', 'password', 'password_confirmation', 'loops_created')
+        #!! Have to remove loops_created otherwise user needs to register with this.
+
+
+class EditUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+    # fields = '__all__'
+        fields = ('first_name', 'last_name', 'profile_image', 'location', 'bio',)
+    # fields = ('id', 'username', 'password', 'password_confirmation', 'loops_created')
+    #!! Have to remove loops_created otherwise user needs to register with this.
