@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import '../../styles/main.scss'
-
 import axios from 'axios'
-//import { getTokenFromLocalStorage } from '../../helpers/authHelp'
-
 import Sequencer from '../sequencer/Sequencer'
 import SequencerPlayback from '../sequencer/SequencerPlayback'
 import LoopInfoCard from '../sequencer/LoopInfoCard'
@@ -14,6 +11,7 @@ import CommentForm from '../CommentParts/CommentForm'
 
 const LoopShow = () => {
   const [loop, setLoop] = useState(null)
+  const params = useParams()
 
   // * Song State
   const [isPlaying, setIsPlaying] = useState(true)
@@ -28,7 +26,6 @@ const LoopShow = () => {
   const [effectsArray, setEffectsArray] = useState([])
 
 
-  const params = useParams()
 
   useEffect(() => {
     const getLoopData = async () => {
@@ -84,31 +81,35 @@ const LoopShow = () => {
 
   if (!loop) return null
   return (
-    <div className="loop-wrapper">
-      <Sequencer 
-        isPlaying={isPlaying}
-        bpm={loop.bpm}
-        volume={volume}
-        steps={steps}
-        synth={loop.synth}
-        setCurrentStepIndex={setCurrentStepIndex}
-        effectsArray={effectsArray}  
-      />
-      <SequencerPlayback 
-        currentStepIndex={currentStepIndex} 
-        steps={steps} 
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
-        handleVolume={handleVolume}
-        volume={volume} 
-      />
-      <LoopInfoCard 
-        loop={loop}
-      />
-
-      <CommentFeed id={params.id}/>
-      <CommentForm id={params.id}/>
-    </div> 
+    <>
+      <div className='component loop-show'>
+        <div className="loop-wrapper">
+          <Sequencer 
+            isPlaying={isPlaying}
+            bpm={loop.bpm}
+            volume={volume}
+            steps={steps}
+            synth={loop.synth}
+            setCurrentStepIndex={setCurrentStepIndex}
+            effectsArray={effectsArray}  
+          />
+          <SequencerPlayback 
+            currentStepIndex={currentStepIndex} 
+            steps={steps} 
+            isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying}
+            handleVolume={handleVolume}
+            volume={volume} 
+          />
+          <LoopInfoCard 
+            loop={loop}
+          />
+          <CommentForm id={params.id}/>
+          <CommentFeed id={params.id}/>
+        </div> 
+ 
+      </div>
+    </>
   )
 }
 

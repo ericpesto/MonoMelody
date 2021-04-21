@@ -32,7 +32,7 @@ const CommentFeed = ({ id }) => {
   return (
     <div className="box comment-feed" id='comment-feed'>
       <>
-        <h1 style={{ fontSize: 40 }}> Whats the chat? </h1>
+        <h1 style={{ fontSize: 20 }}> Whats the chat? </h1>
         { !userIsAuthenticated() &&
         <h1>login to rate or comment</h1>
         }

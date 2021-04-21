@@ -44,6 +44,22 @@ footer{
   a{margin-right: 1rem;}
 }
 
+.comment-feed{
+  max-height: 100px;
+}
+.comment-form{
+  width: 100%;
+  input{
+    margin: 0.5rem 0;
+  }
+  .btn-container{
+    display: flex;
+    justify-content:flex-start;
+  }
+}
+
+
+
 
 .loop-wrapper {
   display: -webkit-box;

@@ -10,24 +10,28 @@ import LikeButton from '../LikeButton/LikeButton'
 const CommentForm = ({ id }) => {
   const [userComment, setUserComment] = useState({
     text: '',
-    loop: id,
+    loop: Number(id),
   })
   
   const [isThereComment, setIsThereComment] = useState(null)
+  console.log('🐝 ~ isThereComment', isThereComment)
+  console.log('🐝 ~ userComment', userComment)
 
 
 
   const handleCommentChange = (event) => {
+
     //?get the value of what's being typed in the form and updating state
     const newUserComment = { ...userComment, [event.target.name]: event.target.value }
-    // console.log('🐝 ~ file: Login.js ~ line 25 ~ event', event)
+    setIsThereComment(true)
     setUserComment(newUserComment)
   }
 
 
   const handleCommentPost = async(event) => {
     event.preventDefault()
-    const isThereComment = !!userComment.commentText
+    const isThereComment = !!userComment.text
+    console.log('🐝 ~ isThereComment', isThereComment)
     if (!userIsAuthenticated()) {
       userNeedsToLogin('Please login to review and comment!☺️')
     }
@@ -38,11 +42,13 @@ const CommentForm = ({ id }) => {
       return null
     } 
     try {
-      const commentToAdd = { ...userComment }
-      await axios.post('/api/comments/', commentToAdd, { headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` } } )
+      const commentToAdd = { ...userComment, loop: id }
       console.log('🐝 ~ file: CommentForm.js ~ line 23 ~ commentToAdd', commentToAdd)
+      
+      await axios.post('/api/comments/', commentToAdd, { headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` } } )
+      
       commentPopup(true)
-      setUserComment({ commentText: '' })
+      setUserComment({ text: '' })
     } catch (err) {
       getErrorsToastify(err)
       console.log('🔴 ~ file: CommentForm.js ~ line 24 ~ err', err)
@@ -54,18 +60,17 @@ const CommentForm = ({ id }) => {
   return (
     <div className="box">
       <form className='comment-form'>
-        {!isThereComment && 
-        <input
-          className={`input ${!isThereComment ? 'is-danger' : ''}`}
-          // className={classToAdd}
-          placeholder="leave comment"
-          onChange={handleCommentChange}
-          name="text"
-          value={userComment.text}
-        />
+        {
+          <input
+            className={`input ${!isThereComment ? 'is-danger' : ''}`}
+            // className={classToAdd}
+            placeholder="leave comment"
+            onChange={handleCommentChange}
+            name="text"
+            value={userComment.text}        />
         }
         <div className='btn-container'>
-          <button href='#comment-feed' className="button comment-btn box hover-box" onClick={handleCommentPost}>Comment</button>
+          <button  className="button comment-btn box hover-box" onClick={handleCommentPost}>Comment</button>
         </div>
       </form>
       <LikeButton id={id} />
