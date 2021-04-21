@@ -8,6 +8,8 @@ import axios from 'axios'
 import Sequencer from '../sequencer/Sequencer'
 import SequencerPlayback from '../sequencer/SequencerPlayback'
 import LoopInfoCard from '../sequencer/LoopInfoCard'
+import CommentFeed from '../CommentParts/CommentFeed'
+import CommentForm from '../CommentParts/CommentForm'
 
 
 const LoopShow = () => {
@@ -32,7 +34,7 @@ const LoopShow = () => {
     const getLoopData = async () => {
       try {
         const response = await axios.get(`/api/loops/${params.id}`)
-        console.log('response.data ->', response.data)
+        // console.log('response.data ->', response.data)
         setLoop(response.data)
       } catch (err) {
         console.log(err)
@@ -43,7 +45,7 @@ const LoopShow = () => {
 
   useEffect(() => {
     if (!loop) return null
-    console.log('loop ->', loop)
+    // console.log('loop ->', loop)
 
 
     setEffect(loop.effect)
@@ -57,14 +59,14 @@ const LoopShow = () => {
 
   useEffect(() => {
 
-    console.log('steps ->', steps)
-    console.log('effect ->', effect)
-    console.log('effectArray ->', effectsArray)
+    // console.log('steps ->', steps)
+    // console.log('effect ->', effect)
+    // console.log('effectArray ->', effectsArray)
   }, [effect])
 
   const stepsIntoArray = () => {
     if (!loop) return null
-    console.log(loop.steps)
+    // console.log(loop.steps)
     const stepsArray = loop.steps.split(' ')
     return stepsArray
   }
@@ -103,6 +105,9 @@ const LoopShow = () => {
       <LoopInfoCard 
         loop={loop}
       />
+
+      <CommentFeed id={params.id}/>
+      <CommentForm id={params.id}/>
     </div> 
   )
 }
