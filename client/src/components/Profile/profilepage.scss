@@ -49,10 +49,27 @@
   }
 }
 
-.main-profile-form {
-  button {
-    background-color: #ff7f08;
-  }
+.loop-wrapper {
+  .main-profile-form {
+    z-index: 22;
+
+    button {
+      background-color: #ff7f08;
+
+      .box {
+        z-index: 22;
+        }
+    }
+  
+    
+}
+.particles-wrapper {
+  z-index: 12;
 }
 
-// * {border: 1px solid rgb(255, 0, 242);}
+}
+
+.textarea {
+  font-family: MyFont;
+}
+
