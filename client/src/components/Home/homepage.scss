@@ -13,14 +13,19 @@
 }
 
 .hero {
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   max-width: 1440px;
+  z-index: 12;
 }
 
+h1 {
+  font-size: 52px;
+}
 
 .hero-bold-text {
   font-weight: 900;
+  // z-index: 12 !important;
 }
 
 #orange-dot {
@@ -28,8 +33,9 @@
 }
 
 .hero-text {
-  font-size: 23px;
+  font-size: 18px;
   width: 100%;
+  padding: 0 10%;
   margin: 0 auto;
 }
 
@@ -38,4 +44,17 @@
   width: 120vw;
   height: 100%;
   top: 0;
+  z-index: 6;
+}
+
+
+.home-button {
+  margin: 60px 0 0 0;
+  font-size: 32px;
+  color: #ff7f08;
+  transition: all 0.3s;
+}
+
+.home-button:hover {
+  color: #fff;
 }

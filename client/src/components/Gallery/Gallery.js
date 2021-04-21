@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import MelodySphere from './MelodySphere'
 import './gallery.scss'
+
+import ParticlesBg from '../particles/ParticlesBg'
+
 const Gallery = () => {
   const [data, setData] = useState(null)
   const [genres, setGenres] = useState(null)
@@ -124,6 +127,7 @@ const Gallery = () => {
           }
         </div>
       </div>
+      <ParticlesBg />
     </>
   )
 }

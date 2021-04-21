@@ -264,6 +264,7 @@ const LoopNew = () => {
         setNotes(['D3', 'Eb3', 'F3', 'G3', 'Ab3', 'Bb3', 'C4', 'D4'])
       }  
     }
+    handleResetSteps()
     return notesArray
   }, [key, scale])
 
@@ -415,12 +416,14 @@ const LoopNew = () => {
     const currentScale =  scaleOptions.value
     console.log('currentScale ->', currentScale)
     setScale(currentScale)
+    // handleResetSteps()
   }
 
   const handleKey = (keyOptions) => {
     const currentKey =  keyOptions.value
     console.log('currentKey->', currentKey)
     setKey(currentKey)
+    // handleResetSteps()
   }
 
   const handleResetSteps = () => {

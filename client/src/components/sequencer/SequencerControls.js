@@ -7,7 +7,7 @@ import { userIsAuthenticated } from '../../helpers/authHelp'
 const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleBpm, handleVolume, handleSynthType, handleScaleType, scaleOptions, synthOptions, effectOptions, handleEffectType, handleChange, formData, genreOptions, handleGenreSelect, genres, handleSave, keyOptions, handleKey }) => {
 
   return (
-    <div className="box">
+    <div className="box sequencer-controlls">
       <form className="synth-controls-wrapper">
         <div className="synth-controls-col">
           <div>
@@ -88,7 +88,7 @@ const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleB
               value={formData.title}
             />
             <Select
-              placeholder="t u y m"
+              placeholder="m"
               //defaultValue={[genreOptions[0]]}
               isMulti
               name="genres"
@@ -96,6 +96,7 @@ const SequencerControls = ({ loopKey, synth, effect, scale, bpm, volume, handleB
               className="basic-multi-select"
               onChange={handleGenreSelect}
               value={genres}
+              // classNamePrefix="react-select"
             />
           </form>
           <button className="button" onClick={handleSave}>SAVE</button>
