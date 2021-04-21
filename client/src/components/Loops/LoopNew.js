@@ -1,5 +1,6 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import '../../styles/main.scss'
 
 import axios from 'axios'
@@ -102,6 +103,8 @@ const LoopNew = () => {
     // { value: 'f', label: 'F' },
     // { value: 'g', label: 'G' }
   ]
+
+  const history = useHistory()
 
   useEffect(() => {
     console.log('SCALE', scale)
@@ -264,6 +267,7 @@ const LoopNew = () => {
         setNotes(['D3', 'Eb3', 'F3', 'G3', 'Ab3', 'Bb3', 'C4', 'D4'])
       }  
     }
+    handleResetSteps()
     return notesArray
   }, [key, scale])
 
@@ -361,6 +365,7 @@ const LoopNew = () => {
     try {
       await axios.post('/api/loops/', formToSend, { headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}`, 'Content-Type': 'application/json' } })
       toastifyPopUp(true,'Save successful!')
+      history.push('/gallery')
     } catch (err) {
       toastifyPopUp(false,'Could not save!')
       getErrorsToastify(err)
@@ -415,12 +420,14 @@ const LoopNew = () => {
     const currentScale =  scaleOptions.value
     console.log('currentScale ->', currentScale)
     setScale(currentScale)
+    // handleResetSteps()
   }
 
   const handleKey = (keyOptions) => {
     const currentKey =  keyOptions.value
     console.log('currentKey->', currentKey)
     setKey(currentKey)
+    // handleResetSteps()
   }
 
   const handleResetSteps = () => {

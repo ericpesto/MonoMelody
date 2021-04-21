@@ -110,7 +110,7 @@ const LoopShow = () => {
           <CommentForm id={params.id}/>
           <CommentFeed id={params.id}/>
         </div> 
- 
+        <ParticlesBg />
       </div>
     </>
   )

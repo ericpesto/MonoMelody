@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import './userForms.scss'
 import axios from 'axios'
 // eslint-disable-next-line no-unused-vars
@@ -10,6 +11,9 @@ import ParticlesBg from '../particles/ParticlesBg'
 
 
 const Register = () => {
+
+  const history = useHistory()
+
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -69,6 +73,7 @@ const Register = () => {
         // setWasLoginSuccess(true)
         loginPopUp(true)
         window.localStorage.setItem('token',response.data.token)
+        history.push('/create')
       } catch (err) {
         loginPopUp(false)
         console.log('🐝 ~ file: Login.js ~ line 24 ~ err', err)
@@ -90,7 +95,8 @@ const Register = () => {
   return (
     // <div className='user-form component'>
     <div className='loop-wrapper'>
-      <form className="signup-form box column is-half is-offset-one-quarter" onSubmit={handleSubmit}>
+      <form className="signup-form box column is-half" onSubmit={handleSubmit}>
+        <h1 className="title">Sign Up</h1>
         <div className="field">
           <p className="control ">
             <input className="input is-medium" 
@@ -139,7 +145,7 @@ const Register = () => {
           </p>
         </div>
         <div className="field-button">
-          <button className="button box is-fullwidth hover-box">Sign Up</button><br />
+          <button id="form-button" className="button is-fullwidth">Sign Up</button><br />
         </div>
       </form>
       <ParticlesBg />
