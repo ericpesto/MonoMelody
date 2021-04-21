@@ -49,48 +49,53 @@ const Gallery = () => {
   return ( 
     <>
       <div className='gallery component'>
-        <div className='gallery-filter'> 
-          <div className='active-filter'>
-          </div>
-          { 
-            genres.map(genre=>{
-              const selectedFilter = {
-                backgroundColor: 'transparent',
-                color: '#ff7f08',
-                borderColor: '#ff7f08',
-              }
-              const notSelected = {
-                backgroundColor: 'transparent',
-                color: 'white',
-                borderColor: 'white',
+        <div className='gallery-wrapper'>
+          <div className='gallery-filter'> 
+            { 
+              genres.map(genre=>{
+                const selectedFilter = {
+                  backgroundColor: 'transparent',
+                  color: '#ff7f08',
+                  borderColor: '#ff7f08',
+                  zIndex: 100,
+
+                }
+                const notSelected = {
+                  backgroundColor: 'transparent',
+                  color: 'white',
+                  borderColor: 'white',
+                  zIndex: 100,
               
-              }
-              let style = notSelected
-              //if genre.id is in the filter array then change color 
-              if (!genreFilter){
-                style = notSelected
-              } else if (genreFilter.findIndex(e => e === genre.id) > -1 ){
-                style = selectedFilter
-              }
-              return (
-                <button
-                // style={buttonBackground}
-                  className='genre-tag-button' 
-                  key={genre.id} 
-                  value={genre.id}
-                  style={style}
-                  onClick={() => {
-                    handleGenreSelect(event)
-                  }} 
-                >
-                  {genre.name}
-                </button>
-              )
-            })
-          }
-        </div>
-        <div className='sphere-display columns is-multiline'>
-          { !genreFilter &&
+                }
+                let style = notSelected
+                //if genre.id is in the filter array then change color 
+                if (!genreFilter){
+                  style = notSelected
+                } else if (genreFilter.findIndex(e => e === genre.id) > -1 ){
+                  style = selectedFilter
+                }
+                return (
+                  <button
+                    // style={buttonBackground}
+                    className='genre-tag-button' 
+                    key={genre.id} 
+                    value={genre.id}
+                    style={style}
+                    onClick={() => {
+                      handleGenreSelect(event)
+                    }} 
+                  >
+                    {genre.name}
+                  </button>
+                )
+              })
+            }
+          </div>
+          <div className='sphere-display columns is-multiline'
+              
+            style={{ zIndex: 100 }}
+          >
+            { !genreFilter &&
         data.map(item=>{
           return (
             <div className='column' key={item.id} >
@@ -98,8 +103,8 @@ const Gallery = () => {
             </div>
           )
         })
-          }
-          {genreFilter && 
+            }
+            {genreFilter && 
             data.map(item=>{
               // const itemGenreId = item.genres[0].id //!first genre id
               const genreIdsToCheck = []
@@ -119,15 +124,18 @@ const Gallery = () => {
               }
               if (checkIfFilterMatchesGenre())
                 return (
-                  <div className='column' key={item.id} >
+                  <div className='column' key={item.id}  style={{ zIndex: 100 }}>
                     <MelodySphere  {...item} genreId={genreIdsToCheck}/>
                   </div>
                 )
             })
-          }
+            }
+          </div>
         </div>
+
       </div>
       <ParticlesBg />
+
     </>
   )
 }

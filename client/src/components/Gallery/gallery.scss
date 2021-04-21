@@ -1,7 +1,10 @@
 .gallery{
   background-color: #000000;
+  z-index: 1500;
 }
-
+.gallery-wrapper{
+  z-index: 1500;
+}
 .gallery-filter{
   display: flex;
   justify-content:center;

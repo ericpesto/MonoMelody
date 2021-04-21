@@ -11,17 +11,14 @@ import { userNeedsToLogin,getErrorsToastify } from '../../helpers/popUps'
 
 const Likebutton = ({ id }) => {
   const [ ownerId, setOwnerId ] = useState()
-  console.log('🐝 ~ ownerId', ownerId)
   const [totalFavourites, setTotalFavourites] = useState(0)
   //?? check here and change this _
   const [userLikedAlready, setUserLikedAlready] = useState(null)
-  console.log('🐝 ~ file: LikeButton.js ~ line 19 ~ userLikedAlready', userLikedAlready)
   
   useEffect(() => {
     refreshFavourites()
     const payload = getPayloadFromToken()
     const currentUserId = payload.sub
-    console.log('🐝 ~ file: LikeButton.js ~ line 24 ~ currentUserId', currentUserId)
     setOwnerId(currentUserId)
     
 
@@ -48,7 +45,6 @@ const Likebutton = ({ id }) => {
   // eslint-disable-next-line no-unused-vars
   const [likesArray, setLikesArray] = useState()
   const [likeId, setLikeId] = useState()
-  console.log('🐝 ~ likeId', likeId)
 
 
   const checkIfLiked = (likesArr) => {
@@ -67,28 +63,21 @@ const Likebutton = ({ id }) => {
       } else if (like.owner.id !== ownerId){
         setUserLikedAlready(false)
       }
-
-      
-
-
     })
   } 
   //__________________________________________________________________________
 
   const handleLike = async () => {
     const token = getTokenFromLocalStorage()
-    console.log('🐝 ~ token', token)
     if (!userIsAuthenticated()){
       userNeedsToLogin('Please login to like!')
       return null
     }
 
-    console.log('🐝 ~ file: ⚪️', userLikedAlready)
     if (userLikedAlready){
       //* If user has liked do delete
       try {   
-        const unlike = await axios.delete(`/api/like/${likeId}/`, { headers: { Authorization: `Bearer ${token}` } } ) 
-        console.log('🐝 ~ unlike', unlike)
+        await axios.delete(`/api/like/${likeId}/`, { headers: { Authorization: `Bearer ${token}` } } ) 
         setUserLikedAlready(true)
         refreshFavourites()
       } catch (err) {
@@ -97,13 +86,11 @@ const Likebutton = ({ id }) => {
     } else if (!userLikedAlready){
       //* If user hasn't liked do post request
       try {   
-        console.log('🔺')
         const likeLoadToSend = {
           owner: ownerId,
           loop: id,
         }
-        const likeResponse = await axios.post(`/api/like/${id}/`, likeLoadToSend, { headers: { Authorization: `Bearer ${token}` } } ) 
-        console.log('🐝 ~ likeResponse 🔺', likeResponse)
+        await axios.post(`/api/like/${id}/`, likeLoadToSend, { headers: { Authorization: `Bearer ${token}` } } ) 
         refreshFavourites()
 
       } catch (err) {

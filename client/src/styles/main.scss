@@ -46,7 +46,7 @@ footer{
 }
 
 .comment-feed{
-  max-height: 100px;
+  min-height: 100px;
 }
 .comment-form{
   width: 100%;
@@ -232,11 +232,6 @@ footer{
   align-items: flex-start;
 }
 
-.sequencer-controlls {
-  z-index: 22 !important;
-}
-
-
 .react-select-container {
   width: 260px;
 }
@@ -299,15 +294,20 @@ footer{
 
 
 .particles-wrapper {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100%;
   top: 0;
-  z-index: 3;
+  z-index: 14;
 }
 
+.sequencer-controlls {
+  z-index: 22 !important;
+}
+
+
 .box {
-  z-index: 12;
+  z-index: 22;
 }
 
 

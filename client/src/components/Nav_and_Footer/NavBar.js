@@ -30,7 +30,7 @@ const NavBar = () => {
 
   const logoStyle = {
     width: '100px',
-    marginTop: '1rem',
+   
   }
 
   //make a onclick change the state or something 
@@ -41,7 +41,7 @@ const NavBar = () => {
       <div className="container">
         <div className="navbar-brand">
 
-          <Link to="/" >
+          <Link className='navbar-logo-link' to="/" >
             <img src={logo} style={logoStyle} alt='logo'/>
           </Link>
           

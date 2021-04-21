@@ -2,7 +2,9 @@ import React from 'react'
 import '../../styles/main.scss'
 import Particles from 'react-particles-js'
 
-const ParticlesBg = () => {
+const ParticlesBg = (props) => {
+  console.log('🐝 ~ props', props)
+  
   return (
     <Particles
       className="particles-wrapper"
@@ -43,7 +45,7 @@ const ParticlesBg = () => {
               'enable': true,
               'mode': 'bubble',
             },
-            'onclick': {
+            'onclick': { //! need to do something here 
               'enable': true,
               'mode': 'repulse',
             },
