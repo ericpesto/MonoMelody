@@ -308,5 +308,43 @@ nav{
   white-space: nowrap;
 }
 
+}
 
+
+.section-wrapper-about{
+  display: flex;
+  justify-content:space-evenly;
+  border: 1px solid orange;
+  border-radius: 25px;
+  padding: 1rem;
+  .name{
+    font-size: 30px;
+  }
+a{
+  width: 200px;
+  margin: 2rem;
+}
+img{
+  width:200px;
+  // border-radius:25px;
+}
+.profile-pic{
+  border-radius:150px;
+  
+}
+}
+
+.about-links{
+  margin-top: 10px;
+
+  .git-link{
+    width: 100px;
+    height: 100px;
+    margin-bottom: -2px;
+    // width: 100px;
+  }
+ img:hover{
+  box-shadow: 0 0 10px #ff7f08;
+
+ } 
 }
