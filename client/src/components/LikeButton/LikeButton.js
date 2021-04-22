@@ -106,7 +106,7 @@ const Likebutton = ({ id }) => {
       <div>
         { !userLikedAlready && 
         <button  color='#42c298' onClick={handleLike}>
-        ❤️
+        🧡
         </button>
         }
        

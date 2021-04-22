@@ -19,31 +19,18 @@ body{
   font-family: MyFont;
   background-color: #000;
 }
-
+.Toastify__toast-body{font-family: MyFont;}
 
 nav{
   // height: 10vh !important;
   z-index: 100000;
 }
 .component{
-  min-height: 80vh !important;
+  min-height: 85vh !important;
   // overflow:auto;
 }
 
-footer{ 
-  width: 100vw;
-  height: 10vh !important;;
-  // z-index: 10;
-  
-  display:flex;
-  justify-content: center;
-  align-items: center;
 
-  color: $brand-color;
-  background-color: black;  
-
-  a{margin-right: 1rem;}
-}
 
 .comment-feed{
   min-height: 100px;
@@ -59,7 +46,10 @@ footer{
   }
 }
 
-
+.load-page {
+  background-color:$background-color;
+  height: 100vh;
+}
 
 
 .loop-wrapper {
@@ -251,10 +241,7 @@ footer{
   width: 100%;
 }
 
-.load-page {
-  background-color:$background-color;
-  height: 100vh;
-}
+
 
 .loop-playback-controlls {
   display: flex; 

@@ -4,8 +4,9 @@ import axios from 'axios'
 import { useParams, Link } from 'react-router-dom'
 import './profilepage.scss'
 
-import editIcon from '../../assets/edit-icon.svg'
 
+import defaultImage from '../../assets/default_avatar.jpeg'
+import editIcon from '../../assets/edit-icon.svg'
 import { isUserOwner } from '../../helpers/authHelp'
 
 const ProfilePage = () => {
@@ -26,16 +27,33 @@ const ProfilePage = () => {
   }, [location.pathname])
 
 
-  if (!userData) return <h1>NO DATA </h1>
 
+
+  if (!userData) return <h1 className='load-page'>NO DATA </h1>
   const userLoops = userData.loops_created
   console.log('🐝 ~ file: ProfilePage.js ~ line 22 ~ userLoops', userLoops)
-    
+
+  const formattedTimestamp = (timestamp) =>{
+    const date = new Date(timestamp)
+    const toString = date.toString()
+    const dateSlice = toString.slice(4,10)
+    const timeSlice = toString.slice(15,21)
+    console.log('🐝 ~ timeSlice', timeSlice)
+    return `${dateSlice} `
+  }
+
+
   return (
     <div className='component profile-page'>
       <section className='profile-top-section'>
-        {/* style={{ width: '15rem', height: '15rem' }}  */}
-        <img src={userData.profile_image}  alt='profile picture'/>
+        { !userData.profile_image &&
+            <img style={{ width: '15rem', height: '15rem' }}  src={defaultImage}  alt='profile picture'/>
+        }
+        
+        { userData.profile_image &&
+            <img style={{ width: '15rem', height: '15rem' }}  src={userData.profile_image}  alt='profile picture'/>
+        }
+
 
         <div className='profile-details'>
           <h1>{`${userData.username}`}</h1>
@@ -60,13 +78,18 @@ const ProfilePage = () => {
       
         <div className='user-loops'>
           <h1>My loops</h1>
-          <div className='loops-container'>
+          <div className='loops-container columns is-multiline'>
 
             {userLoops.map(loop=>{
+              console.log('🐝 ~ loop', loop)
               return (
-                <Link to='' key={loop.id} >
-                  <div  className='profile-single-loop-container'>
-                    <h1>{loop.title}</h1>
+                <Link to={`/loop/${loop.id}`} key={loop.id} >
+                  <div  className='column profile-melody-sphere'>
+                    <div  className='profile-sphere-content'>
+
+                      <h1>{loop.title}</h1>
+                      <h2>{formattedTimestamp(loop.date_created)}</h2>
+                    </div>
                   </div>
                 </Link>
               )

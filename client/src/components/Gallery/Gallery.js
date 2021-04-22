@@ -9,7 +9,7 @@ const Gallery = () => {
   const [data, setData] = useState(null)
   const [genres, setGenres] = useState(null)
   const [genreFilter, setGenreFilter] = useState(null) //should be ids to check 
-  //________________________________________________________________________________________________
+  //____________________________________________________________________
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get('/api/loops/')
@@ -29,7 +29,7 @@ const Gallery = () => {
     getData()
     getGenres()
   },[])
-  //________________________________________________________________________________________________
+  //____________________________________________________________________
   const handleGenreSelect = (event) => {
     const genreId =  Number(event.target.value)
     let genreArray = []
@@ -43,16 +43,26 @@ const Gallery = () => {
       genreArray.splice(preventDuplicate, 1)
       setGenreFilter(genreArray)
     }
-  //________________________________________________________________________________________________
+  }  
+  const handleFilterReset = () => {
+    setGenreFilter(null)
   }
+  //____________________________________________________________________
+  
   if (!data || !genres) return <div className='load-page'><h1>NO DATA!</h1></div>
   return ( 
     <>
       <div className='gallery component'>
-        <div className='gallery-wrapper'>
+        <div className='gallery-wrapper'>     
+          <div className='container'>
+            <button className='reset-filter-btn' onClick={handleFilterReset}>
+                Reset Filter</button>
+
+          </div>
           <div className='gallery-filter'> 
+  
             { 
-              genres.map(genre=>{
+              genres.map(genre=>{ 
                 const selectedFilter = {
                   backgroundColor: 'transparent',
                   color: '#ff7f08',
@@ -76,7 +86,7 @@ const Gallery = () => {
                 }
                 return (
                   <button
-                    // style={buttonBackground}
+                  // style={buttonBackground}
                     className='genre-tag-button' 
                     key={genre.id} 
                     value={genre.id}

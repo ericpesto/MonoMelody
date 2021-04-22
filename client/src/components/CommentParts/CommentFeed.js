@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { userIsAuthenticated } from '../../helpers/authHelp'
 //* Todo -change time stamps, show profile pic
@@ -34,7 +35,7 @@ const CommentFeed = ({ id }) => {
       <>
         <h1 style={{ fontSize: 20 }}> Whats the chat? </h1>
         { !userIsAuthenticated() &&
-        <h1>login to rate or comment</h1>
+        <h1>login to comment</h1>
         }
 
 
@@ -45,7 +46,10 @@ const CommentFeed = ({ id }) => {
             <div key={comment.id} className='user-comment-container'>
               {/* <p>{comment.commentText} - {comment.rating}</p> */}
               <p><span style={{ fontSize: 25 }}>{`"${comment.text}"`}</span> </p>
-              <p><span style={{ fontSize: 20, color: '#ff7f08'  }}>{comment.owner.username}</span>  at  {formattedTimestamp(timestamp)}</p>
+              <p><Link to={`/profile/${comment.owner.id}`}>
+                <span style={{ fontSize: 20, color: '#ff7f08'  }}>{comment.owner.username}  </span>  
+              </Link>
+                on  {formattedTimestamp(timestamp)}</p>
               <hr/>
             </div>
           )

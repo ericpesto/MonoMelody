@@ -20,16 +20,22 @@
   
   // box-shadow: 0 0 10px #ff0000;
 
+
+
   .sphere-content{
     display: flex;
     flex-direction: column;
     text-align: center;
+    h1{
+      padding-top: 2rem;
+      font-size: 30px;
+    }
   }
 
   .sphere-genre{
     font-family: VaporWave;
     font-size: 6rem;
-  }
+  } 
 
   .sphere-ticker{
     font-family: VaporWave;
@@ -39,18 +45,26 @@
   a{
     color: #737373;
   z-index: 1000;
+  }
+  a:hover{
+  color: #ff7f08;
 
+  
   }
 }
 
 .ticker{
-  color: red;
+  color: #ff7f08;
   // border: 1px blue dashed;
-  border-top-left-radius: 150%;
+  // border-top-left-radius: 150%;
+  // border-radius: 120%;
+  border-radius: 0;
   border-bottom-left-radius: 150%;
+  border-bottom-right-radius: 120%;
+  // border-top-left-radius: -10%;
   border-radius: 150%;
   
-  width: 250px;
+  width: 240px;
 }
 
 

@@ -7,5 +7,5 @@
     "twgq",
     "vnwg"
   ],
-  "python.pythonPath": "/Users/ericpetsopoulos/.local/share/virtualenvs/MonoMelody-p2bSXUo6/bin/python"
+  "python.pythonPath": "/opt/homebrew/opt/python@3.9/bin/python3.9"
 }
