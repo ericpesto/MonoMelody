@@ -70,8 +70,7 @@ const LoopNew = () => {
     { value: 'phrygian', label: 'phrygian' }, 
     { value: 'lydian', label: 'lydian' }, 
     { value: 'mixolydian', label: 'mixolydian' }, 
-    { value: 'locrian' , label: 'locrian'  }, 
-    { value: 'phrygian', label: 'phrygian' }
+    { value: 'locrian' , label: 'locrian' }
   ]
 
   const effectOptions = [

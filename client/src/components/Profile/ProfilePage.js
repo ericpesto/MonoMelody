@@ -60,8 +60,9 @@ const ProfilePage = () => {
           <p>
             {!userData.bio ? "No info! Someone's mysterious..." : userData.bio }
           </p>
-          {
-            isUserOwner(userData.id) &&
+          <p>{!userData.location ? null : `Location :${userData.location}`}</p>
+          
+          { isUserOwner(userData.id) &&
           
             <Link to={'/profile/edit'}>
               <img className="edit-icon" src={editIcon}/>

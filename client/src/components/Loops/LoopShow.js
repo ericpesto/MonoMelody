@@ -82,7 +82,7 @@ const LoopShow = () => {
     setVolume(currentVolume)
   }
 
-  if (!loop) return null
+  if (!loop) return <div className='load-page'><h1>NO DATA!</h1></div>
   return (
     <>
       <div className='component loop-show'>

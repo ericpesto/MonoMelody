@@ -16,7 +16,7 @@ const ProfileForm = () => {
     last_name: '',
     location: '',
     bio: '',
-    profilePicture: '',
+    profile_picture: '',
   })
   const [user, setUser] = useState(null)
   console.log('🐝 ~ setUser', setUser)
@@ -83,7 +83,7 @@ const ProfileForm = () => {
               {/* <label className="label">Last Name:</label> */}
               <div className="control">
                 <input
-                  placeholder="last Name..."
+                  placeholder="Last Name..."
                   className="input"
                   type="text"
                   name="last_name"
@@ -93,12 +93,16 @@ const ProfileForm = () => {
               </div>
             </div>
 
-            {/* <div className="field"
-            name="profilePicture"
-            value={formData.profilePicture}
-            handleImageUrl={handleImageUrl}
-          >
-          </div> */}
+            {/* <div className="input">
+              <div className="control">
+                <input className="field"
+                  name="profile_picture"
+                  value={formData.profile_picture}
+                  type="text"
+                >
+                </input>
+              </div>
+            </div> */}
 
             <div className="field">
               {/* <label className="label">Location:</label> */}
