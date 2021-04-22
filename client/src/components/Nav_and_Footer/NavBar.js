@@ -57,13 +57,13 @@ const NavBar = () => {
         
         <div className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
           <div className="navbar-start">
-            { userIsAuthenticated() &&
+            {/* { userIsAuthenticated() &&
         <>
           <Link  to={`/profile/${userId}`} onClick={() => {
             setIsActive(!isActive) 
           }}className="navbar-item" >Profile</Link>
         </>
-            }
+            } */}
             <Link to="/create" onClick={() => {
               setIsActive(!isActive) 
             }}className="navbar-item">Create</Link>
@@ -75,8 +75,18 @@ const NavBar = () => {
           </div>
 
           <div className="navbar-end">
+            { userIsAuthenticated() &&
+        <>
+          <Link  to={`/profile/${userId}`} onClick={() => {
+            setIsActive(!isActive) 
+          }}className="navbar-item" >Profile</Link>
+        </>
+            }
+
+
             { !userIsAuthenticated() &&
         <>
+        
           <Link to="/register"onClick={() => {
             setIsActive(!isActive) 
           }} className="navbar-item">
