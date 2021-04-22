@@ -64,7 +64,7 @@
   "model": "loops.loop",
   "pk": 16,
   "fields": {
-    "title": "kjnkjnkjn",
+    "title": "sauce",
     "steps": "F3 Eb3 D3 C3 Bb3 A3",
     "bpm": 120,
     "synth": "fmSynth",
@@ -72,7 +72,7 @@
     "scale": "dorian",
     "effect": "autoWah",
     "date_created": "2021-04-21T10:49:21.011Z",
-    "owner": 1,
+    "owner": 2,
     "genres": [
       1
     ]
@@ -82,7 +82,7 @@
   "model": "loops.loop",
   "pk": 17,
   "fields": {
-    "title": "lknlknlkn",
+    "title": "bigmac",
     "steps": "F3 Eb3 D3 C3 Bb3 A3",
     "bpm": 120,
     "synth": "fmSynth",
@@ -110,7 +110,7 @@
     "date_created": "2021-04-21T12:08:25.648Z",
     "owner": 5,
     "genres": [
-      21
+      19
     ]
   }
 },
@@ -118,7 +118,7 @@
   "model": "loops.loop",
   "pk": 19,
   "fields": {
-    "title": "wall of doom",
+    "title": "doomwall",
     "steps": "G3 C4",
     "bpm": 120,
     "synth": "synth",
@@ -136,7 +136,7 @@
   "model": "loops.loop",
   "pk": 20,
   "fields": {
-    "title": "fiji is life",
+    "title": "fijilife",
     "steps": "D3 F3 A3 G3 C4",
     "bpm": 198,
     "synth": "duoSynth",
@@ -154,7 +154,7 @@
   "model": "loops.loop",
   "pk": 21,
   "fields": {
-    "title": "heavy gltch",
+    "title": "glitch",
     "steps": "D3 F3 Eb3 A3 G3 Bb3",
     "bpm": 152,
     "synth": "synth",
@@ -162,7 +162,7 @@
     "scale": "phrygian",
     "effect": "autoWah distortion feedbackDelay",
     "date_created": "2021-04-21T19:08:45.478Z",
-    "owner": 1,
+    "owner": 4,
     "genres": [
       5
     ]
@@ -170,22 +170,20 @@
 },
 {
   "model": "loops.loop",
-  "pk": 22,
+  "pk": 24,
   "fields": {
-    "title": "holes",
-    "steps": "D3 A3 G3 D4 A3 G3 Eb3 D3",
+    "title": "billyBon",
+    "steps": "D3 Eb3 F3 G3",
     "bpm": 120,
-    "synth": "duoSynth",
+    "synth": "synth",
     "key": "d",
     "scale": "phrygian",
-    "effect": "autoWah distortion",
-    "date_created": "2021-04-22T10:56:49.873Z",
-    "owner": 7,
+    "effect": "distortion",
+    "date_created": "2021-04-22T11:24:17.429Z",
+    "owner": 9,
     "genres": [
-      25,
-      26,
-      14,
-      23
+      3,
+      6
     ]
   }
 }
