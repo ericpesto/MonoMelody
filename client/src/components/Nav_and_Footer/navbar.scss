@@ -74,10 +74,11 @@ a:hover {
     height: 85px;
     width: 80px;
     transform: scale(1.5);
+    color: white;
   }
 
   .navbar-burger:hover {
-    background-color: transparent;
+    -color: $brand-color;
   }
 
   a:link {
