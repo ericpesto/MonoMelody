@@ -23,6 +23,7 @@ a:hover {
   box-shadow: 0px 0px 15px #cecece69;
   // position: fixed;
   width: 100vw;
+  height: 80px;
 
   .second-logo-color {
     fill: $brand-color;
@@ -33,11 +34,14 @@ a:hover {
     letter-spacing: 1px;
     transition: all 0.2s;
     cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    position: relative;
+    top: 12px;
   }
 
   .navbar-item:focus {
     color: $brand-color;
-    text-decoration: underline;
     cursor: pointer;
     background-color: transparent;
   }
@@ -45,12 +49,15 @@ a:hover {
   .navbar-item:hover {
     color: $brand-color;
     background-color: transparent;
+    text-decoration: none;
   }
 
   .navbar-brand{
     .navbar-logo-link {
       display: flex;
       justify-content: center;
+      margin: 0 20px 0 10px;
+   
   }
   }
 
@@ -90,20 +97,31 @@ a:hover {
   }
 }
 
+// .footer-content {
+//   margin: 65px 0 0 0;
+// }
 
 
 .footer-content{ 
   width: 100vw;
-  height: 10vh !important;;
+  // height: 10vh !important;;
   // z-index: 10;
-  
+
+    width: 100vw;
+    height: 20vh !important;
+    // z-index: 10;
+    
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
   display:flex;
   justify-content: center;
   align-items: center;
 
   color: $brand-color;
   background-color: black;  
-  box-shadow: 0px 0px 15px #cecece69;
+  // box-shadow: 0px 0px 15px #cecece69;
 
   .footer-link{margin-right: 1rem;
     color: rgb(121, 121, 121);
@@ -113,3 +131,6 @@ a:hover {
   }
 }
 
+.footer-link {
+  color: white;
+}

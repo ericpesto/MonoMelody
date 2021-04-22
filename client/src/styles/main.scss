@@ -31,7 +31,6 @@ nav{
 }
 
 
-
 .comment-feed{
   min-height: 100px;
 }
@@ -205,6 +204,11 @@ nav{
 
 .synth-controls-wrapper {
   display: flex;
+  margin: 0 0 20px 0;
+}
+
+.title-input {
+  margin: 0 0 10px 0;
 }
 
 .synth-controls-col:first-of-type {
@@ -239,6 +243,7 @@ nav{
   color: black;
   font-size: 26px;
   width: 100%;
+  margin: 0 0 10px 0;
 }
 
 
@@ -298,6 +303,10 @@ nav{
   z-index: 22;
 }
 
+
+.volume-label {
+  white-space: nowrap;
+}
 
 
 }

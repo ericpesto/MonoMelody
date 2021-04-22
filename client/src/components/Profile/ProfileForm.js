@@ -6,6 +6,8 @@ import { getTokenFromLocalStorage,getPayloadFromToken } from '../../helpers/auth
 
 import './profilepage.scss'
 
+import ParticlesBg from '../particles/ParticlesBg'
+
 
 const ProfileForm = () => {
 
@@ -56,7 +58,7 @@ const ProfileForm = () => {
 
   if (!user) return null
   return (
-    <>
+    <div className="loop-wrapper">
       <div className="main-profile-form">
 
         <div className="box">
@@ -65,9 +67,10 @@ const ProfileForm = () => {
             onSubmit={handleSubmit}
           >
             <div className="field">
-              <label className="label">First Name:</label>
+              {/* <label className="label">First Name:</label> */}
               <div className="control">
                 <input
+                  placeholder="First Name..."
                   className="input"
                   type="text"
                   name="first_name"
@@ -77,9 +80,10 @@ const ProfileForm = () => {
               </div>
             </div>
             <div className="field">
-              <label className="label">Last Name:</label>
+              {/* <label className="label">Last Name:</label> */}
               <div className="control">
                 <input
+                  placeholder="last Name..."
                   className="input"
                   type="text"
                   name="last_name"
@@ -97,9 +101,10 @@ const ProfileForm = () => {
           </div> */}
 
             <div className="field">
-              <label className="label">Location:</label>
+              {/* <label className="label">Location:</label> */}
               <div className="control">
                 <input
+                  placeholder="Location..."
                   className="input"
                   type="text"
                   name="location"
@@ -111,9 +116,10 @@ const ProfileForm = () => {
 
 
             <div className="field">
-              <label className="label">Bio:</label>
+              {/* <label className="label">Bio:</label> */}
               <div className="control">
                 <textarea
+                  placeholder="tell us a bit about yourself..."
                   className="textarea"
                   name="bio"
                   value={formData.bio}
@@ -128,7 +134,8 @@ const ProfileForm = () => {
         </div>
 
       </div>
-    </>
+      <ParticlesBg />
+    </div>
       
   )
 }
