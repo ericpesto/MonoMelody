@@ -134,3 +134,10 @@ a:hover {
 .footer-link {
   color: white;
 }
+@media screen and (min-width: 1024px){
+  .is-active {
+    border-top: #000000dc 1px solid;
+}
+
+
+}
